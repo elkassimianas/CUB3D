@@ -6,7 +6,7 @@
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 17:26:47 by ael-kass          #+#    #+#             */
-/*   Updated: 2019/11/04 05:37:45 by ael-kass         ###   ########.fr       */
+/*   Updated: 2020/12/31 09:14:59 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_strmapi(char const *s, char (*f) (unsigned int, char));
 char	*ft_itoa(int n);
-void	ft_putstr_fd(char *s, int fd);
+void	ft_putstr(char *s);
 char	**ft_split(char const *s, char c);
 
 #endif

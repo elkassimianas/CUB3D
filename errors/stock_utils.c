@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   stock_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 11:35:57 by ael-kass          #+#    #+#             */
-/*   Updated: 2019/11/06 18:09:25 by ael-kass         ###   ########.fr       */
+/*   Created: 2020/12/31 15:14:44 by ael-kass          #+#    #+#             */
+/*   Updated: 2020/12/31 15:14:46 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "../cub3d.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void    resolution(void)
 {
-	int		i;
-
-	i = 0;
-	if (s == NULL)
-		return ;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+    char    **line;
+    int     j;
+    int     i;
+    
+    line = ft_split(g_check.line, ' ');
+    
 }

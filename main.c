@@ -6,7 +6,7 @@
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 11:09:17 by ael-kass          #+#    #+#             */
-/*   Updated: 2020/12/04 10:23:34 by ael-kass         ###   ########.fr       */
+/*   Updated: 2020/12/31 09:31:16 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_readfile()
 	if (g_check.fd != -1)
 	{
 		a = get_next_line(g_check.fd, &g_check.line);
-		a == 0 ? ft_print_errors("you need to put all the element of the file\n") : a;
+		a == 0 ? ft_print_errors("you need to put all the elements in the file\n") : a;
 		put_check(a);
 	}
 	else

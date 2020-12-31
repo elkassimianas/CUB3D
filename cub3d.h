@@ -20,6 +20,7 @@
 # include <stdbool.h>
 # include <limits.h>
 # include "./get_next_line/get_next_line.h"
+# include "./libft/libft.h"
 
 # define WIN_WMAX 5120
 # define WIN_HMAX 2880

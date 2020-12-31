@@ -6,7 +6,7 @@
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 18:50:30 by ael-kass          #+#    #+#             */
-/*   Updated: 2020/12/21 18:50:32 by ael-kass         ###   ########.fr       */
+/*   Updated: 2020/12/31 09:46:45 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int     put_check(int a)
 {
+    int i = -1;
     while (*g_check.line == '\0')
     {
         if (a == 0)
@@ -45,19 +46,34 @@ int     put_check(int a)
     //         g_ray.win_w = WIN_WMAX;
     // }
     // return (0);
-    if (*g_check.line == 'R')
-    {}
-    else if (g_check.line == "NO")
-    {}
-    else if (*g_check.line == 'SO')
-    else if (*g_check.line == 'WE')
-    else if (*g_check.line == 'EA')
-    else if (*g_check.line == 'S')
-    else if (*g_check.line == 'F')
-    else if (*g_check.line == 'C')
+    // i = ft_strncmp(g_check.line, "R", 1);
+    if (g_check.line[0] == 'R')
+        resolution();
+   // i = ft_strncmp(g_check.line, "NO", 2);
+    if (g_check.line[0] == 'N' && g_check.line[1] == 'O')
+    {
 
+    }
+   // i = ft_strncmp(g_check.line, "SO", 2); 
+    if (g_check.line[0] == 'S' && g_check.line[1] == 'O')
+    {}
+   // i = ft_strncmp(g_check.line, "WE", 2);
+    if (g_check.line[0] == 'W' && g_check.line[1] == 'E')
+    {}
+    if (g_check.line[0] == 'E' && g_check.line[1] == 'A')
+    {
 
-    return 0;
+    }
+    if (g_check.line[0] == 'S')
+    {
+
+    }
+    if (g_check.line[0] == 'F')
+    {}
+    if (g_check.line[0] == 'C')
+    {}
+
+    return (0);
 }
 
 void    ft_print_errors(char *str)

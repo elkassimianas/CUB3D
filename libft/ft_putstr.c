@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 15:44:00 by ael-kass          #+#    #+#             */
-/*   Updated: 2020/12/31 09:18:47 by ael-kass         ###   ########.fr       */
+/*   Created: 2020/12/31 10:20:43 by ael-kass          #+#    #+#             */
+/*   Updated: 2020/12/31 10:20:59 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
 
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "../libft/libft.h"
+#include "libft.h"
 
-# define BUFFER_SIZE 32
+void	ft_putstr(char *s)
+{
+	int		i;
 
-int		get_next_line(int fd, char **line);
-
-#endif
+	i = 0;
+	if (s == NULL)
+		return ;
+	while (s[i] != '\0')
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+}
