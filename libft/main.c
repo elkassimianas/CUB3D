@@ -1,8 +1,8 @@
 #include "libft.h"
 #include <stdio.h>
 
-int     main(void)
+int main()
 {
-    printf("atoi: %d\n",ft_atoi("123a"));
-    return 0;
+	printf("%d\n",  ft_atoi("123  av"));
+	return (0);
 }

@@ -37,10 +37,11 @@ void	ft_readfile()
 	int		a = 1;
 
 	g_check.fd = open("map.cub", O_RDONLY);
+	printf("g_check.fd: %d\n", g_check.fd);
 	if (g_check.fd != -1)
 	{
 		a = get_next_line(g_check.fd, &g_check.line);
-		a == 0 ? ft_print_errors("you need to put all the elements in the file\n") : a;
+		//a == 0 ? ft_print_errors("you need to put all the elements in the file\n") : a;
 		put_check(a);
 	}
 	else

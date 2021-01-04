@@ -175,5 +175,7 @@ void			buffertexture(t_data *data);
 void			ft_readfile();
 int				put_check();
 void			ft_print_errors(char *str);
+void			resolution();
+size_t			nu_information(char **line);
 
 #endif

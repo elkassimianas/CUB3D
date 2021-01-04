@@ -14,8 +14,8 @@
 
 int     put_check(int a)
 {
-    int i = -1;
-    while (*g_check.line == '\0')
+    //int i = -1;
+    while (g_check.line == '\0')
     {
         if (a == 0)
             ft_print_errors("you need to put all the element of the file\n");
@@ -50,28 +50,28 @@ int     put_check(int a)
     if (g_check.line[0] == 'R')
         resolution();
    // i = ft_strncmp(g_check.line, "NO", 2);
-    if (g_check.line[0] == 'N' && g_check.line[1] == 'O')
-    {
+//     if (g_check.line[0] == 'N' && g_check.line[1] == 'O')
+//     {
 
-    }
-   // i = ft_strncmp(g_check.line, "SO", 2); 
-    if (g_check.line[0] == 'S' && g_check.line[1] == 'O')
-    {}
-   // i = ft_strncmp(g_check.line, "WE", 2);
-    if (g_check.line[0] == 'W' && g_check.line[1] == 'E')
-    {}
-    if (g_check.line[0] == 'E' && g_check.line[1] == 'A')
-    {
+//     }
+//    // i = ft_strncmp(g_check.line, "SO", 2); 
+//     if (g_check.line[0] == 'S' && g_check.line[1] == 'O')
+//     {}
+//    // i = ft_strncmp(g_check.line, "WE", 2);
+//     if (g_check.line[0] == 'W' && g_check.line[1] == 'E')
+//     {}
+//     if (g_check.line[0] == 'E' && g_check.line[1] == 'A')
+//     {
 
-    }
-    if (g_check.line[0] == 'S')
-    {
+//     }
+//     if (g_check.line[0] == 'S')
+//     {
 
-    }
-    if (g_check.line[0] == 'F')
-    {}
-    if (g_check.line[0] == 'C')
-    {}
+//     }
+//     if (g_check.line[0] == 'F')
+//     {}
+//     if (g_check.line[0] == 'C')
+//     {}
 
     return (0);
 }
