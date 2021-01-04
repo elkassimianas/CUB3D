@@ -72,7 +72,7 @@ int     put_check(int a)
 //     {}
 //     if (g_check.line[0] == 'C')
 //     {}
-
+        ft_print_errors("in the first information");
     return (0);
 }
 
