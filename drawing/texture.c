@@ -21,6 +21,7 @@ void    buffertexture(t_data *data)
     // void    *dataimgvert;
 
     dataimg[0] = mlx_xpm_file_to_image (data->mlx, g_texture.filenameup, &g_texture.width, &g_texture.height);
+    dataimg[0] == NULL ? ft_print_errors(1) : dataimg[0];
     dataimg[1] = mlx_xpm_file_to_image (data->mlx, g_texture.filenamedown, &g_texture.width, &g_texture.height);
     dataimg[2] = mlx_xpm_file_to_image (data->mlx, g_texture.filenameleft, &g_texture.width, &g_texture.height);
     dataimg[3] = mlx_xpm_file_to_image (data->mlx, g_texture.filenameright, &g_texture.width, &g_texture.height);

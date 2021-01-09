@@ -18,7 +18,7 @@ int     put_check(int a)
     while (g_check.line == '\0')
     {
         if (a == 0)
-            ft_print_errors("you need to put all the element of the file\n");
+            ft_print_errors(0);
         else
             a = get_next_line(g_check.fd, &g_check.line);
     }
@@ -72,14 +72,35 @@ int     put_check(int a)
 //     {}
 //     if (g_check.line[0] == 'C')
 //     {}
-        ft_print_errors("in the first information");
+       ft_print_errors(1);
     return (0);
 }
 
-void    ft_print_errors(char *str)
+void    ft_print_errors1(char *str, int index)
 {
-    ft_putstr("\x1B[31merror: ");
-    str = ft_strjoin("\x1B[37m", str);
+    ft_putstr("\x1B[31mError\n");
+    if (index == 0)
+        str = ft_strjoin("\x1B[37m", str);
+    if (index == 1)
+        str = ft_strjoin("\x1B[37mResolution: ", str);
+    if (index == 2)
+        str = ft_strjoin("\x1B[37musage: ", str);
     ft_putstr(str);
     exit (EXIT_FAILURE);
+}
+
+void ft_print_errors(int  index)
+{
+    if (index == 0)
+        ft_print_errors1("you need to put all the information of the file\n", 0);
+    if (index == 1)
+        ft_print_errors1("in the first information", 1);
+    if (index == 2)
+        ft_print_errors1("in the second information", 1);
+    if (index == 3)
+        ft_print_errors1("in the Third information", 1);
+    if (index == 4)
+        ft_print_errors1("Number of informations must be 3", 1);
+    if (index == 5)
+        ft_print_errors1("./cub3D <filename.cub> or ./cub3D <filename.cub> <--save>",0);
 }

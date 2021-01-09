@@ -32,10 +32,16 @@ int	update(t_data *data)
 	return (0);
 }
 
-void	ft_readfile()
+void	ft_readfile(int argc, char **argv)
 {
 	int		a = 1;
+	char	*file;
+	char	str;
 
+	argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
+	file = !ft_strrchr(argv[1], '.') && ft_strcmp(ft_strrchr, ".cub")?;
+	
+	if (3)
 	g_check.fd = open("map.cub", O_RDONLY);
 	printf("g_check.fd: %d\n", g_check.fd);
 	if (g_check.fd != -1)
@@ -44,15 +50,16 @@ void	ft_readfile()
 		//a == 0 ? ft_print_errors("you need to put all the elements in the file\n") : a;
 		put_check(a);
 	}
-	else
-		ft_print_errors("in the file Name\n");
+//else
+		//ft_print_errors("in the file Name\n");
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data		data;
 
-	ft_readfile();
+	printf  ("%d\n", argc);
+	ft_readfile(argc, argv);
 	exit(EXIT_SUCCESS);
 
 	
