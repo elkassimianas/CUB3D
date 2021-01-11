@@ -172,7 +172,7 @@ void			drawing_walls3d(t_data *data, double x,
 				double y, double tile_z1);
 void			render3dprojectedwalls(t_data *data);
 void			buffertexture(t_data *data);
-void			ft_readfile(int argc, char **argv);
+void			ft_readfile();
 int				put_check();
 void			ft_print_errors1(char *str, int index);
 void			ft_print_errors(int	index);
