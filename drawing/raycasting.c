@@ -111,12 +111,12 @@ void		raycastvert()
 	return ;
 }
 
-void		castallg_rays(t_data *data)
+void		castallg_rays()
 {
 	int		i;
 
 	/*start first g_ray subtracting half of the fov*/
-	g_ray.angle = data->rotationangle - (data->fov_angle / 2);
+	g_ray.angle = g_data.rotationangle - (g_data.fov_angle / 2);
 	i = -1;
 	while (++i < g_ray.num_rays)
 	{
@@ -141,7 +141,7 @@ void		castallg_rays(t_data *data)
 		//rayspush(data, g_ray.walhitx * MINIMAP_SCALE_FACTOR, g_ray.walhity *
 			//	MINIMAP_SCALE_FACTOR);
 		g_ray1[i].angletab = g_ray.angle;
-		g_ray.angle += data->fov_angle / g_ray.num_rays;
+		g_ray.angle += g_data.fov_angle / g_ray.num_rays;
 	}
 	return ;
 }

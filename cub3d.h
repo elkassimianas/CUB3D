@@ -146,17 +146,18 @@ t_player		g_player;
 t_render3d		g_render3d;
 t_texture		g_texture;
 t_check			g_check;
+t_data			g_data;
 
-int				keypressed(int keycode, t_data *data);
-int				keyrelease(int keycode, t_data *data);
+int				keypressed(int keycode);
+int				keyrelease(int keycode);
 int				hasaallat(double x, double y);
-void			rayspush(t_data	*data, double x2, double y2);
-void			map(t_data	*data);
-void			drawing_cub_walls(t_data	*data);
-int				update(t_data	*data);
-void			draw_new_map(t_data *data);
-void			line(t_data *data);
-void			castallg_rays(t_data	*data);
+void			rayspush(double x2, double y2);
+void			map();
+void			drawing_cub_walls();
+int				update();
+void			draw_new_map();
+void			line();
+void			castallg_rays();
 double			normalizeangle(double angle);
 int				haswallat(double x, double y);
 void			raycasthorz();
@@ -164,19 +165,19 @@ void			raycastvert();
 void			raycasttotal();
 double			distancebetweenpoints(double x1, double y1, double x2,
 				double y2);
-void			render3dprojectedwalls(t_data *data);
+void			render3dprojectedwalls();
 double			dmod(double x, double y);
 void			raycasthorzhelp(double nexthorztouchx, double nexthorztouchy);
 void			raycastverthelp(double nextverttouchx, double nextverttouchy);
-void			drawing_walls3d(t_data *data, double x,
-				double y, double tile_z1);
-void			render3dprojectedwalls(t_data *data);
-void			buffertexture(t_data *data);
+void			drawing_walls3d(double x, double y, double tile_z1);
+void			render3dprojectedwalls();
+void			buffertexture();
 void			ft_readfile();
 int				put_check();
 void			ft_print_errors1(char *str, int index);
 void			ft_print_errors(int	index);
 void			resolution();
 size_t			nu_information(char **line);
+void			north();
 
 #endif

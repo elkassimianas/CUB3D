@@ -24,25 +24,25 @@ int	    map1[11][15] = {{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
                    	   {1,0,0,0,0,0,0,1,0,0,0,0,0,0,1},
                    	   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
-int		keypressed(int keycode, t_data *data)
+int		keypressed(int keycode)
 {
 	if (keycode == LEFT)
-		data->turndirection = -1;
+		g_data.turndirection = -1;
 	if (keycode == RIGHT)
-		data->turndirection = 1;
+		g_data.turndirection = 1;
 	if (keycode == W)
-		data->walkdirection = 1;
+		g_data.walkdirection = 1;
 	if (keycode == S)
-		data->walkdirection = -1;
+		g_data.walkdirection = -1;
 	return (0);
 }
 
-int		keyrelease(int keycode, t_data *data)
+int		keyrelease(int keycode)
 {
 	if (keycode == LEFT || keycode == RIGHT)
-		data->turndirection = 0;
+		g_data.turndirection = 0;
 	if (keycode == W || keycode == S)
-		data->walkdirection = 0;
+		g_data.walkdirection = 0;
 	return (0);
 }
 
@@ -60,21 +60,21 @@ int		haswallat(double x, double y)
 	return (0);
 }
 
-void		draw_new_map(t_data *data)
+void		draw_new_map()
 {
 	float		movestep;
 	float		newplayerx;
 	float		newplayery;
 
-	mlx_clear_window(data->mlx, data->win);
-	mlx_destroy_image(data->mlx, data->img);
-	data->img = mlx_new_image(data->mlx, g_ray.win_w, g_ray.win_h);
-	data->addr = (int *)mlx_get_data_addr(data->img, &data->bits_per_pixel,
-			&data->line_length, &data->endian);
-	data->rotationangle += data->turndirection * data->rotationspeed;
-	movestep = data->walkdirection * data->movespeed;
-	newplayerx = g_player.xplayer + cos(data->rotationangle) * movestep;
-	newplayery = g_player.yplayer + sin(data->rotationangle) * movestep;
+	mlx_clear_window(g_data.mlx, g_data.win);
+	mlx_destroy_image(g_data.mlx, g_data.img);
+	g_data.img = mlx_new_image(g_data.mlx, g_ray.win_w, g_ray.win_h);
+	g_data.addr = (int *)mlx_get_data_addr(g_data.img, &g_data.bits_per_pixel,
+			&g_data.line_length, &g_data.endian);
+	g_data.rotationangle += g_data.turndirection * g_data.rotationspeed;
+	movestep = g_data.walkdirection * g_data.movespeed;
+	newplayerx = g_player.xplayer + cos(g_data.rotationangle) * movestep;
+	newplayery = g_player.yplayer + sin(g_data.rotationangle) * movestep;
 	if (!haswallat(newplayerx, newplayery))
 	{
 		g_player.xplayer = newplayerx;

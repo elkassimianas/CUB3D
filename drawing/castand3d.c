@@ -20,7 +20,7 @@ double		normalizeangle(double angle)
 	return (angle);
 }
 
-void		rayspush(t_data *data, double x2, double y2)
+void		rayspush(double x2, double y2)
 {
 	double		y1;
 	double		x1;
@@ -38,7 +38,7 @@ void		rayspush(t_data *data, double x2, double y2)
 	x2 = -1;
 	while (++x2 <= steps)
 	{
-		data->addr[(int)y1 * g_ray.win_w + (int)x1] = g_tilecolor;
+		g_data.addr[(int)y1 * g_ray.win_w + (int)x1] = g_tilecolor;
 		x1 = x1 + xinc;
 		y1 = y1 + yinc;
 	}
@@ -50,7 +50,7 @@ double		distancebetweenpoints(double x1, double y1, double x2, double y2)
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-void			drawing_walls3d(t_data *data, double x, double y, double tile_z1)
+void			drawing_walls3d(double x, double y, double tile_z1)
 {
 	double		x1;
 	double		y1;
@@ -63,7 +63,7 @@ void			drawing_walls3d(t_data *data, double x, double y, double tile_z1)
 		while (x < x1)
 		{
 			if (y >= 0 && x >= 0 && x < g_ray.win_w && y < g_ray.win_h)
-				data->addr[((int)y * g_ray.win_w) + (int)x] = g_tilecolor;
+				g_data.addr[((int)y * g_ray.win_w) + (int)x] = g_tilecolor;
 			x++;
 		}
 		x -= WALL_STRIP_WIDTH;
@@ -72,7 +72,7 @@ void			drawing_walls3d(t_data *data, double x, double y, double tile_z1)
 	return ;
 }
 
-void		render3dprojectedwalls(t_data *data)
+void		render3dprojectedwalls()
 {
 	int			i;
 	int			y;
@@ -85,10 +85,10 @@ void		render3dprojectedwalls(t_data *data)
 	while (++i < g_ray.num_rays)
 	{
 		//cowalldistance = g_ray1[i].distancestab;
-		/*"cos(angle - data->rotationangle)" get the perpendicular distance to the wall to fix Fishbowl distortion*/
-		g_render3d.cowalldistance = g_ray1[i].distancestab * cos(g_ray1[i].angletab - data->rotationangle);
+		/*"cos(angle - g_data.rotationangle)" get the perpendicular distance to the wall to fix Fishbowl distortion*/
+		g_render3d.cowalldistance = g_ray1[i].distancestab * cos(g_ray1[i].angletab - g_data.rotationangle);
 		/*calculate the distance to the projection plane*/
-		g_render3d.distanceprojectionplane = (g_ray.win_w / 2) / tan(data->fov_angle / 2);
+		g_render3d.distanceprojectionplane = (g_ray.win_w / 2) / tan(g_data.fov_angle / 2);
 		/*projected wall height*/
 		g_render3d.wallstripheight = (TILE_SIZE / g_render3d.cowalldistance) * g_render3d.distanceprojectionplane;
 		g_render3d.walltoppixel = (g_ray.win_h / 2) - (g_render3d.wallstripheight / 2);
@@ -101,7 +101,7 @@ void		render3dprojectedwalls(t_data *data)
 		y = 0;
 		while (y < g_render3d.walltoppixel)
 		{
-			data->addr[(y * g_ray.win_w) + i] = 0x9bc8de;
+			g_data.addr[(y * g_ray.win_w) + i] = 0x9bc8de;
 			y++;
 		}
 		//drawing_walls3d(data, i, g_render3d.walltoppixel, g_render3d.wallstripheight);
@@ -137,14 +137,14 @@ void		render3dprojectedwalls(t_data *data)
 			//printf("%d" , (TEXTURE_WIDTH * g_texture.offsety) + g_texture.offsetx);
 			color = g_texture.addr[a][(TEXTURE_WIDTH * g_texture.offsety) + g_texture.offsetx];
 		//	printf("%zu\n", g_tilecolor);
-			data->addr[(y * g_ray.win_w) + i] = color;
+			g_data.addr[(y * g_ray.win_w) + i] = color;
 			y++;
 		}
 		// set the color of the floor
 		y = g_render3d.wa_btm_pxl;
 		while (y < g_ray.win_h)
 		{
-			data->addr[(y * g_ray.win_w) + i] = 0x5f5a39;
+			g_data.addr[(y * g_ray.win_w) + i] = 0x5f5a39;
 			y++;
 		}
 	}

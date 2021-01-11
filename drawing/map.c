@@ -25,7 +25,7 @@ int	    Map[11][15] = {{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
                    	   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
 
-void		drawing_cub_walls(t_data *data)
+void		drawing_cub_walls()
 {
 	int		x;
 	int		y;
@@ -36,7 +36,7 @@ void		drawing_cub_walls(t_data *data)
 	{
 		while (g_player.tilex < x)
 		{
-			data->addr[(int)g_player.tiley * g_ray.win_w + (int)g_player.tilex] =
+			g_data.addr[(int)g_player.tiley * g_ray.win_w + (int)g_player.tilex] =
 				g_tilecolor;
 			g_player.tilex += 0.1;
 		}
@@ -45,7 +45,7 @@ void		drawing_cub_walls(t_data *data)
 	}
 }
 
-void		map(t_data *data)
+void		map()
 {
 	int		i;
 	int		j;
@@ -63,12 +63,12 @@ void		map(t_data *data)
 			if (Map[i][j] == 1)
 			{
 				g_tilecolor = 0x5C413B;
-				drawing_cub_walls(data);
+				drawing_cub_walls();
 			}
 			else if (Map[i][j] == 0)
 			{
 				g_tilecolor = 0xC4C0C0;
-				drawing_cub_walls(data);
+				drawing_cub_walls();
 			}
 		}
 	}
