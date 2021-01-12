@@ -124,14 +124,19 @@ typedef struct	s_texture
 	char		*filenamedown;
 	char		*filenameright;
 	char		*filenameleft;
+	char		*filesprite;
 	int			width;
 	int			height;
+	int			r;
+	int			g;
+	int			b;
 	int			*addr[4];
 	int			offsetx;
 	int			offsety;
 	int			bits_per_pixeltx;
 	int			line_lengthtx;
 	int			endiantx;
+
 }				t_texture;
 
 typedef	struct	s_check
@@ -178,6 +183,7 @@ void			ft_print_errors1(char *str, int index);
 void			ft_print_errors(int	index);
 void			resolution();
 size_t			nu_information(char **line);
-void			north();
+void			no_so_we_ea_s();
+void			ft_floor();
 
 #endif

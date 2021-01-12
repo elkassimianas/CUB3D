@@ -36,7 +36,7 @@ void	ft_readfile()
 {
 	int		a = 1;
 	int		i;
-	int		x = 1;
+	// int		x = 1;
 
 	//argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
 	//if (argc == 3 && strncmp(av[2], "--save", 7))
@@ -47,24 +47,23 @@ void	ft_readfile()
 	//	ft_print_errors(6);
 	if (g_check.fd != -1)
 	{
-		a = get_next_line(g_check.fd, &g_check.line);
-		if (a == 0)
-			ft_print_errors(0);
-		while (a != 0)
+		// a = get_next_line(g_check.fd, &g_check.line);
+		// if (a == 0)
+		// 	ft_print_errors(0);
+		while (a == 1)
 		{
-			a = x;
+			a = get_next_line(g_check.fd, &g_check.line);
 			while (g_check.line[0] == '\0')
-        	{
-            	if (a == 0)
-                	ft_print_errors(0);
-            	else
-                	a = get_next_line(g_check.fd, &g_check.line);
-        	}
+			{
+                if (a == 0)
+					exit(1);
+				a = get_next_line(g_check.fd, &g_check.line);
+			}
 			i = 0;
 			while (g_check.line[i] == ' ')
             	i++;
 			put_check(i);
-			x = get_next_line(g_check.fd, &g_check.line);
+			//x = get_next_line(g_check.fd, &g_check.line);
 		}
 	}
 	else
@@ -84,10 +83,10 @@ int	main()
 	g_ray.win_h = 11 * TILE_SIZE;
 	g_ray.num_rays = g_ray.win_w / WALL_STRIP_WIDTH;
 	// g_ray1[g_ray.num_rays];
-	g_texture.filenameup = "./images/txt64-3.xpm";
-	g_texture.filenamedown = "./images/txt64-2.xpm";
-	g_texture.filenameleft = "./images/txt64-4.xpm";
-	g_texture.filenameright = "./images/txt6 4-1.xpm";
+	//g_texture.filenameup = "./images/txt64-3.xpm";
+	// g_texture.filenamedown = "./images/txt64-2.xpm";
+	// g_texture.filenameleft = "./images/txt64-4.xpm";
+	// g_texture.filenameright = "./images/txt6 4-1.xpm";
 	g_data.turndirection = 0;
 	g_data.walkdirection = 0;
 	g_data.rotationangle = M_PI_2;
