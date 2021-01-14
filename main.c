@@ -82,11 +82,11 @@ int	main()
 	g_ray.win_w = 15 * TILE_SIZE;
 	g_ray.win_h = 11 * TILE_SIZE;
 	g_ray.num_rays = g_ray.win_w / WALL_STRIP_WIDTH;
-	// g_ray1[g_ray.num_rays];
-	//g_texture.filenameup = "./images/txt64-3.xpm";
+	//g_ray1[g_ray.num_rays] ;
+	// g_texture.filenameup = "./images/txt64-3.xpm";
 	// g_texture.filenamedown = "./images/txt64-2.xpm";
 	// g_texture.filenameleft = "./images/txt64-4.xpm";
-	// g_texture.filenameright = "./images/txt6 4-1.xpm";
+	// g_texture.filenameright = "./images/txt64-1.xpm";
 	g_data.turndirection = 0;
 	g_data.walkdirection = 0;
 	g_data.rotationangle = M_PI_2;

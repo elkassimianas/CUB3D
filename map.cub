@@ -1,8 +1,10 @@
-R      1     4500        
+R      1456     4500        
 NO    ./images/txt64-3.xpm
 SO    ./images/txt64-2.xpm     
 WE    ./images/txt64-4.xpm
 EA    ./images/txt64-1.xpm      
 S     ./images/s.xpm
 F     0,55,255
+C     0,212,056
+
 

@@ -47,11 +47,11 @@ void    ft_floor(char **line)
     }
     line = ft_split(line[1], ',');
     g_texture.rf = ft_atoi(line[0]);
-    g_texture.rf == -1 || g_texture.rf >= 255 ? ft_print_errors(12) : g_texture.rf; 
+    g_texture.rf == -1 || g_texture.rf > 255 ? ft_print_errors(12) : g_texture.rf; 
     g_texture.gf = ft_atoi(line[1]);
-    g_texture.gf == -1 || g_texture.gf >= 255 ? ft_print_errors(12) : g_texture.gf;
+    g_texture.gf == -1 || g_texture.gf > 255 ? ft_print_errors(12) : g_texture.gf;
     g_texture.bf = ft_atoi(line[2]);
-    g_texture.bf == -1 || g_texture.bf >= 255 ? ft_print_errors(12) : g_texture.bf;
+    g_texture.bf == -1 || g_texture.bf > 255 ? ft_print_errors(12) : g_texture.bf;
 }
 
 void    ft_ceilling(char **line)
@@ -75,11 +75,11 @@ void    ft_ceilling(char **line)
     }
     line = ft_split(line[1], ',');
     g_texture.rc = ft_atoi(line[0]);
-    g_texture.rc == -1 || g_texture.rc > 255 ? ft_print_errors(12) : g_texture.rc; 
+    g_texture.rc == -1 || g_texture.rc > 255 ? ft_print_errors(14) : g_texture.rc; 
     g_texture.gc = ft_atoi(line[1]);
-    g_texture.gc == -1 || g_texture.gc > 255 ? ft_print_errors(12) : g_texture.gc;
+    g_texture.gc == -1 || g_texture.gc > 255 ? ft_print_errors(14) : g_texture.gc;
     g_texture.bc = ft_atoi(line[2]);
-    g_texture.bc == -1 || g_texture.bc > 255 ? ft_print_errors(12) : g_texture.bc;
+    g_texture.bc == -1 || g_texture.bc > 255 ? ft_print_errors(14) : g_texture.bc;
 }
 
 void    no_so_we_ea_s(int dx1, int dx2)
