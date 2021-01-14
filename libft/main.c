@@ -3,6 +3,7 @@
 
 int main()
 {
-	printf("%d\n",  ft_atoi("123  av"));
+	char *str = "-1";
+	printf("%d\n", ft_atoi(str));
 	return (0);
 }

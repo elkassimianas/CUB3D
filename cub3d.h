@@ -127,9 +127,12 @@ typedef struct	s_texture
 	char		*filesprite;
 	int			width;
 	int			height;
-	int			r;
-	int			g;
-	int			b;
+	int			rf;
+	int			gf;
+	int			bf;
+	int			rc;
+	int			gc;
+	int			bc;
 	int			*addr[4];
 	int			offsetx;
 	int			offsety;
@@ -184,6 +187,7 @@ void			ft_print_errors(int	index);
 void			resolution();
 size_t			nu_information(char **line);
 void			no_so_we_ea_s();
-void			ft_floor();
+void			ft_floor(char **line);
+void			ft_ceilling(char **line);
 
 #endif

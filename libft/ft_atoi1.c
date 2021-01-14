@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoi1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 13:58:58 by ael-kass          #+#    #+#             */
-/*   Updated: 2021/01/14 10:08:04 by ael-kass         ###   ########.fr       */
+/*   Created: 2021/01/13 10:56:23 by ael-kass          #+#    #+#             */
+/*   Updated: 2021/01/13 11:34:57 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		ft_passing(const char *str)
 	return (i);
 }
 
-int		ft_atoi(const char *str)
+int		ft_atoi1(char **str)
 {
 	long		nb;
 	int			sign;
@@ -37,16 +37,12 @@ int		ft_atoi(const char *str)
 	nb = 0;
 	sign = 1;
 
-	if (str[i] == '-')
-		return (-1);
-	while (str[i] >= 48 && str[i] <= 57)
+	while (str[0][i] >= 48 && str[0][i] <= 57)
 	{
-		//if (nb < 0)
-		// 	return ((sign > 0) ? -1 : 0);
-		nb = nb * 10 + (str[i] - 48);
+		if (nb < 0)
+			return ((sign > 0) ? -1 : 0);
+		nb = nb * 10 + (str[0][i] - 48);
 		i++;
 	}
-	if(ft_isdigit(str[i]) == 0 && str[i] != '\0')
-			return (-1);
 	return (nb * sign);
 }

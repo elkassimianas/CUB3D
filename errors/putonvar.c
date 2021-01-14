@@ -66,29 +66,23 @@ int     put_check(int i)
         no_so_we_ea_s(1,5);
         return (0);
     }
-    if (g_check.line[i] == 'F')
+    if (g_check.line[i] == 'F' && g_check.line[i+1] == ' ')
     {
-        ft_floor();
+        char    **line;
+
+        line = ft_split(g_check.line, ' ');
+        ft_floor(line);
         return (0);
     }
-//    // i = ft_strncmp(g_check.line, "WE", 2);
-//     if (g_check.line[0] == 'W' && g_check.line[1] == 'E')
-//     {}
-//     if (g_check.line[0] == 'E' && g_check.line[1] == 'A')
-//     {
-//     }
-//     if (g_check.line[0] == 'S')
-//     {
-//     }
-//     if (g_check.line[0] == 'F')
-//     {}
-//     if (g_check.line[0] == 'C')
-//     {}
-        ft_print_errors(2);
-        // if (a == 0)
-        //     ft_print_errors(0);
-        // a = get_next_line(g_check.fd, &g_check.line);
-    
+    if (g_check.line[0] == 'C' && g_check.line[i+1] == ' ')
+    {
+        char    **line;
+
+        line = ft_split(g_check.line, ' ');
+        ft_ceilling(line);
+        return (0);
+    }
+    ft_print_errors(2);
     return (0);
 }
 
@@ -111,13 +105,11 @@ void    ft_print_errors1(char *str, int index)
         str = ft_strjoin("\x1B[37mEast texture: ", str);
     if (index == 7)
         str = ft_strjoin("\x1B[37mSprite texture: ", str);
-    if (index == 8)
-        str = ft_strjoin("\x1B[37mFloor color: ", str);
     ft_putstr(str);
     exit (EXIT_FAILURE);
 }
 
-void ft_print_errors(int  index)
+void    ft_print_errors(int  index)
 {
     if (index == 0)
         ft_print_errors1("you need to put all the information of the file\n", 0);
@@ -144,5 +136,9 @@ void ft_print_errors(int  index)
     if (index == 11)
         ft_print_errors1("The S information is wrong\n", 7);
     if (index == 12)
-        ft_print_errors1("The F information is wrong\n", 8);
+        ft_print_errors1("Floor color: The F information is wrong\n", 0);
+    if (index == 13)
+        ft_print_errors1("put only one , between rgb\n", 0);
+    if (index == 14)
+        ft_print_errors1("ceilling color: The C information is wrong\n", 0);
 }
