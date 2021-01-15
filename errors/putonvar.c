@@ -22,49 +22,53 @@ int    ft_spaces()
     return (i);
 }
 
-int     put_check(int i)
+int     put_check(int i, int b)
 {
-    int b = 0;
     if (g_check.line[i] == 'R')
     {
         resolution();
         b++;
-        return (0);
+        return (b);
     }
     if (g_check.line[i] == 'N' && g_check.line[i+1] == 'O')
     {
         if (g_check.line[i + 2] != ' ')
             ft_print_errors(2);
         no_so_we_ea_s(1,1);
-        return (0);
+        b++;
+        return (b);
     }
     if (g_check.line[i] == 'S' && g_check.line[i+1] == 'O')
     {
         if (g_check.line[i+2] != ' ')
             ft_print_errors(2);
         no_so_we_ea_s(1,2);
-        return (0);
+        b++;
+        return (b);
     }
     if (g_check.line[i] == 'W' && g_check.line[i+1] == 'E')
     {
         if (g_check.line[i+2] != ' ')
             ft_print_errors(2);
         no_so_we_ea_s(1,3);
-        return (0);
+        b++;
+        return (b);
     }
     if (g_check.line[i] == 'E' && g_check.line[i+1] == 'A')
     {
         if (g_check.line[i+2] != ' ')
             ft_print_errors(2);
         no_so_we_ea_s(1, 4);
-        return (0);
+        b++;
+        return (b);
     }
     if (g_check.line[i] == 'S')
     {
         if (g_check.line[i+1] != ' ')
             ft_print_errors(2);
         no_so_we_ea_s(1,5);
-        return (0);
+        b++;
+        return (b);
     }
     if (g_check.line[i] == 'F' && g_check.line[i+1] == ' ')
     {
@@ -72,15 +76,17 @@ int     put_check(int i)
 
         line = ft_split(g_check.line, ' ');
         ft_floor(line);
-        return (0);
+        b++;
+        return (b);
     }
-    if (g_check.line[0] == 'C' && g_check.line[i+1] == ' ')
+    if (g_check.line[i] == 'C' && g_check.line[i+1] == ' ')
     {
         char    **line;
 
         line = ft_split(g_check.line, ' ');
         ft_ceilling(line);
-        return (0);
+        b++;
+        return (b);
     }
     ft_print_errors(2);
     return (0);

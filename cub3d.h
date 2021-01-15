@@ -181,7 +181,7 @@ void			drawing_walls3d(double x, double y, double tile_z1);
 void			render3dprojectedwalls();
 void			buffertexture();
 void			ft_readfile();
-int				put_check();
+int				put_check(int i, int b);
 void			ft_print_errors1(char *str, int index);
 void			ft_print_errors(int	index);
 void			resolution();

@@ -50,6 +50,5 @@ char	*ft_strmapi(char const *s, char (*f) (unsigned int, char));
 char	*ft_itoa(int n);
 void	ft_putstr(char *s);
 char	**ft_split(char const *s, char c);
-int		ft_atoi1(char **str);
 
 #endif

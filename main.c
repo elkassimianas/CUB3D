@@ -36,6 +36,7 @@ void	ft_readfile()
 {
 	int		a = 1;
 	int		i;
+	int b = 0;
 	// int		x = 1;
 
 	//argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
@@ -50,7 +51,7 @@ void	ft_readfile()
 		// a = get_next_line(g_check.fd, &g_check.line);
 		// if (a == 0)
 		// 	ft_print_errors(0);
-		while (a == 1)
+		while (b < 8)
 		{
 			a = get_next_line(g_check.fd, &g_check.line);
 			while (g_check.line[0] == '\0')
@@ -62,9 +63,16 @@ void	ft_readfile()
 			i = 0;
 			while (g_check.line[i] == ' ')
             	i++;
-			put_check(i);
+			b = put_check(i, b);
 			//x = get_next_line(g_check.fd, &g_check.line);
 		}
+		if (b == 8)
+		{
+			printf("%d\n", b);
+			exit(1);
+		}
+		else
+			ft_print_errors(2);
 	}
 	else
 		ft_print_errors(7);
