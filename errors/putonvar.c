@@ -34,6 +34,10 @@ int     put_check(int i, int b)
     {
         if (g_check.line[i + 2] != ' ')
             ft_print_errors(2);
+         if (g_str[1] == '1')
+            ft_print_errors(16);
+        else
+            g_str[1] = '1';
         no_so_we_ea_s(1,1);
         b++;
         return (b);
@@ -42,6 +46,10 @@ int     put_check(int i, int b)
     {
         if (g_check.line[i+2] != ' ')
             ft_print_errors(2);
+        if (g_str[2] == '1')
+            ft_print_errors(17);
+        else
+            g_str[2] = '1';
         no_so_we_ea_s(1,2);
         b++;
         return (b);
@@ -50,6 +58,10 @@ int     put_check(int i, int b)
     {
         if (g_check.line[i+2] != ' ')
             ft_print_errors(2);
+        if (g_str[3] == '1')
+            ft_print_errors(18);
+        else
+            g_str[3] = '1';
         no_so_we_ea_s(1,3);
         b++;
         return (b);
@@ -58,6 +70,10 @@ int     put_check(int i, int b)
     {
         if (g_check.line[i+2] != ' ')
             ft_print_errors(2);
+        if (g_str[4] == '1')
+            ft_print_errors(19);
+        else
+            g_str[4] = '1';
         no_so_we_ea_s(1, 4);
         b++;
         return (b);
@@ -66,6 +82,10 @@ int     put_check(int i, int b)
     {
         if (g_check.line[i+1] != ' ')
             ft_print_errors(2);
+        if (g_str[5] == '1')
+            ft_print_errors(20);
+        else
+            g_str[5] = '1';
         no_so_we_ea_s(1,5);
         b++;
         return (b);
@@ -75,6 +95,10 @@ int     put_check(int i, int b)
         char    **line;
 
         line = ft_split(g_check.line, ' ');
+        if (g_str[6] == '1')
+            ft_print_errors(21);
+        else
+            g_str[6] = '1';
         ft_floor(line);
         b++;
         return (b);
@@ -84,6 +108,10 @@ int     put_check(int i, int b)
         char    **line;
 
         line = ft_split(g_check.line, ' ');
+        if (g_str[7] == '1')
+            ft_print_errors(22);
+        else
+            g_str[7] = '1';
         ft_ceilling(line);
         b++;
         return (b);
@@ -146,5 +174,21 @@ void    ft_print_errors(int  index)
     if (index == 13)
         ft_print_errors1("put only one , between rgb\n", 0);
     if (index == 14)
-        ft_print_errors1("ceilling color: The C information is wrong\n", 0);
+        ft_print_errors1("Ceilling color: The C information is wrong\n", 0);
+    if (index == 15)
+        ft_print_errors1("there is a duplication\n", 1);
+    if (index == 16)
+        ft_print_errors1("there is a duplication\n", 3);
+    if (index == 17)
+        ft_print_errors1("there is a duplication\n", 4);
+    if (index == 18)
+        ft_print_errors1("there is a duplication\n", 5);
+    if (index == 19)
+        ft_print_errors1("there is a duplication\n", 6);
+    if (index == 20)
+        ft_print_errors1("there is a duplication\n", 7);
+    if (index == 21)
+        ft_print_errors1("Floor color: there is a duplication\n", 0);
+    if (index == 22)
+        ft_print_errors1("Ceilling color: there is a duplication\n", 0);
 }

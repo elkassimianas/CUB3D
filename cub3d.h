@@ -41,6 +41,7 @@
 # define BUFFER_SIZE 32
 
 unsigned long int	g_tilecolor;
+char				*g_str;
 
 typedef	struct	s_player
 {

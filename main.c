@@ -46,6 +46,13 @@ void	ft_readfile()
 	g_check.fd = open("map.cub", O_RDONLY);
 	//else
 	//	ft_print_errors(6);
+	g_str = malloc(9 * sizeof(char));
+  	if (g_str == 0)
+    	exit(0);
+  	i = -1;
+ 	while (++i < 8)
+    	g_str[i] = '0';
+  	g_str[i] = 0;
 	if (g_check.fd != -1)
 	{
 		// a = get_next_line(g_check.fd, &g_check.line);
@@ -68,7 +75,11 @@ void	ft_readfile()
 		}
 		if (b == 8)
 		{
-			printf("%d\n", b);
+			a = get_next_line(g_check.fd, &g_check.line);
+			if (g_check.line[0] == '\0')
+				printf("%d\n", b);
+			else
+				ft_print_errors(2);
 			exit(1);
 		}
 		else

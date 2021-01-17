@@ -18,6 +18,10 @@ void    resolution()
     
     line = ft_split(g_check.line, ' ');
     ft_strlen(line[0]) != 1 ? ft_print_errors(2) : 1;
+    if (g_str[0] == '1')
+        ft_print_errors(15);
+    else
+        g_str[0] = '1';
     nu_information(line) != 3 ? ft_print_errors(1) : 3;
     g_ray.win_w = ft_atoi(line[1]);
     g_ray.win_w == 0 || g_ray.win_w == -1 ? ft_print_errors(1) : g_ray.win_w;
