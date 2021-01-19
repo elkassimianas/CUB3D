@@ -190,5 +190,6 @@ size_t			nu_information(char **line);
 void			no_so_we_ea_s();
 void			ft_floor(char **line);
 void			ft_ceilling(char **line);
+void			check_map();
 
 #endif

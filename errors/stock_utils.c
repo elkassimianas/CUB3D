@@ -50,6 +50,7 @@ void    ft_floor(char **line)
         a != 2 && line[1][i + 1] == '\0' ? ft_print_errors(13) : a;
     }
     line = ft_split(line[1], ',');
+    nu_information(line) != 3 ? ft_print_errors(12) : 2;
     g_texture.rf = ft_atoi(line[0]);
     g_texture.rf == -1 || g_texture.rf > 255 ? ft_print_errors(12) : g_texture.rf; 
     g_texture.gf = ft_atoi(line[1]);
@@ -78,6 +79,7 @@ void    ft_ceilling(char **line)
 
     }
     line = ft_split(line[1], ',');
+    nu_information(line) != 3 ? ft_print_errors(14) : 2;
     g_texture.rc = ft_atoi(line[0]);
     g_texture.rc == -1 || g_texture.rc > 255 ? ft_print_errors(14) : g_texture.rc; 
     g_texture.gc = ft_atoi(line[1]);
@@ -117,7 +119,7 @@ size_t    nu_information(char **line)
     size_t     i;
 
     i = 0;
-    while (line[i] != '\0')
+    while (line[i] != 0)
         i++;
     return (i);
 }

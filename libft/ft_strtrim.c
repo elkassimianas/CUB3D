@@ -78,7 +78,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	if (!s1 || set == NULL)
 		return (NULL);
-	if (set == '\0')
+	if (set == 0)
 		return (ft_strdup(s1));
 	d = 0;
 	b = f_strcmp1(s1, set);

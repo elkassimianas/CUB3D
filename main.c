@@ -55,35 +55,33 @@ void	ft_readfile()
   	g_str[i] = 0;
 	if (g_check.fd != -1)
 	{
-		// a = get_next_line(g_check.fd, &g_check.line);
-		// if (a == 0)
-		// 	ft_print_errors(0);
+		a = get_next_line(g_check.fd, &g_check.line);
+		if (a == 0 && g_check.line[0] == '\0')
+			ft_print_errors(24);
+		while (g_check.line[0] == '\0')
+		{
+            if (a == 0)
+				ft_print_errors(24);
+			a = get_next_line(g_check.fd, &g_check.line);
+		}
+		printf("%s\n", g_check.line);
 		while (b < 8)
 		{
-			a = get_next_line(g_check.fd, &g_check.line);
-			while (g_check.line[0] == '\0')
-			{
-                if (a == 0)
-					exit(1);
-				a = get_next_line(g_check.fd, &g_check.line);
-			}
 			i = 0;
 			while (g_check.line[i] == ' ')
             	i++;
+			if (a == 0 || g_check.line[i] == '1' || g_check.line[i] == '0')
+				ft_print_errors(0);
 			b = put_check(i, b);
-			//x = get_next_line(g_check.fd, &g_check.line);
-		}
-		if (b == 8)
-		{
 			a = get_next_line(g_check.fd, &g_check.line);
-			if (g_check.line[0] == '\0')
-				printf("%d\n", b);
-			else
-				ft_print_errors(2);
-			exit(1);
+			while (g_check.line[0] == '\0' && a != 0)
+				a = get_next_line(g_check.fd, &g_check.line);
+			// if (a == 0 || g_check.line[i] == '1' || g_check.line[i] == '0')
+			// 	ft_print_errors(0);
 		}
-		else
-			ft_print_errors(2);
+		//while (g_check.line[0] == '\0')
+		printf("%s\n", g_check.line);
+		check_map();
 	}
 	else
 		ft_print_errors(7);

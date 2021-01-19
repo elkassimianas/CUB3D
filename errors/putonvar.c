@@ -146,7 +146,7 @@ void    ft_print_errors1(char *str, int index)
 void    ft_print_errors(int  index)
 {
     if (index == 0)
-        ft_print_errors1("you need to put all the information of the file\n", 0);
+        ft_print_errors1("you need to put all the elements of the file\n", 0);
     if (index == 1)
         ft_print_errors1("The R information is wrong\n", 1);
     if (index == 2)
@@ -161,8 +161,6 @@ void    ft_print_errors(int  index)
         ft_print_errors1("first argument should be file in format *.cub\n", 0);
     if (index == 7)
         ft_print_errors1("no such file or directory\n", 0);
-    if (index == 8)
-        ft_print_errors1("Elements absent\n", 0);
     if (index == 9)
         ft_print_errors1("The WE information is wrong\n", 5);
     if (index == 10)
@@ -191,4 +189,6 @@ void    ft_print_errors(int  index)
         ft_print_errors1("Floor color: there is a duplication\n", 0);
     if (index == 22)
         ft_print_errors1("Ceilling color: there is a duplication\n", 0);
+    if (index == 24)
+        ft_print_errors1("Empty File\n", 0);
 }

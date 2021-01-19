@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = -Wall -Wextra -Werror -I /usr/share/man/man3 -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -fsanitize=address -g
+CC = -Wall -Wextra -Werror -I /usr/X11/include -L /usr/X11/lib -l mlx -framework OpenGL -framework AppKit -fsanitize=address -g
 
 NAME = cub3D
 LIB = ./libft/libft.a
@@ -24,6 +24,7 @@ SRC = drawing/map.c\
 		get_next_line/get_next_line_utils.c\
 		errors/putonvar.c\
 		errors/stock_utils.c\
+		errors/map.c\
 		main.c
 
 
