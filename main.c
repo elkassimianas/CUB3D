@@ -48,7 +48,7 @@ void	ft_readfile()
 	//	ft_print_errors(6);
 	g_str = malloc(9 * sizeof(char));
   	if (g_str == 0)
-    	exit(0);
+    	exit(EXIT_FAILURE);
   	i = -1;
  	while (++i < 8)
     	g_str[i] = '0';
@@ -73,7 +73,7 @@ void	ft_readfile()
 			while (g_par.line[i] == ' ')
             	i++;
 			if (a == 0 || g_par.line[i] == '1' || g_par.line[i] == '0')
-				ft_print_errors(0);
+				ft_print_errors(2);
 			b = put_check(i, b);
 			a = get_next_line(g_par.fd, &g_par.line);
 			inc++;

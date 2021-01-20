@@ -21,7 +21,6 @@ SRC = drawing/map.c\
 		drawing/raycasting.c\
 		drawing/texture.c\
 		get_next_line/get_next_line.c\
-		get_next_line/get_next_line_utils.c\
 		errors/putonvar.c\
 		errors/stock_utils.c\
 		errors/map.c\
