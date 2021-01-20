@@ -17,22 +17,22 @@ int    ft_spaces()
     int     i;
 
     i = 0;
-    while (g_check.line[i] == ' ')
+    while (g_par.line[i] == ' ')
         i++;
     return (i);
 }
 
 int     put_check(int i, int b)
 {
-    if (g_check.line[i] == 'R')
+    if (g_par.line[i] == 'R')
     {
         resolution();
         b++;
         return (b);
     }
-    if (g_check.line[i] == 'N' && g_check.line[i+1] == 'O')
+    if (g_par.line[i] == 'N' && g_par.line[i+1] == 'O')
     {
-        if (g_check.line[i + 2] != ' ')
+        if (g_par.line[i + 2] != ' ')
             ft_print_errors(2);
          if (g_str[1] == '1')
             ft_print_errors(16);
@@ -42,9 +42,9 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_check.line[i] == 'S' && g_check.line[i+1] == 'O')
+    if (g_par.line[i] == 'S' && g_par.line[i+1] == 'O')
     {
-        if (g_check.line[i+2] != ' ')
+        if (g_par.line[i+2] != ' ')
             ft_print_errors(2);
         if (g_str[2] == '1')
             ft_print_errors(17);
@@ -54,9 +54,9 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_check.line[i] == 'W' && g_check.line[i+1] == 'E')
+    if (g_par.line[i] == 'W' && g_par.line[i+1] == 'E')
     {
-        if (g_check.line[i+2] != ' ')
+        if (g_par.line[i+2] != ' ')
             ft_print_errors(2);
         if (g_str[3] == '1')
             ft_print_errors(18);
@@ -66,9 +66,9 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_check.line[i] == 'E' && g_check.line[i+1] == 'A')
+    if (g_par.line[i] == 'E' && g_par.line[i+1] == 'A')
     {
-        if (g_check.line[i+2] != ' ')
+        if (g_par.line[i+2] != ' ')
             ft_print_errors(2);
         if (g_str[4] == '1')
             ft_print_errors(19);
@@ -78,9 +78,9 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_check.line[i] == 'S')
+    if (g_par.line[i] == 'S')
     {
-        if (g_check.line[i+1] != ' ')
+        if (g_par.line[i+1] != ' ')
             ft_print_errors(2);
         if (g_str[5] == '1')
             ft_print_errors(20);
@@ -90,11 +90,11 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_check.line[i] == 'F' && g_check.line[i+1] == ' ')
+    if (g_par.line[i] == 'F' && g_par.line[i+1] == ' ')
     {
         char    **line;
 
-        line = ft_split(g_check.line, ' ');
+        line = ft_split(g_par.line, ' ');
         if (g_str[6] == '1')
             ft_print_errors(21);
         else
@@ -103,11 +103,11 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_check.line[i] == 'C' && g_check.line[i+1] == ' ')
+    if (g_par.line[i] == 'C' && g_par.line[i+1] == ' ')
     {
         char    **line;
 
-        line = ft_split(g_check.line, ' ');
+        line = ft_split(g_par.line, ' ');
         if (g_str[7] == '1')
             ft_print_errors(22);
         else
@@ -191,4 +191,6 @@ void    ft_print_errors(int  index)
         ft_print_errors1("Ceilling color: there is a duplication\n", 0);
     if (index == 24)
         ft_print_errors1("Empty File\n", 0);
+    if (index == 25)
+        ft_print_errors1("no valid map\n", 0);
 }

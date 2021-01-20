@@ -16,7 +16,7 @@ void    resolution()
 {
     char    **line;
     
-    line = ft_split(g_check.line, ' ');
+    line = ft_split(g_par.line, ' ');
     ft_strlen(line[0]) != 1 ? ft_print_errors(2) : 1;
     if (g_str[0] == '1')
         ft_print_errors(15);
@@ -92,7 +92,7 @@ void    no_so_we_ea_s(int dx1, int dx2)
 {
     char    **line;
 
-    line = ft_split(g_check.line, ' ');
+    line = ft_split(g_par.line, ' ');
     if (dx1 == 1)
     {
         if (!mlx_xpm_file_to_image (g_data.mlx, line[1], &g_texture.width, &g_texture.height) || nu_information(line) != 2)

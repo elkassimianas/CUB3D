@@ -68,6 +68,7 @@ typedef struct	s_data
 	double		movespeed;
 	double		rotationspeed;
 	double		fov_angle;
+	int			**map;
 }				t_data;
 
 typedef	struct	s_ray
@@ -143,18 +144,19 @@ typedef struct	s_texture
 
 }				t_texture;
 
-typedef	struct	s_check
+typedef	struct	s_parsing
 {
 	int			fd;
 	char		*line;
-}				t_check;
+	char		*str;
+}				t_parsing;
 
 t_ray			g_ray;
 t_ray1			g_ray1[WIN_WMAX / WALL_STRIP_WIDTH];
 t_player		g_player;
 t_render3d		g_render3d;
 t_texture		g_texture;
-t_check			g_check;
+t_parsing		g_par;
 t_data			g_data;
 
 int				keypressed(int keycode);
@@ -191,5 +193,8 @@ void			no_so_we_ea_s();
 void			ft_floor(char **line);
 void			ft_ceilling(char **line);
 void			check_map();
+void			ft_allocate();
+void			check_first_end_line();
+void			ft_putmap(int x, int y);
 
 #endif

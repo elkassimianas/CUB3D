@@ -36,14 +36,14 @@ void	ft_readfile()
 {
 	int		a = 1;
 	int		i;
-	int b = 0;
-	// int		x = 1;
+	int 	b = 0;
+	int		inc = 0;
 
 	//argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
 	//if (argc == 3 && strncmp(av[2], "--save", 7))
 	//	ft_print_errors(5);
 	//if (ft_strrchr(av[1], '.') && !ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 5))
-	g_check.fd = open("map.cub", O_RDONLY);
+	g_par.fd = open("map.cub", O_RDONLY);
 	//else
 	//	ft_print_errors(6);
 	g_str = malloc(9 * sizeof(char));
@@ -53,34 +53,39 @@ void	ft_readfile()
  	while (++i < 8)
     	g_str[i] = '0';
   	g_str[i] = 0;
-	if (g_check.fd != -1)
+	if (g_par.fd != -1)
 	{
-		a = get_next_line(g_check.fd, &g_check.line);
-		if (a == 0 && g_check.line[0] == '\0')
+		a = get_next_line(g_par.fd, &g_par.line);
+		++inc;
+		if (a == 0 && g_par.line[0] == '\0')
 			ft_print_errors(24);
-		while (g_check.line[0] == '\0')
+		while (g_par.line[0] == '\0')
 		{
             if (a == 0)
 				ft_print_errors(24);
-			a = get_next_line(g_check.fd, &g_check.line);
+			a = get_next_line(g_par.fd, &g_par.line);
+			inc++;
 		}
-		printf("%s\n", g_check.line);
+		printf("%s\n", g_par.line);
 		while (b < 8)
 		{
 			i = 0;
-			while (g_check.line[i] == ' ')
+			while (g_par.line[i] == ' ')
             	i++;
-			if (a == 0 || g_check.line[i] == '1' || g_check.line[i] == '0')
+			if (a == 0 || g_par.line[i] == '1' || g_par.line[i] == '0')
 				ft_print_errors(0);
 			b = put_check(i, b);
-			a = get_next_line(g_check.fd, &g_check.line);
-			while (g_check.line[0] == '\0' && a != 0)
-				a = get_next_line(g_check.fd, &g_check.line);
-			// if (a == 0 || g_check.line[i] == '1' || g_check.line[i] == '0')
+			a = get_next_line(g_par.fd, &g_par.line);
+			inc++;
+			while (g_par.line[0] == '\0' && a != 0)
+			{
+				a = get_next_line(g_par.fd, &g_par.line);
+				inc++;
+			}
+			// if (a == 0 || g_par.line[i] == '1' || g_par.line[i] == '0')
 			// 	ft_print_errors(0);
 		}
-		//while (g_check.line[0] == '\0')
-		printf("%s\n", g_check.line);
+		printf("%s\n", g_par.line);
 		check_map();
 	}
 	else
