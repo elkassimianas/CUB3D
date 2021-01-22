@@ -25,10 +25,9 @@ void    check_map()
     inc = 1;
     i = 0;
     a = 1;
+    len = ft_strlen(g_par.line);
     g_par.str = g_par.line;
-    //printf("%s\n", g_par.str);
     g_par.str = ft_strjoin(g_par.str, "c");
-     //   printf("%s\n", g_par.str);
     check_first_end_line();
     while (a != 0)
     {
@@ -39,7 +38,6 @@ void    check_map()
             ft_print_errors(25);
         g_par.str = ft_strjoin(g_par.str, g_par.line);
         g_par.str = ft_strjoin(g_par.str, "c");
-        //printf("%s\n", g_par.str);
         inc++;
         i = 0;
         while (g_par.line[i] != '\0')
@@ -51,7 +49,7 @@ void    check_map()
                 if (check == 0)
                     check = 1;
                 else
-                    ft_print_errors(25);
+                    ft_print_errors(26);
                 i++;
             }
             else if (g_par.line[i] == 'E' || g_par.line[i] == 'W')
@@ -59,18 +57,20 @@ void    check_map()
                 if (check == 0)
                     check = 1;
                 else
-                    ft_print_errors(25);
+                    ft_print_errors(26);
                 i++;
             }
             else
-                ft_print_errors(25);
+                ft_print_errors(30);
         }
         len = len > (int)ft_strlen(g_par.line) ? len : ft_strlen(g_par.line);
     }
-    if (inc < 3 || check == 0)
-        ft_print_errors(25);
+    printf("%d\n", len);
+    if (inc < 3)
+        ft_print_errors(29);
+    if (check == 0)
+        ft_print_errors(27);
     ft_allocate(len, inc);
-    printf("%s\n", g_par.str);
     ft_putmap(len, inc);    
 }
 
@@ -110,41 +110,64 @@ void    ft_putmap(int x, int y)
     int     j;
     int     a;
 
-    i = -1;
+    i = 0;
     a = 0;
-    while (++i < y)
+    while (i < y)
     {
         j = 0;
+        printf("%s\n", g_par.str);
         while (g_par.str[a] != 'c')
-            g_data.map[i][j++] = g_par.str[a++];
-        while (j++ < x - 1)
+        {
+            g_data.map[i][j] = g_par.str[a];
+            j++;
+            a++;
+        }
+        while (j < x)
+        {
             g_data.map[i][j] = ' ';
+            j++;
+        }
+        a++;
+        i++;
     }
+    // for (i = 0; i <  y; i++) 
+    //   for (j = 0; j < x; j++) 
+    //      printf("%c", g_data.map[i][j]); 
     i = -1;
     a = 0;
     while (++i < y)
     {
-        printf("%d\n", g_data.map[i][0]);
         j = -1;
         while (++j < x)
         {
             if (j == 0)
             {
                 while (g_data.map[i][j] == ' ')
+                {
+                    if (j == x - 1)
+                        ft_print_errors(25);
                     j++;
+                }
                 if (g_data.map[i][j] != '1')
                     ft_print_errors(25);
             }
-            // if (i == 0 && g_data.map[i][j] == ' ')
-            //     g_data.map[i+1][j] == '1' || g_data.map[i+1][j] == ' ' ? 1 : ft_print_errors(25);
-            // else if (g_data.map[i][j] == ' ')
-            // {
-            //     g_data.map[i][j-1] == '1' || g_data.map[i][j-1] == ' ' ? 1 : ft_print_errors(25);
-            //     g_data.map[i][j+1] == '1' || g_data.map[i][j+1] == ' ' ? 1 : ft_print_errors(25);
-            //     g_data.map[i-1][j] == '1' || g_data.map[i-1][j] == ' ' ? 1 : ft_print_errors(25);
-            //     g_data.map[i+1][j] == '1' || g_data.map[i+1][j] == ' ' ? 1 : ft_print_errors(25);
-            // }
-        }
-        
+            if (i == 0 && g_data.map[i][j] == ' ')
+            {
+                //printf("%c\n", g_data.map[i][j]);
+                if (j != x - 1)
+                    g_data.map[i][j+1] == '1' || g_data.map[i][j+1] == ' ' ? 1 : ft_print_errors(25);
+                g_data.map[i][j-1] == '1' || g_data.map[i][j-1] == ' ' ? 1 : ft_print_errors(25);
+                g_data.map[i+1][j] == '1' || g_data.map[i+1][j] == ' ' ? 1 : ft_print_errors(25);
+            }
+            else if (g_data.map[i][j] == ' ')
+            {
+                g_data.map[i][j-1] == '1' || g_data.map[i][j-1] == ' ' ? 1 : ft_print_errors(25);
+                if (j != x - 1)
+                    g_data.map[i][j+1] == '1' || g_data.map[i][j+1] == ' ' ? 1 : ft_print_errors(25);
+                g_data.map[i-1][j] == '1' || g_data.map[i-1][j] == ' ' ? 1 : ft_print_errors(25);
+                if (i != y - 1)
+                g_data.map[i+1][j] == '1' || g_data.map[i+1][j] == ' ' ? 1 : ft_print_errors(25);
+            }
+         } 
     }
 }

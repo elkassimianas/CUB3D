@@ -37,7 +37,6 @@ void	ft_readfile()
 	int		a = 1;
 	int		i;
 	int 	b = 0;
-	int		inc = 0;
 
 	//argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
 	//if (argc == 3 && strncmp(av[2], "--save", 7))
@@ -56,7 +55,6 @@ void	ft_readfile()
 	if (g_par.fd != -1)
 	{
 		a = get_next_line(g_par.fd, &g_par.line);
-		++inc;
 		if (a == 0 && g_par.line[0] == '\0')
 			ft_print_errors(24);
 		while (g_par.line[0] == '\0')
@@ -64,29 +62,27 @@ void	ft_readfile()
             if (a == 0)
 				ft_print_errors(24);
 			a = get_next_line(g_par.fd, &g_par.line);
-			inc++;
 		}
-		printf("%s\n", g_par.line);
-		while (b < 8)
+		//printf("%s\n", g_par.line);
+		while (a != 0)
 		{
 			i = 0;
 			while (g_par.line[i] == ' ')
             	i++;
-			if (a == 0 || g_par.line[i] == '1' || g_par.line[i] == '0')
+			if ((a == 0 || g_par.line[i] == '1' || g_par.line[i] == '0') && b < 8)
 				ft_print_errors(2);
+			// error in check is map like "first line : N111111   11 :should be print error in the map"
+			else if (check_is_map()) && b >= 8)
+				break ;
 			b = put_check(i, b);
 			a = get_next_line(g_par.fd, &g_par.line);
-			inc++;
 			while (g_par.line[0] == '\0' && a != 0)
-			{
 				a = get_next_line(g_par.fd, &g_par.line);
-				inc++;
-			}
 			// if (a == 0 || g_par.line[i] == '1' || g_par.line[i] == '0')
 			// 	ft_print_errors(0);
 		}
-		printf("%s\n", g_par.line);
 		check_map();
+		ft_print_errors(90);
 	}
 	else
 		ft_print_errors(7);
