@@ -196,7 +196,7 @@ void    ft_print_errors(int  index)
     if (index == 25)
         ft_print_errors1("no valid map\n", 8);
     if (index == 26)
-        ft_print_errors1("there is a duplicate in position of player\n", 8);
+        ft_print_errors1("multiplayer\n", 8);
     if (index == 27)
         ft_print_errors1("no player in the map\n", 8);
     if (index == 28)
@@ -204,8 +204,7 @@ void    ft_print_errors(int  index)
     if (index == 29)
         ft_print_errors1("the map start with 3 lines at least\n", 8);
     if (index == 30)
-        ft_print_errors1("there is a character not valid in the map\n", 8);
-                                                                                                 
+        ft_print_errors1("there is a character not valid in the map\n", 8);                                                                  
     if (index == 90)
         ft_print_errors1("good\n", 0);
 }

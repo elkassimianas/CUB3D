@@ -24,6 +24,7 @@ SRC = drawing/map.c\
 		errors/putonvar.c\
 		errors/stock_utils.c\
 		errors/map.c\
+		errors//map1.c\
 		main.c
 
 

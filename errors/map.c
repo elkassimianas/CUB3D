@@ -16,14 +16,12 @@ void    check_map()
 {
     int     a;
     int     len;
-    int     i;
     int     check;
     int     inc;
 
     check = 0;
     len = 0;
     inc = 1;
-    i = 0;
     a = 1;
     len = ft_strlen(g_par.line);
     g_par.str = g_par.line;
@@ -39,39 +37,15 @@ void    check_map()
         g_par.str = ft_strjoin(g_par.str, g_par.line);
         g_par.str = ft_strjoin(g_par.str, "c");
         inc++;
-        i = 0;
-        while (g_par.line[i] != '\0')
-	    {
-		    if (g_par.line[i] == ' ' || g_par.line[i] == '1' || g_par.line[i] == '0')
-                i++;
-            else if (g_par.line[i] ==  'N' || g_par.line[i] == 'S')
-            {
-                if (check == 0)
-                    check = 1;
-                else
-                    ft_print_errors(26);
-                i++;
-            }
-            else if (g_par.line[i] == 'E' || g_par.line[i] == 'W')
-            {
-                if (check == 0)
-                    check = 1;
-                else
-                    ft_print_errors(26);
-                i++;
-            }
-            else
-                ft_print_errors(30);
-        }
+        check = check_map1(check);
         len = len > (int)ft_strlen(g_par.line) ? len : ft_strlen(g_par.line);
     }
-    printf("%d\n", len);
     if (inc < 3)
         ft_print_errors(29);
     if (check == 0)
         ft_print_errors(27);
     ft_allocate(len, inc);
-    ft_putmap(len, inc);    
+    ft_putmap(len, inc);
 }
 
 void    ft_allocate(int x, int  y)
@@ -115,7 +89,6 @@ void    ft_putmap(int x, int y)
     while (i < y)
     {
         j = 0;
-        printf("%s\n", g_par.str);
         while (g_par.str[a] != 'c')
         {
             g_data.map[i][j] = g_par.str[a];
@@ -130,9 +103,6 @@ void    ft_putmap(int x, int y)
         a++;
         i++;
     }
-    // for (i = 0; i <  y; i++) 
-    //   for (j = 0; j < x; j++) 
-    //      printf("%c", g_data.map[i][j]); 
     i = -1;
     a = 0;
     while (++i < y)
@@ -153,7 +123,6 @@ void    ft_putmap(int x, int y)
             }
             if (i == 0 && g_data.map[i][j] == ' ')
             {
-                //printf("%c\n", g_data.map[i][j]);
                 if (j != x - 1)
                     g_data.map[i][j+1] == '1' || g_data.map[i][j+1] == ' ' ? 1 : ft_print_errors(25);
                 g_data.map[i][j-1] == '1' || g_data.map[i][j-1] == ' ' ? 1 : ft_print_errors(25);

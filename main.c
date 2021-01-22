@@ -32,19 +32,19 @@ int	update()
 	return (0);
 }
 
-void	ft_readfile()
+void	ft_readfile(int argc, char **av)
 {
 	int		a = 1;
 	int		i;
 	int 	b = 0;
 
-	//argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
-	//if (argc == 3 && strncmp(av[2], "--save", 7))
-	//	ft_print_errors(5);
-	//if (ft_strrchr(av[1], '.') && !ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 5))
-	g_par.fd = open("map.cub", O_RDONLY);
-	//else
-	//	ft_print_errors(6);
+	argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
+	if (argc == 3 && strncmp(av[2], "--save", 7))
+		ft_print_errors(5);
+	if (ft_strrchr(av[1], '.') && !ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 5))
+		g_par.fd = open(av[1], O_RDONLY);
+	else
+		ft_print_errors(6);
 	g_str = malloc(9 * sizeof(char));
   	if (g_str == 0)
     	exit(EXIT_FAILURE);
@@ -63,23 +63,19 @@ void	ft_readfile()
 				ft_print_errors(24);
 			a = get_next_line(g_par.fd, &g_par.line);
 		}
-		//printf("%s\n", g_par.line);
 		while (a != 0)
 		{
 			i = 0;
 			while (g_par.line[i] == ' ')
             	i++;
-			if ((a == 0 || g_par.line[i] == '1' || g_par.line[i] == '0') && b < 8)
+			if (a == 0  && b < 8)
 				ft_print_errors(2);
-			// error in check is map like "first line : N111111   11 :should be print error in the map"
-			else if (check_is_map()) && b >= 8)
+			else if ((g_par.line[i] == '1' || g_par.line[i] == ' ') && b >= 8)
 				break ;
 			b = put_check(i, b);
 			a = get_next_line(g_par.fd, &g_par.line);
 			while (g_par.line[0] == '\0' && a != 0)
 				a = get_next_line(g_par.fd, &g_par.line);
-			// if (a == 0 || g_par.line[i] == '1' || g_par.line[i] == '0')
-			// 	ft_print_errors(0);
 		}
 		check_map();
 		ft_print_errors(90);
@@ -88,12 +84,12 @@ void	ft_readfile()
 		ft_print_errors(7);
 }
 
-int	main()
+int	main(int argc, char	*argv[])
 {
 	// t_data		data;
 	g_data.mlx = mlx_init();
 
-	ft_readfile();
+	ft_readfile(argc, argv);
 	exit(EXIT_SUCCESS);
 
 	
