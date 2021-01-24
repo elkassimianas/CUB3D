@@ -18,12 +18,12 @@ int	update()
 	
 	mlx_hook(g_data.win, 2, 0, keypressed, (void*)0);
 	mlx_hook(g_data.win, 3, 1, keyrelease, (void *)0);
-	draw_new_map((void *)0);
+	draw_new_map();
 	// map((void *)0);
-	castallg_rays((void *)0);
-	buffertexture((void *)0);
-	render3dprojectedwalls((void *)0);
-	map((void *)0);
+	castallg_rays();
+	buffertexture();
+	render3dprojectedwalls();
+	map();
 	i = -1;
 	while (++i < g_ray.num_rays)
 		rayspush(g_ray1[i].walhitx * MINIMAP_SCALE_FACTOR, g_ray1[i].walhity * 
@@ -32,19 +32,19 @@ int	update()
 	return (0);
 }
 
-void	ft_readfile(int argc, char **av)
+void	ft_readfile()
 {
 	int		a = 1;
 	int		i;
 	int 	b = 0;
 
-	argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
-	if (argc == 3 && strncmp(av[2], "--save", 7))
-		ft_print_errors(5);
-	if (ft_strrchr(av[1], '.') && !ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 5))
-		g_par.fd = open(av[1], O_RDONLY);
-	else
-		ft_print_errors(6);
+	// argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
+	// if (argc == 3 && strncmp(av[2], "--save", 7))
+	// 	ft_print_errors(5);
+	//if (ft_strrchr(av[1], '.') && !ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 5))
+		g_p.fd = open("map.cub", O_RDONLY);
+	// else
+	// 	ft_print_errors(6);
 	g_str = malloc(9 * sizeof(char));
   	if (g_str == 0)
     	exit(EXIT_FAILURE);
@@ -52,31 +52,33 @@ void	ft_readfile(int argc, char **av)
  	while (++i < 8)
     	g_str[i] = '0';
   	g_str[i] = 0;
-	if (g_par.fd != -1)
+	if (g_p.fd != -1)
 	{
-		a = get_next_line(g_par.fd, &g_par.line);
-		if (a == 0 && g_par.line[0] == '\0')
+		a = get_next_line(g_p.fd, &g_p.ln);
+		if (a == 0 && g_p.ln[0] == '\0')
 			ft_print_errors(24);
-		while (g_par.line[0] == '\0')
+		while (g_p.ln[0] == '\0')
 		{
             if (a == 0)
 				ft_print_errors(24);
-			a = get_next_line(g_par.fd, &g_par.line);
+			a = get_next_line(g_p.fd, &g_p.ln);
 		}
 		while (a != 0)
 		{
 			i = 0;
-			while (g_par.line[i] == ' ')
+			while (g_p.ln[i] == ' ')
             	i++;
-			if (a == 0  && b < 8)
-				ft_print_errors(2);
-			else if ((g_par.line[i] == '1' || g_par.line[i] == ' ') && b >= 8)
+			if ((g_p.ln[i] == '1' || g_p.ln[i] == ' ') && b >= 8)
 				break ;
 			b = put_check(i, b);
-			a = get_next_line(g_par.fd, &g_par.line);
-			while (g_par.line[0] == '\0' && a != 0)
-				a = get_next_line(g_par.fd, &g_par.line);
+			a = get_next_line(g_p.fd, &g_p.ln);
+			while (g_p.ln[0] == '\0' && a != 0)
+				a = get_next_line(g_p.fd, &g_p.ln);
+			if (a == 0  && b < 8)
+				ft_print_errors(2);
 		}
+		if (b == 8 && a == 0)
+			ft_print_errors(31);
 		check_map();
 		ft_print_errors(90);
 	}
@@ -84,12 +86,12 @@ void	ft_readfile(int argc, char **av)
 		ft_print_errors(7);
 }
 
-int	main(int argc, char	*argv[])
+int	main()
 {
 	// t_data		data;
 	g_data.mlx = mlx_init();
 
-	ft_readfile(argc, argv);
+	ft_readfile();
 	exit(EXIT_SUCCESS);
 
 	

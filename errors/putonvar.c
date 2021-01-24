@@ -17,22 +17,22 @@ int    ft_spaces()
     int     i;
 
     i = 0;
-    while (g_par.line[i] == ' ')
+    while (g_p.ln[i] == ' ')
         i++;
     return (i);
 }
 
 int     put_check(int i, int b)
 {
-    if (g_par.line[i] == 'R')
+    if (g_p.ln[i] == 'R')
     {
         resolution();
         b++;
         return (b);
     }
-    if (g_par.line[i] == 'N' && g_par.line[i+1] == 'O')
+    if (g_p.ln[i] == 'N' && g_p.ln[i+1] == 'O')
     {
-        if (g_par.line[i + 2] != ' ')
+        if (g_p.ln[i + 2] != ' ')
             ft_print_errors(2);
          if (g_str[1] == '1')
             ft_print_errors(16);
@@ -42,9 +42,9 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_par.line[i] == 'S' && g_par.line[i+1] == 'O')
+    if (g_p.ln[i] == 'S' && g_p.ln[i+1] == 'O')
     {
-        if (g_par.line[i+2] != ' ')
+        if (g_p.ln[i+2] != ' ')
             ft_print_errors(2);
         if (g_str[2] == '1')
             ft_print_errors(17);
@@ -54,9 +54,9 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_par.line[i] == 'W' && g_par.line[i+1] == 'E')
+    if (g_p.ln[i] == 'W' && g_p.ln[i+1] == 'E')
     {
-        if (g_par.line[i+2] != ' ')
+        if (g_p.ln[i+2] != ' ')
             ft_print_errors(2);
         if (g_str[3] == '1')
             ft_print_errors(18);
@@ -66,9 +66,9 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_par.line[i] == 'E' && g_par.line[i+1] == 'A')
+    if (g_p.ln[i] == 'E' && g_p.ln[i+1] == 'A')
     {
-        if (g_par.line[i+2] != ' ')
+        if (g_p.ln[i+2] != ' ')
             ft_print_errors(2);
         if (g_str[4] == '1')
             ft_print_errors(19);
@@ -78,9 +78,9 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_par.line[i] == 'S')
+    if (g_p.ln[i] == 'S')
     {
-        if (g_par.line[i+1] != ' ')
+        if (g_p.ln[i+1] != ' ')
             ft_print_errors(2);
         if (g_str[5] == '1')
             ft_print_errors(20);
@@ -90,11 +90,11 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_par.line[i] == 'F' && g_par.line[i+1] == ' ')
+    if (g_p.ln[i] == 'F' && g_p.ln[i+1] == ' ')
     {
         char    **line;
 
-        line = ft_split(g_par.line, ' ');
+        line = ft_split(g_p.ln, ' ');
         if (g_str[6] == '1')
             ft_print_errors(21);
         else
@@ -103,11 +103,11 @@ int     put_check(int i, int b)
         b++;
         return (b);
     }
-    if (g_par.line[i] == 'C' && g_par.line[i+1] == ' ')
+    if (g_p.ln[i] == 'C' && g_p.ln[i+1] == ' ')
     {
         char    **line;
 
-        line = ft_split(g_par.line, ' ');
+        line = ft_split(g_p.ln, ' ');
         if (g_str[7] == '1')
             ft_print_errors(22);
         else
@@ -204,7 +204,9 @@ void    ft_print_errors(int  index)
     if (index == 29)
         ft_print_errors1("the map start with 3 lines at least\n", 8);
     if (index == 30)
-        ft_print_errors1("there is a character not valid in the map\n", 8);                                                                  
+        ft_print_errors1("there is a character not valid in the map\n", 8);
+    if (index == 31)
+        ft_print_errors1("There is no map\n", 8);
     if (index == 90)
         ft_print_errors1("good\n", 0);
 }

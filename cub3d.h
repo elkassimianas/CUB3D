@@ -147,8 +147,10 @@ typedef struct	s_texture
 typedef	struct	s_parsing
 {
 	int			fd;
-	char		*line;
+	char		*ln;
 	char		*str;
+	size_t		len;
+	int			inc;
 }				t_parsing;
 
 t_ray			g_ray;
@@ -156,46 +158,48 @@ t_ray1			g_ray1[WIN_WMAX / WALL_STRIP_WIDTH];
 t_player		g_player;
 t_render3d		g_render3d;
 t_texture		g_texture;
-t_parsing		g_par;
+t_parsing		g_p;
 t_data			g_data;
 
 int				keypressed(int keycode);
 int				keyrelease(int keycode);
 int				hasaallat(double x, double y);
 void			rayspush(double x2, double y2);
-void			map();
-void			drawing_cub_walls();
-int				update();
-void			draw_new_map();
-void			line();
-void			castallg_rays();
+void			map(void);
+void			drawing_cub_walls(void);
+int				update(void);
+void			draw_new_map(void);
+void			line(void);
+void			castallg_rays(void);
 double			normalizeangle(double angle);
 int				haswallat(double x, double y);
-void			raycasthorz();
-void			raycastvert();
-void			raycasttotal();
+void			raycasthorz(void);
+void			raycastvert(void);
+void			raycasttotal(void);
 double			distancebetweenpoints(double x1, double y1, double x2,
 				double y2);
-void			render3dprojectedwalls();
+void			render3dprojectedwalls(void);
 double			dmod(double x, double y);
 void			raycasthorzhelp(double nexthorztouchx, double nexthorztouchy);
 void			raycastverthelp(double nextverttouchx, double nextverttouchy);
 void			drawing_walls3d(double x, double y, double tile_z1);
-void			render3dprojectedwalls();
-void			buffertexture();
-void			ft_readfile(int argc, char **av);
+void			render3dprojectedwalls(void);
+void			buffertexture(void);
+void			ft_readfile(void);
 int				put_check(int i, int b);
 void			ft_print_errors1(char *str, int index);
 void			ft_print_errors(int	index);
-void			resolution();
+void			resolution(void);
 size_t			nu_information(char **line);
-void			no_so_we_ea_s();
+void			no_so_we_ea_s(int dx1, int dx2);
 void			ft_floor(char **line);
 void			ft_ceilling(char **line);
-void			check_map();
-void			ft_allocate();
-void			check_first_end_line();
+void			check_map(void);
+void			ft_allocate(int	x, int y);
+void			check_first_end_line(void);
 void			ft_putmap(int x, int y);
 int    			check_map1(int check);
+int				ft_read_map(void);
+void			ft_valid_map(int x, int y);
 
 #endif
