@@ -34,10 +34,12 @@ int	update()
 
 void	ft_readfile()
 {
-	int		a = 1;
+	int		a;
 	int		i;
-	int 	b = 0;
+	int 	b;
 
+	a = 1;
+	b = 0;
 	// argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
 	// if (argc == 3 && strncmp(av[2], "--save", 7))
 	// 	ft_print_errors(5);
@@ -63,24 +65,35 @@ void	ft_readfile()
 				ft_print_errors(24);
 			a = get_next_line(g_p.fd, &g_p.ln);
 		}
+		i = 0;
+		while (g_p.ln[i] == ' ')
+            i++;
+		b = put_check(i, b);
 		while (a != 0)
 		{
 			i = 0;
+			a = get_next_line(g_p.fd, &g_p.ln);
 			while (g_p.ln[i] == ' ')
             	i++;
-			if ((g_p.ln[i] == '1' || g_p.ln[i] == ' ') && b >= 8)
-				break ;
-			b = put_check(i, b);
-			a = get_next_line(g_p.fd, &g_p.ln);
 			while (g_p.ln[0] == '\0' && a != 0)
 				a = get_next_line(g_p.fd, &g_p.ln);
-			if (a == 0  && b < 8)
+			if ((g_p.ln[i] == '1' || g_p.ln[i] == ' ') && b >= 8)
+				break ;
+			i = put_check(i, b);
+			if (i == 0 && b == 8)
+				break ;
+			else if (i != 0)
+				b = i;
+			else if (i == 0)
 				ft_print_errors(2);
 		}
-		if (b == 8 && a == 0)
+		if (b >= 8 && a == 0)
+		{
+			if ((g_p.ln[i] == '1' || g_p.ln[i] == ' ') && b >= 8)
+				ft_print_errors(29);
 			ft_print_errors(31);
+		}
 		check_map();
-		ft_print_errors(90);
 	}
 	else
 		ft_print_errors(7);
@@ -92,25 +105,24 @@ int	main()
 	g_data.mlx = mlx_init();
 
 	ft_readfile();
-	exit(EXIT_SUCCESS);
 
 	
-	g_ray.win_w = 15 * TILE_SIZE;
-	g_ray.win_h = 11 * TILE_SIZE;
+	//g_ray.win_w = 15 * TILE_SIZE;
+	//g_ray.win_h = 11 * TILE_SIZE;
 	g_ray.num_rays = g_ray.win_w / WALL_STRIP_WIDTH;
 	//g_ray1[g_ray.num_rays] ;
-	// g_texture.filenameup = "./images/txt64-3.xpm";
-	// g_texture.filenamedown = "./images/txt64-2.xpm";
-	// g_texture.filenameleft = "./images/txt64-4.xpm";
-	// g_texture.filenameright = "./images/txt64-1.xpm";
+	// g_tex.filenameup = "./images/txt64-3.xpm";
+	// g_tex.filenamedown = "./images/txt64-2.xpm";
+	// g_tex.filenameleft = "./images/txt64-4.xpm";
+	// g_tex.filenameright = "./images/txt64-1.xpm";
 	g_data.turndirection = 0;
 	g_data.walkdirection = 0;
 	g_data.rotationangle = M_PI_2;
 	g_data.movespeed = 4;
 	g_data.rotationspeed = 3 * (M_PI / 180);
 	g_data.fov_angle = 60 * (M_PI / 180);
-	g_player.xplayer = (15 * TILE_SIZE) / 2;
-	g_player.yplayer = (11 * TILE_SIZE) / 2;
+	//g_player.xplayer = (15 * TILE_SIZE) / 2;
+	//g_player.yplayer = (11 * TILE_SIZE) / 2;
 	g_data.mlx = mlx_init();
 	g_data.win = mlx_new_window(g_data.mlx, g_ray.win_w, g_ray.win_h, "cub3D");
 	g_data.img = mlx_new_image(g_data.mlx, g_ray.win_w, g_ray.win_h);

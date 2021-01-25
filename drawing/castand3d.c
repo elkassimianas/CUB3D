@@ -110,11 +110,11 @@ void		render3dprojectedwalls()
 		if (g_ray1[i].fndvertwtx)
 		{
 			// perform offset for the verticel hit
-			g_texture.offsetx = (int)g_ray1[i].walhity % TILE_SIZE;
+			g_tex.offsetx = (int)g_ray1[i].walhity % TILE_SIZE;
 		}
 		else{
 			// perform offset for the horizontal hit
-			g_texture.offsetx = (int)g_ray1[i].walhitx % TILE_SIZE;
+			g_tex.offsetx = (int)g_ray1[i].walhitx % TILE_SIZE;
 		}
 
 		if (g_ray1[i].rayfup && !g_ray1[i].fndvertwtx)
@@ -131,11 +131,11 @@ void		render3dprojectedwalls()
 		{
 			// calculate textureOffsetY
 			distancefromtop = y + (g_render3d.wallstripheight / 2) - (g_ray.win_h / 2);
-			g_texture.offsety = distancefromtop * ((double)TEXTURE_HEIGHT / g_render3d.wallstripheight);
-			g_texture.offsety = g_texture.offsety >= TILE_SIZE ? TILE_SIZE - 1 : g_texture.offsety;
+			g_tex.offsety = distancefromtop * ((double)TEXTURE_HEIGHT / g_render3d.wallstripheight);
+			g_tex.offsety = g_tex.offsety >= TILE_SIZE ? TILE_SIZE - 1 : g_tex.offsety;
 			// set the color of wall based on the color from the texture
-			//printf("%d" , (TEXTURE_WIDTH * g_texture.offsety) + g_texture.offsetx);
-			color = g_texture.addr[a][(TEXTURE_WIDTH * g_texture.offsety) + g_texture.offsetx];
+			//printf("%d" , (TEXTURE_WIDTH * g_tex.offsety) + g_tex.offsetx);
+			color = g_tex.addr[a][(TEXTURE_WIDTH * g_tex.offsety) + g_tex.offsetx];
 		//	printf("%zu\n", g_tilecolor);
 			g_data.addr[(y * g_ray.win_w) + i] = color;
 			y++;

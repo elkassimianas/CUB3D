@@ -14,7 +14,9 @@
 
 void	check_map(void)
 {
-	int		check_p;
+	int			check_p;
+	int			i;
+	size_t		j;
 
 	g_p.len = 0;
 	g_p.len = ft_strlen(g_p.ln);
@@ -23,9 +25,20 @@ void	check_map(void)
 	check_first_end_line();
 	check_p = ft_read_map();
 	if (check_p == 0)
-		ft_print_errors(29);
+		ft_print_errors(27);
 	ft_allocate(g_p.len, g_p.inc);
 	ft_putmap(g_p.len, g_p.inc);
+	i = -1;
+	while (++i < g_p.inc)
+	{
+		j = 0;
+		while (j < g_p.len)
+		{
+			if (g_data.map[i][j] == ' ')
+				g_data.map[i][j] = 1;
+			j++;
+		}
+	}
 }
 
 void	ft_allocate(int x, int y)
@@ -110,53 +123,4 @@ int		ft_read_map(void)
 	if (g_p.inc < 3)
 		ft_print_errors(29);
 	return (check);
-}
-
-void	ft_valid_map(int x, int y)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	while (++i < y)
-	{
-		j = -1;
-		while (++j < x)
-		{
-			if (j == 0)
-			{
-				while (g_data.map[i][j] == ' ')
-				{
-					if (j == x - 1)
-						ft_print_errors(25);
-					j++;
-				}
-				if (g_data.map[i][j] != '1')
-					ft_print_errors(25);
-			}
-			if (i == 0 && g_data.map[i][j] == ' ')
-			{
-				if (j != x - 1)
-					g_data.map[i][j + 1] == '1' || g_data.map[i][j + 1] == ' ' ?
-						1 : ft_print_errors(25);
-				g_data.map[i][j - 1] == '1' || g_data.map[i][j - 1] == ' ' ? 1 :
-					ft_print_errors(25);
-				g_data.map[i + 1][j] == '1' || g_data.map[i + 1][j] == ' ' ? 1 :
-					ft_print_errors(25);
-			}
-			else if (g_data.map[i][j] == ' ')
-			{
-				g_data.map[i][j - 1] == '1' || g_data.map[i][j - 1] == ' ' ? 1 :
-					ft_print_errors(25);
-				if (j != x - 1)
-					g_data.map[i][j + 1] == '1' || g_data.map[i][j + 1] == ' ' ?
-						1 : ft_print_errors(25);
-				g_data.map[i - 1][j] == '1' || g_data.map[i - 1][j] == ' ' ? 1 :
-					ft_print_errors(25);
-				if (i != y - 1)
-					g_data.map[i + 1][j] == '1' || g_data.map[i + 1][j] == ' ' ?
-						1 : ft_print_errors(25);
-			}
-		}
-	}
 }

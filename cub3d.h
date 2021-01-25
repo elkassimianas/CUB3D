@@ -157,7 +157,7 @@ t_ray			g_ray;
 t_ray1			g_ray1[WIN_WMAX / WALL_STRIP_WIDTH];
 t_player		g_player;
 t_render3d		g_render3d;
-t_texture		g_texture;
+t_texture		g_tex;
 t_parsing		g_p;
 t_data			g_data;
 
@@ -189,7 +189,9 @@ void			ft_readfile(void);
 int				put_check(int i, int b);
 void			ft_print_errors1(char *str, int index);
 void			ft_print_errors(int	index);
-void			resolution(void);
+void			ft_print_errors2(int index);
+void			ft_print_errors3(int index);
+int				resolution(int b);
 size_t			nu_information(char **line);
 void			no_so_we_ea_s(int dx1, int dx2);
 void			ft_floor(char **line);
@@ -201,5 +203,9 @@ void			ft_putmap(int x, int y);
 int    			check_map1(int check);
 int				ft_read_map(void);
 void			ft_valid_map(int x, int y);
+void			ft_check_spaces(int i, int j, int x, int y);
+int				put_check_help1(int i, int b);
+int				put_check_help2(int i, int b);
+int				put_check_help3(int i, int b);
 
 #endif
