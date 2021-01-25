@@ -55,6 +55,7 @@ int		haswallat(double x, double y)
 		return (1);
 	mapindex_x = floor(x / TILE_SIZE);
 	mapindex_y = floor(y / TILE_SIZE);
+	printf("map_x:%d\nmap_y:%d\n", mapindex_x, mapindex_y);
 	if (g_data.map[mapindex_y][mapindex_x] != 0)
 		return (1);
 	return (0);
