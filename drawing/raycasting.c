@@ -42,7 +42,7 @@ void		raycasthorz(void)
 	g_ray.horzwalhity = 0;
 	////////////////////////////////////////////
 	//// HORIZONTAL g_ray-GRID INTERSECTION CODE //
-	////////////////////////////////////////////
+	//////////////////////////////////////////// 
 	/*find the y-coordinate of the closest horizontal map intersenction*/
 	g_ray.yintercept = floor(g_player.yplayer / TILE_SIZE) * TILE_SIZE;
 	g_ray.yintercept += g_ray.israyfacingdown ? TILE_SIZE : 0;
@@ -120,6 +120,7 @@ void		castallg_rays()
 	i = -1;
 	while (++i < g_ray.num_rays)
 	{
+		//printf("I: %d\n", i);
 		g_ray.angle = normalizeangle(g_ray.angle);
 		g_ray.israyfacingdown = g_ray.angle > 0 && g_ray.angle < M_PI;
 		g_ray.israyfacingup = !g_ray.israyfacingdown;

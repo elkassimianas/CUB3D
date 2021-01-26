@@ -35,10 +35,23 @@ void	check_map(void)
 		while (j < g_p.len)
 		{
 			if (g_data.map[i][j] == ' ')
-				g_data.map[i][j] = 1;
+				g_data.map[i][j] = '1';
+			if (g_data.map[i][j] == 'N')
+			{
+				g_player.xplayer = j * TILE_SIZE + TILE_SIZE / 2;
+				g_player.yplayer = i * TILE_SIZE + TILE_SIZE / 2;
+			}
 			j++;
 		}
 	}
+
+	// for (i = 0; i <  g_p.inc; i++)
+	// {
+	// 	printf("\n");
+    //   for (j = 0; j < g_p.len; j++) 
+    //      printf("%d ", g_data.map[i][j]);
+	// }
+
 }
 
 void	ft_allocate(int x, int y)

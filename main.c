@@ -105,10 +105,11 @@ int	main()
 	g_data.mlx = mlx_init();
 
 	ft_readfile();
+//	exit(EXIT_SUCCESS);
 
 	
-	//g_ray.win_w = 15 * TILE_SIZE;
-	//g_ray.win_h = 11 * TILE_SIZE;
+	// g_ray.win_w = 15 * TILE_SIZE;
+	// g_ray.win_h = 11 * TILE_SIZE;
 	g_ray.num_rays = g_ray.win_w / WALL_STRIP_WIDTH;
 	//g_ray1[g_ray.num_rays] ;
 	// g_tex.filenameup = "./images/txt64-3.xpm";
@@ -118,11 +119,11 @@ int	main()
 	g_data.turndirection = 0;
 	g_data.walkdirection = 0;
 	g_data.rotationangle = M_PI_2;
-	g_data.movespeed = 4;
+	g_data.movespeed = 4.0;
 	g_data.rotationspeed = 3 * (M_PI / 180);
 	g_data.fov_angle = 60 * (M_PI / 180);
-	//g_player.xplayer = (15 * TILE_SIZE) / 2;
-	//g_player.yplayer = (11 * TILE_SIZE) / 2;
+	// g_player.xplayer = (15 * TILE_SIZE) / 2;
+	// g_player.yplayer = (11 * TILE_SIZE) / 2;
 	g_data.mlx = mlx_init();
 	g_data.win = mlx_new_window(g_data.mlx, g_ray.win_w, g_ray.win_h, "cub3D");
 	g_data.img = mlx_new_image(g_data.mlx, g_ray.win_w, g_ray.win_h);

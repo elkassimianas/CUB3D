@@ -55,8 +55,8 @@ int		haswallat(double x, double y)
 		return (1);
 	mapindex_x = floor(x / TILE_SIZE);
 	mapindex_y = floor(y / TILE_SIZE);
-	printf("map_x:%d\nmap_y:%d\n", mapindex_x, mapindex_y);
-	if (g_data.map[mapindex_y][mapindex_x] != 0)
+	//printf("map_x:%d\nmap_y:%d\n", mapindex_x, mapindex_y);
+	if (g_data.map[mapindex_y][mapindex_x] == '1')
 		return (1);
 	return (0);
 }
@@ -64,14 +64,14 @@ int		haswallat(double x, double y)
 void		draw_new_map()
 {
 	float		movestep;
-	float		newplayerx;
-	float		newplayery;
+	float		newplayerx = 0;
+	float		newplayery = 0;
 
-	mlx_clear_window(g_data.mlx, g_data.win);
-	mlx_destroy_image(g_data.mlx, g_data.img);
-	g_data.img = mlx_new_image(g_data.mlx, g_ray.win_w, g_ray.win_h);
-	g_data.addr = (int *)mlx_get_data_addr(g_data.img, &g_data.bits_per_pixel,
-			&g_data.line_length, &g_data.endian);
+	// mlx_clear_window(g_data.mlx, g_data.win);
+	// mlx_destroy_image(g_data.mlx, g_data.img);
+	// g_data.img = mlx_new_image(g_data.mlx, g_ray.win_w, g_ray.win_h);
+	// g_data.addr = (int *)mlx_get_data_addr(g_data.img, &g_data.bits_per_pixel,
+	// 		&g_data.line_length, &g_data.endian);
 	g_data.rotationangle += g_data.turndirection * g_data.rotationspeed;
 	movestep = g_data.walkdirection * g_data.movespeed;
 	newplayerx = g_player.xplayer + cos(g_data.rotationangle) * movestep;

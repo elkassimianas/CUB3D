@@ -12,6 +12,22 @@
 
 #include "../cub3d.h"
 
+
+// int	    mapc[11][15] = {{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+//                    	   {1,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
+//                    	   {1,0,0,1,0,1,0,0,0,1,0,0,1,0,1},
+//                    	   {1,1,1,1,1,0,0,0,0,0,1,0,1,0,1},
+//                    	   {1,0,0,0,0,0,0,0,0,0,1,0,1,0,1},
+//                    	   {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+//                    	   {1,0,0,1,1,1,1,1,1,1,1,1,0,0,1},
+//             	   	   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+//                    	   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+//                    	   {1,0,0,0,0,0,0,1,0,0,0,0,0,0,1},
+//                    	   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
+
+
+
+
 void		drawing_cub_walls()
 {
 	int		x;
@@ -35,39 +51,38 @@ void		drawing_cub_walls()
 void		map()
 {
 	int			i;
-	size_t		j;
+	int			j;
 
 	g_player.tilex = 0;
 	g_player.tiley = 0;
 	i = -1;
-	while (++i < g_p.inc)
+	while (++i < NUM_ROWS)
 	{
-		j = 0;
-		while (j < g_p.len)
+		j = -1;
+		while (++j < NUM_COLS)
 		{
 			g_player.tilex = j * TILE_SIZE * MINIMAP_SCALE_FACTOR;
 			g_player.tiley = i * TILE_SIZE * MINIMAP_SCALE_FACTOR;
-			if (g_data.map[i][j] == 1)
+			if (g_data.map[i][j] == '1')
 			{
 				g_tilecolor = 0x5C413B;
 				drawing_cub_walls();
 			}
-			else if (g_data.map[i][j] == 0)
+			else if (g_data.map[i][j] == '0')
 			{
 				g_tilecolor = 0xC4C0C0;
 				drawing_cub_walls();
 			}
-			else if (g_data.map[i][j] == 2)
-			{
-				g_tilecolor =  0x3360FF;
-				drawing_cub_walls();
-			}
+			// else if (g_data.map[i][j] == 2)
+			// {
+			// 	g_tilecolor =  0x3360FF;
+			// 	drawing_cub_walls();
+			// }
 			else if (g_data.map[i][j] == 'N')
 			{
-				g_player.xplayer = j;
-				g_player.yplayer = i;
+				g_tilecolor = 0xC4C0C0;
+				drawing_cub_walls();
 			}
-			j++;
 		}
 	}
 }
