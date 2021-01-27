@@ -15,8 +15,6 @@
 void	check_map(void)
 {
 	int			check_p;
-	int			i;
-	size_t		j;
 
 	g_p.len = 0;
 	g_p.len = ft_strlen(g_p.ln);
@@ -28,30 +26,7 @@ void	check_map(void)
 		ft_print_errors(27);
 	ft_allocate(g_p.len, g_p.inc);
 	ft_putmap(g_p.len, g_p.inc);
-	i = -1;
-	while (++i < g_p.inc)
-	{
-		j = 0;
-		while (j < g_p.len)
-		{
-			if (g_data.map[i][j] == ' ')
-				g_data.map[i][j] = '1';
-			if (g_data.map[i][j] == 'N')
-			{
-				g_player.xplayer = j * TILE_SIZE + TILE_SIZE / 2;
-				g_player.yplayer = i * TILE_SIZE + TILE_SIZE / 2;
-			}
-			j++;
-		}
-	}
-
-	// for (i = 0; i <  g_p.inc; i++)
-	// {
-	// 	printf("\n");
-    //   for (j = 0; j < g_p.len; j++) 
-    //      printf("%d ", g_data.map[i][j]);
-	// }
-
+	change_spaces();
 }
 
 void	ft_allocate(int x, int y)

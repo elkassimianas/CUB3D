@@ -77,3 +77,53 @@ void	ft_check_spaces(int i, int j, int x, int y)
 				1 : ft_print_errors(25);
 	}
 }
+
+int		find_player(int j, int i)
+{
+	if (g_data.map[i][j] == 'N')
+	{
+		g_data.rotationangle = M_PI_2;
+		return (1);
+	}
+	if (g_data.map[i][j] == 'S')
+	{
+		g_data.rotationangle = (3 * M_PI) / 2;
+		return (1);
+	}
+	if (g_data.map[i][j] == 'E')
+	{
+		g_data.rotationangle = 0;
+		return (1);
+	}
+	if (g_data.map[i][j] == 'W')
+	{
+		g_data.rotationangle = M_PI;
+		return (1);
+	}
+	return (0);
+}
+
+void	change_spaces(void)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < g_p.inc)
+	{
+		j = 0;
+		while (j < (int)g_p.len)
+		{
+			if (g_data.map[i][j] == ' ')
+				g_data.map[i][j] = '1';
+			
+			if (find_player(j,i))
+			{
+				g_player.xplayer = j * TILE_SIZE + TILE_SIZE / 2;
+				g_player.yplayer = i * TILE_SIZE + TILE_SIZE / 2;
+				g_data.map[i][j] = '0';
+			}
+			j++;
+		}
+	}
+}

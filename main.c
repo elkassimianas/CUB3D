@@ -118,7 +118,7 @@ int	main()
 	// g_tex.filenameright = "./images/txt64-1.xpm";
 	g_data.turndirection = 0;
 	g_data.walkdirection = 0;
-	g_data.rotationangle = M_PI_2;
+	//g_data.rotationangle = M_PI_2;
 	g_data.movespeed = 4.0;
 	g_data.rotationspeed = 3 * (M_PI / 180);
 	g_data.fov_angle = 60 * (M_PI / 180);

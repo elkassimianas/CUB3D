@@ -207,5 +207,7 @@ void			ft_check_spaces(int i, int j, int x, int y);
 int				put_check_help1(int i, int b);
 int				put_check_help2(int i, int b);
 int				put_check_help3(int i, int b);
+int				find_player(int j, int i);
+void			change_spaces(void);
 
 #endif
