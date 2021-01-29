@@ -18,8 +18,8 @@ int	update()
 	
 	mlx_hook(g_data.win, 2, 0, keypressed, (void*)0);
 	mlx_hook(g_data.win, 3, 1, keyrelease, (void *)0);
+	mlx_hook(g_data.win, 17, 0L, quit_win, (void*)0);
 	draw_new_map();
-	// map((void *)0);
 	castallg_rays();
 	buffertexture();
 	render3dprojectedwalls();
@@ -101,29 +101,17 @@ void	ft_readfile()
 
 int	main()
 {
-	// t_data		data;
 	g_data.mlx = mlx_init();
 
 	ft_readfile();
 //	exit(EXIT_SUCCESS);
 
-	
-	// g_ray.win_w = 15 * TILE_SIZE;
-	// g_ray.win_h = 11 * TILE_SIZE;
 	g_ray.num_rays = g_ray.win_w / WALL_STRIP_WIDTH;
-	//g_ray1[g_ray.num_rays] ;
-	// g_tex.filenameup = "./images/txt64-3.xpm";
-	// g_tex.filenamedown = "./images/txt64-2.xpm";
-	// g_tex.filenameleft = "./images/txt64-4.xpm";
-	// g_tex.filenameright = "./images/txt64-1.xpm";
 	g_data.turndirection = 0;
 	g_data.walkdirection = 0;
-	//g_data.rotationangle = M_PI_2;
-	g_data.movespeed = 4.0;
-	g_data.rotationspeed = 3 * (M_PI / 180);
+	g_data.movespeed = 8;
+	g_data.rotationspeed = 4 * (M_PI / 180);
 	g_data.fov_angle = 60 * (M_PI / 180);
-	// g_player.xplayer = (15 * TILE_SIZE) / 2;
-	// g_player.yplayer = (11 * TILE_SIZE) / 2;
 	g_data.mlx = mlx_init();
 	g_data.win = mlx_new_window(g_data.mlx, g_ray.win_w, g_ray.win_h, "cub3D");
 	g_data.img = mlx_new_image(g_data.mlx, g_ray.win_w, g_ray.win_h);

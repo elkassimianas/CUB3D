@@ -209,5 +209,6 @@ int				put_check_help2(int i, int b);
 int				put_check_help3(int i, int b);
 int				find_player(int j, int i);
 void			change_spaces(void);
+int				quit_win();
 
 #endif

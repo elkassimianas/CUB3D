@@ -78,7 +78,7 @@ void		render3dprojectedwalls()
 	int			y;
 	int			a;
 	int			distancefromtop;
-	int unsigned long	color;
+	unsigned int long	color;
 
 	/*loop every g_ray in the arg_ray of g_rays*/
 	i = -1;
