@@ -64,6 +64,7 @@ typedef struct	s_data
 	int			radius;
 	int			turndirection;
 	int			walkdirection;
+	int			walkdirection_side;
 	double		rotationangle;
 	double		movespeed;
 	double		rotationspeed;
