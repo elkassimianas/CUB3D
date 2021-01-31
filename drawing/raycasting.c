@@ -14,7 +14,7 @@
 
 void		raycasthorzhelp(double nexthorztouchx, double nexthorztouchy)
 {
-	while (nexthorztouchx >= 0 && nexthorztouchx <= g_ray.win_w && nexthorztouchy>= 0 && nexthorztouchy <= g_ray.win_h)
+	while (nexthorztouchx >= 0 && nexthorztouchx <= g_p.len * TILE_SIZE && nexthorztouchy>= 0 && nexthorztouchy <= g_p.inc * TILE_SIZE)
 	{
 		if (haswallat(nexthorztouchx, nexthorztouchy - (g_ray.israyfacingup ? 1 : 0)))
 		{
@@ -63,7 +63,7 @@ void		raycasthorz(void)
 
 void		raycastverthelp(double nextverttouchx, double nextverttouchy)
 {
-	while (nextverttouchx >= 0 && nextverttouchx <= g_ray.win_w && nextverttouchy >= 0 && nextverttouchy <= g_ray.win_h)
+	while (nextverttouchx >= 0 && nextverttouchx <= g_p.len * TILE_SIZE && nextverttouchy >= 0 && nextverttouchy <= g_p.inc * TILE_SIZE)
 	{
 		if (haswallat(nextverttouchx - (g_ray.israyfacingleft ? 1 : 0), nextverttouchy))
 		{

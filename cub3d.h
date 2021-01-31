@@ -22,8 +22,8 @@
 # include "./get_next_line/get_next_line.h"
 # include "./libft/libft.h"
 
-# define WIN_WMAX 5120
-# define WIN_HMAX 2880
+# define WIN_WMAX 2560
+# define WIN_HMAX 1440
 # define ESC 53
 # define W 13
 # define A 0

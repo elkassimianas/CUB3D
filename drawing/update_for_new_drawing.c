@@ -35,7 +35,7 @@ int		keyrelease(int keycode)
 {
 	if (keycode == LEFT || keycode == RIGHT)
 		g_data.turndirection = 0;
-	if (keycode == W || keycode == S || )
+	if (keycode == W || keycode == S)
 		g_data.walkdirection = 0;
 	return (0);
 }
@@ -68,18 +68,18 @@ void		draw_new_map()
 	float		newplayery = 0;
 
 	g_data.rotationangle += g_data.turndirection * g_data.rotationspeed;
-	if (g_data.walkdirection != 0)
-	{
+	// if (g_data.walkdirection != 0)
+	// {
 		movestep = g_data.walkdirection * g_data.movespeed;
 		newplayerx = g_player.xplayer + cos(g_data.rotationangle) * movestep;
 		newplayery = g_player.yplayer + sin(g_data.rotationangle) * movestep;
-	}
-	if (g_data.walkdirection_side != 0)
-	{
-		movestep = g_data.walkdirection_side * g_data.movespeed;
-		newplayerx = g_player.xplayer + cos(M_PI_2 - g_data.rotationangle) * movestep;
-		newplayery = g_player.yplayer + sin(M_PI_2 - g_data.rotationangle) * movestep;
-	}
+	// }
+	// if (g_data.walkdirection_side != 0)
+	// {
+	// 	movestep = g_data.walkdirection_side * g_data.movespeed;
+	// 	newplayerx = g_player.xplayer + cos(M_PI_2 - g_data.rotationangle) * movestep;
+	// 	newplayery = g_player.yplayer + sin(M_PI_2 - g_data.rotationangle) * movestep;
+	// }
 	if (!haswallat(newplayerx, newplayery))
 	{
 		g_player.xplayer = newplayerx;

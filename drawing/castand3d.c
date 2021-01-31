@@ -38,7 +38,8 @@ void		rayspush(double x2, double y2)
 	x2 = -1;
 	while (++x2 <= steps)
 	{
-		g_data.addr[(int)y1 * g_ray.win_w + (int)x1] = g_tilecolor;
+		if (y1 >= 0 && x1 >= 0 && x1 < g_ray.win_w && y1 < g_ray.win_h)
+			g_data.addr[(int)y1 * g_ray.win_w + (int)x1] = g_tilecolor;
 		x1 = x1 + xinc;
 		y1 = y1 + yinc;
 	}

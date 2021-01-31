@@ -14,7 +14,7 @@
 
 int	update()
 {
-	int		i = 0;
+//	int		i = 0;
 	
 	mlx_hook(g_data.win, 2, 0, keypressed, (void*)0);
 	mlx_hook(g_data.win, 3, 1, keyrelease, (void *)0);
@@ -23,11 +23,11 @@ int	update()
 	castallg_rays();
 	buffertexture();
 	render3dprojectedwalls();
-	map();
-	i = -1;
-	while (++i < g_ray.num_rays)
-		rayspush(g_ray1[i].walhitx * MINIMAP_SCALE_FACTOR, g_ray1[i].walhity * 
-			MINIMAP_SCALE_FACTOR);
+	//map();
+	// i = -1;
+	// while (++i < g_ray.num_rays)
+	// 	rayspush(g_ray1[i].walhitx * MINIMAP_SCALE_FACTOR, g_ray1[i].walhity * 
+	// 		MINIMAP_SCALE_FACTOR);
 	mlx_put_image_to_window(g_data.mlx, g_data.win, g_data.img, 0, 0);
 	return (0);
 }
@@ -117,7 +117,7 @@ int	main()
 	g_data.img = mlx_new_image(g_data.mlx, g_ray.win_w, g_ray.win_h);
 	g_data.addr = (int *)mlx_get_data_addr(g_data.img, &g_data.bits_per_pixel,
 			&g_data.line_length, &g_data.endian);
-	map();
+	//map();
 	mlx_put_image_to_window(g_data.mlx, g_data.win, g_data.img, 0, 0);
 	mlx_loop_hook(g_data.mlx, update, (void*) 0);
 	mlx_loop(g_data.mlx);

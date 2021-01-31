@@ -25,9 +25,6 @@
 //                    	   {1,0,0,0,0,0,0,1,0,0,0,0,0,0,1},
 //                    	   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
-
-
-
 void		drawing_cub_walls()
 {
 	int		x;
@@ -39,8 +36,8 @@ void		drawing_cub_walls()
 	{
 		while (g_player.tilex < x)
 		{
-			g_data.addr[(int)g_player.tiley * g_ray.win_w + (int)g_player.tilex] =
-				g_tilecolor;
+			if (g_player.tiley >= 0 && g_player.tilex >= 0 && g_player.tilex < g_ray.win_w && g_player.tiley < g_ray.win_h)
+				g_data.addr[(int)g_player.tiley * g_ray.win_w + (int)g_player.tilex] = g_tilecolor;
 			g_player.tilex += 0.1;
 		}
 		g_player.tilex -= (TILE_SIZE * MINIMAP_SCALE_FACTOR);
