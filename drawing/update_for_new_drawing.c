@@ -23,9 +23,9 @@ int		keypressed(int keycode)
 	if (keycode == S)
 		g_data.walkdirection = -1;
 	if (keycode == D)
-		g_data.walkdirection_side = 1;
-	if (keycode == A)
 		g_data.walkdirection_side = -1;
+	if (keycode == A)
+		g_data.walkdirection_side = 1;
 	if (keycode == ESC)
 		exit (EXIT_SUCCESS);
 	return (0);
@@ -37,6 +37,8 @@ int		keyrelease(int keycode)
 		g_data.turndirection = 0;
 	if (keycode == W || keycode == S)
 		g_data.walkdirection = 0;
+	if (keycode == D || keycode == A)
+		g_data.walkdirection_side = 0;
 	return (0);
 }
 
@@ -68,18 +70,18 @@ void		draw_new_map()
 	float		newplayery = 0;
 
 	g_data.rotationangle += g_data.turndirection * g_data.rotationspeed;
-	// if (g_data.walkdirection != 0)
-	// {
+	if (g_data.walkdirection != 0)
+	{
 		movestep = g_data.walkdirection * g_data.movespeed;
 		newplayerx = g_player.xplayer + cos(g_data.rotationangle) * movestep;
 		newplayery = g_player.yplayer + sin(g_data.rotationangle) * movestep;
-	// }
-	// if (g_data.walkdirection_side != 0)
-	// {
-	// 	movestep = g_data.walkdirection_side * g_data.movespeed;
-	// 	newplayerx = g_player.xplayer + cos(M_PI_2 - g_data.rotationangle) * movestep;
-	// 	newplayery = g_player.yplayer + sin(M_PI_2 - g_data.rotationangle) * movestep;
-	// }
+	}
+	if (g_data.walkdirection_side != 0)
+	{
+		movestep = g_data.walkdirection_side * g_data.movespeed;
+		newplayerx = g_player.xplayer + cos(g_data.rotationangle - M_PI_2) * movestep;
+		newplayery = g_player.yplayer + sin(g_data.rotationangle - M_PI_2) * movestep;
+	}
 	if (!haswallat(newplayerx, newplayery))
 	{
 		g_player.xplayer = newplayerx;
