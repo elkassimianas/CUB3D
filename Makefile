@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = -Wall -Wextra -Werror -I /usr/local/include -L /usr/local/lib -l mlx -framework OpenGL -framework AppKit -fsanitize=address -g
+CC = -Wall -Wextra -Werror -I /usr/local/include -L /usr/local/lib -l mlx -framework OpenGL -framework AppKit -g
 
 NAME = cub3D
 LIB = ./libft/libft.a

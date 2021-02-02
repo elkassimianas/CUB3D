@@ -25,5 +25,8 @@
 # define BUFFER_SIZE 32
 
 int		get_next_line(int fd, char **line);
+int		ft_free(char **s);
+int     len_of_line(char **str);
+void	ft_free1(char **dst, int j);
 
 #endif

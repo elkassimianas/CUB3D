@@ -42,6 +42,7 @@
 
 unsigned long int	g_tilecolor;
 char				*g_str;
+void    *dataimg[4];
 
 typedef	struct	s_player
 {
@@ -69,7 +70,7 @@ typedef struct	s_data
 	double		movespeed;
 	double		rotationspeed;
 	double		fov_angle;
-	int			**map;
+	char			**map;
 }				t_data;
 
 typedef	struct	s_ray
@@ -211,5 +212,6 @@ int				put_check_help3(int i, int b);
 int				find_player(int j, int i);
 void			change_spaces(void);
 int				quit_win();
+int				create_trgb(int r, int g, int b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:25:39 by ael-kass          #+#    #+#             */
-/*   Updated: 2020/12/05 14:46:06 by ael-kass         ###   ########.fr       */
+/*   Updated: 2021/02/01 11:48:34 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ void		render3dprojectedwalls()
 		y = 0;
 		while (y < g_render3d.walltoppixel)
 		{
-			g_data.addr[(y * g_ray.win_w) + i] = 0x9bc8de;
+			color = create_trgb(g_tex.rc, g_tex.gc, g_tex.bc);
+			g_data.addr[(y * g_ray.win_w) + i] = color;
 			y++;
 		}
 		//drawing_walls3d(data, i, g_render3d.walltoppixel, g_render3d.wallstripheight);
@@ -145,7 +146,8 @@ void		render3dprojectedwalls()
 		y = g_render3d.wa_btm_pxl;
 		while (y < g_ray.win_h)
 		{
-			g_data.addr[(y * g_ray.win_w) + i] = 0x5f5a39;
+			color = create_trgb(g_tex.rf, g_tex.gf, g_tex.bf);
+			g_data.addr[(y * g_ray.win_w) + i] = color;
 			y++;
 		}
 	}

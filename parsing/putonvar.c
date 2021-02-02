@@ -73,6 +73,7 @@ void	ft_print_errors1(char *str, int index)
 	if (index == 8)
 		str = ft_strjoin("\x1B[37mMap: ", str);
 	ft_putstr(str);
+	ft_free(&str);
 	exit(EXIT_FAILURE);
 }
 
@@ -207,15 +208,20 @@ int		put_check_help2(int i, int b)
 
 int		put_check_help3(int i, int b)
 {
+	char	**line;
+	int		f_len;
+
+	f_len = 0;
 	if (g_p.ln[i] == 'F' && g_p.ln[i + 1] == ' ')
 	{
-		char	**line;
 		line = ft_split(g_p.ln, ' ');
 		if (g_str[6] == '1')
 			ft_print_errors(21);
 		else
 			g_str[6] = '1';
 		ft_floor(line);
+		// f_len = len_of_line(line);
+		// ft_free1(line, f_len);
 		return (b + 1);
 	}
 	if (g_p.ln[i] == 'C' && g_p.ln[i + 1] == ' ')
@@ -228,6 +234,8 @@ int		put_check_help3(int i, int b)
 		else
 			g_str[7] = '1';
 		ft_ceilling(line);
+		// f_len = len_of_line(line);
+		// ft_free1(line, f_len);
 		return (b + 1);
 	}
 	return (0);

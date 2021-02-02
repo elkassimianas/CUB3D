@@ -21,7 +21,7 @@ int	update()
 	mlx_hook(g_data.win, 17, 0L, quit_win, (void*)0);
 	draw_new_map();
 	castallg_rays();
-	buffertexture();
+	// buffertexture();
 	render3dprojectedwalls();
 	map();
 	i = -1;
@@ -63,6 +63,7 @@ void	ft_readfile()
 		{
             if (a == 0)
 				ft_print_errors(24);
+			ft_free(&g_p.ln);
 			a = get_next_line(g_p.fd, &g_p.ln);
 		}
 		i = 0;
@@ -72,11 +73,15 @@ void	ft_readfile()
 		while (a != 0)
 		{
 			i = 0;
+			ft_free(&g_p.ln);
 			a = get_next_line(g_p.fd, &g_p.ln);
 			while (g_p.ln[i] == ' ')
             	i++;
 			while (g_p.ln[0] == '\0' && a != 0)
+			{
+				ft_free(&g_p.ln);
 				a = get_next_line(g_p.fd, &g_p.ln);
+			}
 			if ((g_p.ln[i] == '1' || g_p.ln[i] == ' ') && b >= 8)
 				break ;
 			i = put_check(i, b);
@@ -87,6 +92,7 @@ void	ft_readfile()
 			else if (i == 0)
 				ft_print_errors(2);
 		}
+		ft_free(&g_str);
 		if (b >= 8 && a == 0)
 		{
 			if ((g_p.ln[i] == '1' || g_p.ln[i] == ' ') && b >= 8)
@@ -100,12 +106,13 @@ void	ft_readfile()
 }
 
 int	main()
-{
+{	
 	g_data.mlx = mlx_init();
 
 	ft_readfile();
 //	exit(EXIT_SUCCESS);
 
+	buffertexture();
 	g_ray.num_rays = g_ray.win_w / WALL_STRIP_WIDTH;
 	g_data.turndirection = 0;
 	g_data.walkdirection = 0;
@@ -121,5 +128,21 @@ int	main()
 	map();
 	mlx_put_image_to_window(g_data.mlx, g_data.win, g_data.img, 0, 0);
 	mlx_loop_hook(g_data.mlx, update, (void*) 0);
+	// len = len_of_line(g_data.map);
+	// ft_free1(g_data.map, len);
+	// mlx_destroy_window(g_data.mlx, g_data.img);
+	// mlx_destroy_image(g_data.mlx, g_data.img);
+	// len = len_of_line(g_data.map);
+	// ft_free1(g_data.map, len);
 	mlx_loop(g_data.mlx);
+	// len = len_of_line(g_data.map);
+	// ft_free1(g_data.map, len);
+	// ft_free(&(*g_data.map));
+	// ft_free((char **)&(*g_tex.addr));
+	// ft_free((char **)&g_data.addr);
+	// i = -1;
+    // while (++i < 4)
+    //   mlx_destroy_image(g_data.mlx, dataimg[i]);
+	// mlx_destroy_window(g_data.mlx, g_data.img);
+	// mlx_destroy_image(g_data.mlx, g_data.img);
 }

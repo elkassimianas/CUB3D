@@ -27,7 +27,13 @@ int		keypressed(int keycode)
 	if (keycode == A)
 		g_data.walkdirection_side = 1;
 	if (keycode == ESC)
+	{
+		int		len;
+
+		len = len_of_line(g_data.map);
+		ft_free1(g_data.map, len);
 		exit (EXIT_SUCCESS);
+	}
 	return (0);
 }
 
@@ -44,7 +50,11 @@ int		keyrelease(int keycode)
 
 int		quit_win()
 {
-	//mlx_destroy_window(g_data.mlx, g_data.win);
+	int		len;
+
+	len = len_of_line(g_data.map);
+	ft_free1(g_data.map, len);
+	mlx_destroy_window(g_data.mlx, g_data.win);
 	exit (1);
 	return (0);
 }

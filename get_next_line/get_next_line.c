@@ -22,6 +22,47 @@ int		ft_free(char **s)
 	return (-1);
 }
 
+int     len_of_line(char **str)
+{
+    int		len;
+    len = 0;
+	while (*(str+len))
+	{
+		printf("%s\n", *(str + len));
+		len++;
+	}
+	len = 0;
+    while (*(str + len))
+        len++;
+    return (len);
+}
+
+// void   ft_free1(char **str, int len)
+// {
+//     if (str)
+//     {
+//         while (len >= 0)
+//         {
+//             free(str[len]);
+//             str[len] = NULL;
+//             len--;
+//         }
+//         free(str);
+//         str = NULL;
+//     }
+// }
+
+void		ft_free1(char **dst, int j)
+{
+	while (j > 0)
+	{
+		j--;
+		free((void *)dst[j]);
+	}
+	free(dst);
+	dst = NULL;
+}
+
 int		ft_helpline(int i, char ***save, char **buffer)
 {
 	if (i < 0)

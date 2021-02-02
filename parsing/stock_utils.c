@@ -15,8 +15,13 @@
 int			resolution(int b)
 {
 	char	**line;
+//	char	*free1;
+	int		f_len;
 
+	
+	// free1 = g_p.ln;
 	line = ft_split(g_p.ln, ' ');
+	//int o = len_of_line(line);
 	ft_strlen(line[0]) != 1 ? ft_print_errors(2) : 1;
 	if (g_str[0] == '1')
 		ft_print_errors(15);
@@ -29,6 +34,9 @@ int			resolution(int b)
 	g_ray.win_h = ft_atoi(line[2]);
 	g_ray.win_h == -1 ? ft_print_errors(1) : g_ray.win_h;
 	g_ray.win_h = g_ray.win_h > WIN_HMAX ? WIN_HMAX : g_ray.win_h;
+	//ft_free(&(*line));
+	f_len = len_of_line(line);
+	ft_free1(line, f_len);
 	return (b + 1);
 }
 
@@ -36,6 +44,8 @@ void		ft_floor(char **line)
 {
 	int		i;
 	int		a;
+	int		f_len;
+	char	**f_free;
 
 	nu_information(line) != 2 ? ft_print_errors(12) : 2;
 	i = -1;
@@ -50,20 +60,26 @@ void		ft_floor(char **line)
 		}
 		a != 2 && line[1][i + 1] == '\0' ? ft_print_errors(13) : a;
 	}
-	line = ft_split(line[1], ',');
-	nu_information(line) != 3 ? ft_print_errors(12) : 2;
-	g_tex.rf = ft_atoi(line[0]);
+	f_free = ft_split(line[1], ',');
+	f_len = len_of_line(line);
+	ft_free1(line, f_len);
+	nu_information(f_free) != 3 ? ft_print_errors(12) : 2;
+	g_tex.rf = ft_atoi(f_free[0]);
 	g_tex.rf == -1 || g_tex.rf > 255 ? ft_print_errors(12) : g_tex.rf;
-	g_tex.gf = ft_atoi(line[1]);
+	g_tex.gf = ft_atoi(f_free[1]);
 	g_tex.gf == -1 || g_tex.gf > 255 ? ft_print_errors(12) : g_tex.gf;
-	g_tex.bf = ft_atoi(line[2]);
+	g_tex.bf = ft_atoi(f_free[2]);
 	g_tex.bf == -1 || g_tex.bf > 255 ? ft_print_errors(12) : g_tex.bf;
+	f_len = len_of_line(f_free);
+	ft_free1(f_free, f_len);
 }
 
 void		ft_ceilling(char **line)
 {
 	int		i;
 	int		a;
+	char	**f_free;
+	int		f_len;
 
 	nu_information(line) != 2 ? ft_print_errors(14) : 2;
 	i = -1;
@@ -78,19 +94,24 @@ void		ft_ceilling(char **line)
 		}
 		a != 2 && line[1][i + 1] == '\0' ? ft_print_errors(13) : a;
 	}
-	line = ft_split(line[1], ',');
-	nu_information(line) != 3 ? ft_print_errors(14) : 2;
-	g_tex.rc = ft_atoi(line[0]);
+	f_free = ft_split(line[1], ',');
+	f_len = len_of_line(line);
+	ft_free1(line, f_len);
+	nu_information(f_free) != 3 ? ft_print_errors(14) : 2;
+	g_tex.rc = ft_atoi(f_free[0]);
 	g_tex.rc == -1 || g_tex.rc > 255 ? ft_print_errors(14) : g_tex.rc;
-	g_tex.gc = ft_atoi(line[1]);
+	g_tex.gc = ft_atoi(f_free[1]);
 	g_tex.gc == -1 || g_tex.gc > 255 ? ft_print_errors(14) : g_tex.gc;
-	g_tex.bc = ft_atoi(line[2]);
+	g_tex.bc = ft_atoi(f_free[2]);
 	g_tex.bc == -1 || g_tex.bc > 255 ? ft_print_errors(14) : g_tex.bc;
+	f_len = len_of_line(f_free);
+	ft_free1(f_free, f_len);
 }
 
 void		no_so_we_ea_s(int dx1, int dx2)
 {
 	char	**line;
+	int		f_len;
 
 	line = ft_split(g_p.ln, ' ');
 	if (dx1 == 1)
@@ -106,13 +127,16 @@ void		no_so_we_ea_s(int dx1, int dx2)
 		}
 		else
 		{
-			g_tex.filenameup = dx2 == 1 ? line[1] : g_tex.filenameup;
-			g_tex.filenamedown = dx2 == 2 ? line[1] : g_tex.filenamedown;
-			g_tex.filenameleft = dx2 == 3 ? line[1] : g_tex.filenameleft;
-			g_tex.filenameright = dx2 == 4 ? line[1] : g_tex.filenameright;
-			g_tex.filesprite = dx2 == 5 ? line[1] : g_tex.filesprite;
+			g_tex.filenameup = dx2 == 1 ? ft_strdup(line[1]) : g_tex.filenameup;
+			g_tex.filenamedown = dx2 == 2 ? ft_strdup(line[1]) : g_tex.filenamedown;
+			g_tex.filenameleft = dx2 == 3 ? ft_strdup(line[1]) : g_tex.filenameleft;
+			g_tex.filenameright = dx2 == 4 ? ft_strdup(line[1]) : g_tex.filenameright;
+			g_tex.filesprite = dx2 == 5 ? ft_strdup(line[1]) : g_tex.filesprite;
 		}
 	}
+	//printf("%s\n", g_tex.filenamedown);
+	f_len = len_of_line(line);
+	ft_free1(line, f_len);
 }
 
 size_t		nu_information(char **line)
