@@ -21,7 +21,7 @@ int	update()
 	mlx_hook(g_data.win, 17, 0L, quit_win, (void*)0);
 	draw_new_map();
 	castallg_rays();
-	// buffertexture();
+//	buffertexture();
 	render3dprojectedwalls();
 	map();
 	i = -1;
@@ -128,21 +128,5 @@ int	main()
 	map();
 	mlx_put_image_to_window(g_data.mlx, g_data.win, g_data.img, 0, 0);
 	mlx_loop_hook(g_data.mlx, update, (void*) 0);
-	// len = len_of_line(g_data.map);
-	// ft_free1(g_data.map, len);
-	// mlx_destroy_window(g_data.mlx, g_data.img);
-	// mlx_destroy_image(g_data.mlx, g_data.img);
-	// len = len_of_line(g_data.map);
-	// ft_free1(g_data.map, len);
 	mlx_loop(g_data.mlx);
-	// len = len_of_line(g_data.map);
-	// ft_free1(g_data.map, len);
-	// ft_free(&(*g_data.map));
-	// ft_free((char **)&(*g_tex.addr));
-	// ft_free((char **)&g_data.addr);
-	// i = -1;
-    // while (++i < 4)
-    //   mlx_destroy_image(g_data.mlx, dataimg[i]);
-	// mlx_destroy_window(g_data.mlx, g_data.img);
-	// mlx_destroy_image(g_data.mlx, g_data.img);
 }

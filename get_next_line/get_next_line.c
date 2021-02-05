@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-int		ft_free(char **s)
+int		 ft_free(char **s)
 {
 	if (*s)
 	{

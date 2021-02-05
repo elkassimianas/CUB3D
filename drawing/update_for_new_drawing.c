@@ -28,10 +28,6 @@ int		keypressed(int keycode)
 		g_data.walkdirection_side = 1;
 	if (keycode == ESC)
 	{
-		int		len;
-
-		len = len_of_line(g_data.map);
-		ft_free1(g_data.map, len);
 		exit (EXIT_SUCCESS);
 	}
 	return (0);

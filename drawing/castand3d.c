@@ -80,6 +80,7 @@ void		render3dprojectedwalls()
 	int			a;
 	int			distancefromtop;
 	unsigned int long	color;
+	int r;
 
 	/*loop every g_ray in the arg_ray of g_rays*/
 	i = -1;
@@ -136,9 +137,7 @@ void		render3dprojectedwalls()
 			g_tex.offsety = distancefromtop * ((double)TEXTURE_HEIGHT / g_render3d.wallstripheight);
 			g_tex.offsety = g_tex.offsety >= TILE_SIZE ? TILE_SIZE - 1 : g_tex.offsety;
 			// set the color of wall based on the color from the texture
-			//printf("%d" , (TEXTURE_WIDTH * g_tex.offsety) + g_tex.offsetx);
 			color = g_tex.addr[a][(TEXTURE_WIDTH * g_tex.offsety) + g_tex.offsetx];
-		//	printf("%zu\n", g_tilecolor);
 			g_data.addr[(y * g_ray.win_w) + i] = color;
 			y++;
 		}
@@ -146,8 +145,15 @@ void		render3dprojectedwalls()
 		y = g_render3d.wa_btm_pxl;
 		while (y < g_ray.win_h)
 		{
+			// if (i < 0 || i > g_ray.win_w || y < 0 || y >= g_ray.win_h)
+			// 	break;
 			color = create_trgb(g_tex.rf, g_tex.gf, g_tex.bf);
-			g_data.addr[(y * g_ray.win_w) + i] = color;
+			//if (g_ray.win_h / 4 > (y * (g_ray.win_w) + i))
+			r = (y * g_ray.win_w) + i;
+			// if (r < 0 || r > g_ray.win_h * g_ray.win_w)
+			// 	printf("%d\n", r);
+			//if (((g_data.line_length * g_ray.win_h) / 4) > (y * (g_ray.win_w) + i))
+				g_data.addr[(y * g_ray.win_w) + i] = color;
 			y++;
 		}
 	}
