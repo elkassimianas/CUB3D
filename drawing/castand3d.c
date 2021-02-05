@@ -80,8 +80,6 @@ void		render3dprojectedwalls()
 	int			a;
 	int			distancefromtop;
 	unsigned int long	color;
-	int r;
-
 	/*loop every g_ray in the arg_ray of g_rays*/
 	i = -1;
 	while (++i < g_ray.num_rays)
@@ -92,11 +90,13 @@ void		render3dprojectedwalls()
 		/*calculate the distance to the projection plane*/
 		g_render3d.distanceprojectionplane = (g_ray.win_w / 2) / tan(g_data.fov_angle / 2);
 		/*projected wall height*/
+		if (g_render3d.cowalldistance == 0)
+			g_render3d.cowalldistance = 0.2;
 		g_render3d.wallstripheight = (TILE_SIZE / g_render3d.cowalldistance) * g_render3d.distanceprojectionplane;
 		g_render3d.walltoppixel = (g_ray.win_h / 2) - (g_render3d.wallstripheight / 2);
 		g_render3d.walltoppixel = g_render3d.walltoppixel < 0 ? 0 : g_render3d.walltoppixel;
 		g_render3d.wa_btm_pxl = (g_ray.win_h / 2) + (g_render3d.wallstripheight / 2);
-		//g_render3d.wa_btm_pxl = g_render3d.walltoppixel + g_render3d.wallstripheight; 
+		g_render3d.wa_btm_pxl = g_render3d.walltoppixel + g_render3d.wallstripheight; 
 		g_render3d.wa_btm_pxl = g_render3d.wa_btm_pxl > g_ray.win_h ? g_ray.win_h : g_render3d.wa_btm_pxl;
 		
 		// set the color of the ceiling
@@ -143,19 +143,17 @@ void		render3dprojectedwalls()
 		}
 		// set the color of the floor
 		y = g_render3d.wa_btm_pxl;
-		while (y < g_ray.win_h)
-		{
-			// if (i < 0 || i > g_ray.win_w || y < 0 || y >= g_ray.win_h)
-			// 	break;
-			color = create_trgb(g_tex.rf, g_tex.gf, g_tex.bf);
-			//if (g_ray.win_h / 4 > (y * (g_ray.win_w) + i))
-			r = (y * g_ray.win_w) + i;
-			// if (r < 0 || r > g_ray.win_h * g_ray.win_w)
-			// 	printf("%d\n", r);
-			//if (((g_data.line_length * g_ray.win_h) / 4) > (y * (g_ray.win_w) + i))
+	//	if (i >= 0 && y >= 0 && i < g_ray.win_w && y < g_ray.win_h)
+	//	{
+			while (y < g_ray.win_h)
+			{
+				
+				//printf("%d\n", y);
+				color = create_trgb(g_tex.rf, g_tex.gf, g_tex.bf);
 				g_data.addr[(y * g_ray.win_w) + i] = color;
-			y++;
-		}
+				y++;
+			}
+		//}
 	}
 	return ;
 }

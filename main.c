@@ -47,13 +47,12 @@ void	ft_readfile()
 		g_p.fd = open("map.cub", O_RDONLY);
 	// else
 	// 	ft_print_errors(6);
-	g_str = malloc(9 * sizeof(char));
-  	if (g_str == 0)
+	if (!(g_str = malloc(9 * sizeof(char))))
     	exit(EXIT_FAILURE);
   	i = -1;
  	while (++i < 8)
     	g_str[i] = '0';
-  	g_str[i] = 0;
+  	g_str[i] = '\0';
 	if (g_p.fd != -1)
 	{
 		a = get_next_line(g_p.fd, &g_p.ln);

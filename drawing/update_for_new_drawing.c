@@ -60,7 +60,7 @@ int		haswallat(double x, double y)
 	int		mapindex_x;
 	int		mapindex_y;
 
-	if (x < 0 || x >= g_p.len * TILE_SIZE|| y < 0 || y >= g_p.inc * TILE_SIZE)
+	if (x < 0 || x >= g_p.len * TILE_SIZE || y < 0 || y >= g_p.inc * TILE_SIZE)
 		return (1);
 	mapindex_x = floor(x / TILE_SIZE);
 	mapindex_y = floor(y / TILE_SIZE);

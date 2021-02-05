@@ -53,6 +53,7 @@ int		put_check(int i, int b)
 
 void	ft_print_errors1(char *str, int index)
 {
+	
 	ft_putstr("\x1B[31mError\n");
 	if (index == 0)
 		str = ft_strjoin("\x1B[37m", str);
@@ -74,6 +75,14 @@ void	ft_print_errors1(char *str, int index)
 		str = ft_strjoin("\x1B[37mMap: ", str);
 	ft_putstr(str);
 	ft_free(&str);
+	ft_free(&g_str);
+	ft_free(&g_p.str);
+	ft_free(&g_p.ln);
+	ft_free(&g_tex.filenamedown);
+	ft_free(&g_tex.filenameleft);
+	ft_free(&g_tex.filenameright);
+	ft_free(&g_tex.filenameup);
+	ft_free(&g_tex.filesprite);
 	exit(EXIT_FAILURE);
 }
 
@@ -220,22 +229,20 @@ int		put_check_help3(int i, int b)
 		else
 			g_str[6] = '1';
 		ft_floor(line);
-		// f_len = len_of_line(line);
-		// ft_free1(line, f_len);
+		f_len = len_of_line(line);
+		ft_free1(line, f_len);
 		return (b + 1);
 	}
 	if (g_p.ln[i] == 'C' && g_p.ln[i + 1] == ' ')
 	{
-		char	**line;
-
 		line = ft_split(g_p.ln, ' ');
 		if (g_str[7] == '1')
 			ft_print_errors(22);
 		else
 			g_str[7] = '1';
 		ft_ceilling(line);
-		// f_len = len_of_line(line);
-		// ft_free1(line, f_len);
+		f_len = len_of_line(line);
+		ft_free1(line, f_len);
 		return (b + 1);
 	}
 	return (0);

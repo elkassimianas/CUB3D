@@ -21,7 +21,6 @@ int			resolution(int b)
 	
 	// free1 = g_p.ln;
 	line = ft_split(g_p.ln, ' ');
-	//int o = len_of_line(line);
 	ft_strlen(line[0]) != 1 ? ft_print_errors(2) : 1;
 	if (g_str[0] == '1')
 		ft_print_errors(15);
@@ -34,7 +33,6 @@ int			resolution(int b)
 	g_ray.win_h = ft_atoi(line[2]);
 	g_ray.win_h == -1 ? ft_print_errors(1) : g_ray.win_h;
 	g_ray.win_h = g_ray.win_h > WIN_HMAX ? WIN_HMAX : g_ray.win_h;
-	//ft_free(&(*line));
 	f_len = len_of_line(line);
 	ft_free1(line, f_len);
 	return (b + 1);
@@ -61,8 +59,8 @@ void		ft_floor(char **line)
 		a != 2 && line[1][i + 1] == '\0' ? ft_print_errors(13) : a;
 	}
 	f_free = ft_split(line[1], ',');
-	f_len = len_of_line(line);
-	ft_free1(line, f_len);
+	// f_len = len_of_line(line);
+	// ft_free1(line, f_len);
 	nu_information(f_free) != 3 ? ft_print_errors(12) : 2;
 	g_tex.rf = ft_atoi(f_free[0]);
 	g_tex.rf == -1 || g_tex.rf > 255 ? ft_print_errors(12) : g_tex.rf;
@@ -95,8 +93,8 @@ void		ft_ceilling(char **line)
 		a != 2 && line[1][i + 1] == '\0' ? ft_print_errors(13) : a;
 	}
 	f_free = ft_split(line[1], ',');
-	f_len = len_of_line(line);
-	ft_free1(line, f_len);
+	// f_len = len_of_line(line);
+	// ft_free1(line, f_len);
 	nu_information(f_free) != 3 ? ft_print_errors(14) : 2;
 	g_tex.rc = ft_atoi(f_free[0]);
 	g_tex.rc == -1 || g_tex.rc > 255 ? ft_print_errors(14) : g_tex.rc;

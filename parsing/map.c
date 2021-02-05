@@ -16,15 +16,11 @@ void	check_map(void)
 {
 	int			check_p;
 //	char		*free1;
-    char *temp;
-
 	g_p.len = 0;
 	g_p.len = ft_strlen(g_p.ln);
 	//free1 = g_p.ln;
 
-	temp = g_p.str;
 	g_p.str = ft_strjoin(g_p.ln, "c");
-	free(temp);
 	//ft_free(&free1);
 	check_first_end_line();
 	printf("%p\n%s\n", g_p.ln, g_p.ln);
@@ -43,13 +39,13 @@ void	ft_allocate(int x, int y)
 {
 	int		i;
 
-	g_data.map = malloc(y * sizeof(int *));
+	g_data.map = malloc(y * sizeof(char *));
 	if (g_data.map == NULL)
 		exit(EXIT_FAILURE);
 	i = -1;
 	while (++i < y)
 	{
-		g_data.map[i] = malloc(x * sizeof(int));
+		g_data.map[i] = malloc(x * sizeof(char));
 		if (g_data.map[i] == NULL)
 			exit(EXIT_FAILURE);
 	}

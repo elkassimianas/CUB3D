@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = -Wall -Wextra -Werror -I /usr/X11/include -L /usr/X11/lib -l mlx -framework OpenGL -framework AppKit -g
+CC = -Wall -Wextra -Werror -I /usr/local/include -L /usr/local/lib -l mlx -framework OpenGL -framework AppKit
 
 NAME = cub3D
 LIB = ./libft/libft.a
