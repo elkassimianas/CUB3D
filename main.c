@@ -29,10 +29,11 @@ int	update()
 		rayspush(g_ray1[i].walhitx * MINIMAP_SCALE_FACTOR, g_ray1[i].walhity * 
 			MINIMAP_SCALE_FACTOR);
 	mlx_put_image_to_window(g_data.mlx, g_data.win, g_data.img, 0, 0);
+	//exit (1);
 	return (0);
 }
 
-void	ft_readfile()
+void	ft_readfile(int argc, char *av[])
 {
 	int		a;
 	int		i;
@@ -40,22 +41,24 @@ void	ft_readfile()
 
 	a = 1;
 	b = 0;
-	// argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
-	// if (argc == 3 && strncmp(av[2], "--save", 7))
-	// 	ft_print_errors(5);
-	//if (ft_strrchr(av[1], '.') && !ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 5))
-		g_p.fd = open("map.cub", O_RDONLY);
-	// else
-	// 	ft_print_errors(6);
-	if (!(g_str = malloc(9 * sizeof(char))))
+	 argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
+	 if (argc == 3 && strncmp(av[2], "--save", 7))
+		ft_print_errors(5);
+	if (ft_strrchr(av[1], '.') && !ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 5))
+		g_p.fd = open(av[1], O_RDONLY);
+	else
+	 	ft_print_errors(6);
+	if (!(g_str = (char *)malloc(9 * sizeof(char))))
     	exit(EXIT_FAILURE);
-  	i = -1;
+  	printf("%p : %s\n", g_str, g_str);
+	i = -1;
  	while (++i < 8)
     	g_str[i] = '0';
   	g_str[i] = '\0';
 	if (g_p.fd != -1)
 	{
 		a = get_next_line(g_p.fd, &g_p.ln);
+		printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 		if (a == 0 && g_p.ln[0] == '\0')
 			ft_print_errors(24);
 		while (g_p.ln[0] == '\0')
@@ -64,6 +67,7 @@ void	ft_readfile()
 				ft_print_errors(24);
 			ft_free(&g_p.ln);
 			a = get_next_line(g_p.fd, &g_p.ln);
+			printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 		}
 		i = 0;
 		while (g_p.ln[i] == ' ')
@@ -74,12 +78,14 @@ void	ft_readfile()
 			i = 0;
 			ft_free(&g_p.ln);
 			a = get_next_line(g_p.fd, &g_p.ln);
+			printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 			while (g_p.ln[i] == ' ')
             	i++;
 			while (g_p.ln[0] == '\0' && a != 0)
 			{
 				ft_free(&g_p.ln);
 				a = get_next_line(g_p.fd, &g_p.ln);
+				printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 			}
 			if ((g_p.ln[i] == '1' || g_p.ln[i] == ' ') && b >= 8)
 				break ;
@@ -92,6 +98,7 @@ void	ft_readfile()
 				ft_print_errors(2);
 		}
 		ft_free(&g_str);
+		printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 		if (b >= 8 && a == 0)
 		{
 			if ((g_p.ln[i] == '1' || g_p.ln[i] == ' ') && b >= 8)
@@ -104,11 +111,11 @@ void	ft_readfile()
 		ft_print_errors(7);
 }
 
-int	main()
+int	main(int argc, char * argv[])
 {	
 	g_data.mlx = mlx_init();
 
-	ft_readfile();
+	ft_readfile(argc, argv);
 //	exit(EXIT_SUCCESS);
 
 	buffertexture();

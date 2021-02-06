@@ -22,6 +22,7 @@ void	check_map(void)
 
 	g_p.str = ft_strjoin(g_p.ln, "c");
 	//ft_free(&free1);
+	printf("%p %p : %s\n", &g_p.str, g_p.str, g_p.str);
 	check_first_end_line();
 	printf("%p\n%s\n", g_p.ln, g_p.ln);
 	ft_free(&g_p.ln);
@@ -105,15 +106,21 @@ int		ft_read_map(void)
 	while (a != 0)
 	{
 		a = get_next_line(g_p.fd, &g_p.ln);
+		printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 		if (a == 0 && g_p.ln[0] != '0')
 			check_first_end_line();
 		else if (a == 0)
 			ft_print_errors(25);
+			printf("%p %p : %s\n", &g_p.str, g_p.str, g_p.str);
 		free1 = g_p.str;
 		g_p.str = ft_strjoin(free1, g_p.ln);
+		printf("%p %p : %s\n", &g_p.str, g_p.str, g_p.str);
+		printf("%p %p : %s\n", &free1, free1, free1);
 		ft_free(&free1);
 		free1 = g_p.str;
 		g_p.str = ft_strjoin(free1, "c");
+			printf("%p %p : %s\n", &g_p.str, g_p.str, g_p.str);
+		printf("%p %p : %s\n", &free1, free1, free1);
 		ft_free(&free1);
 		g_p.inc++;
 		check = check_map1(check);

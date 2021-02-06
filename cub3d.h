@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include <math.h>
-# include "mlx.h"
+# include "./minilibx/mlx.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdbool.h>
@@ -36,9 +36,6 @@
 # define NUM_COLS 15
 # define WALL_STRIP_WIDTH 1
 # define MINIMAP_SCALE_FACTOR 0.2
-# define TEXTURE_WIDTH 64
-# define TEXTURE_HEIGHT 64
-# define BUFFER_SIZE 32
 
 unsigned long int	g_tilecolor;
 char				*g_str;
@@ -187,7 +184,7 @@ void			raycastverthelp(double nextverttouchx, double nextverttouchy);
 void			drawing_walls3d(double x, double y, double tile_z1);
 void			render3dprojectedwalls(void);
 void			buffertexture(void);
-void			ft_readfile(void);
+void			ft_readfile(int argc, char *av[]);
 int				put_check(int i, int b);
 void			ft_print_errors1(char *str, int index);
 void			ft_print_errors(int	index);

@@ -134,10 +134,10 @@ void		render3dprojectedwalls()
 		{
 			// calculate textureOffsetY
 			distancefromtop = y + (g_render3d.wallstripheight / 2) - (g_ray.win_h / 2);
-			g_tex.offsety = distancefromtop * ((double)TEXTURE_HEIGHT / g_render3d.wallstripheight);
+			g_tex.offsety = distancefromtop * ((double)TILE_SIZE / g_render3d.wallstripheight);
 			g_tex.offsety = g_tex.offsety >= TILE_SIZE ? TILE_SIZE - 1 : g_tex.offsety;
 			// set the color of wall based on the color from the texture
-			color = g_tex.addr[a][(TEXTURE_WIDTH * g_tex.offsety) + g_tex.offsetx];
+			color = g_tex.addr[a][(TILE_SIZE * g_tex.offsety) + g_tex.offsetx];
 			g_data.addr[(y * g_ray.win_w) + i] = color;
 			y++;
 		}
@@ -147,7 +147,6 @@ void		render3dprojectedwalls()
 	//	{
 			while (y < g_ray.win_h)
 			{
-				
 				//printf("%d\n", y);
 				color = create_trgb(g_tex.rf, g_tex.gf, g_tex.bf);
 				g_data.addr[(y * g_ray.win_w) + i] = color;

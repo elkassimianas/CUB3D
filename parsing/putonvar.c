@@ -26,6 +26,7 @@ int		put_check(int i, int b)
 {
 	int		a;
 
+	printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 	if (g_p.ln[i] == 'R')
 	{
 		return (resolution(b));
@@ -48,6 +49,7 @@ int		put_check(int i, int b)
 		no_so_we_ea_s(1, 5);
 		return (b + 1);
 	}
+	printf("%p : %s\n", g_p.ln, g_p.ln);
 	return (0);
 }
 
@@ -83,6 +85,7 @@ void	ft_print_errors1(char *str, int index)
 	ft_free(&g_tex.filenameright);
 	ft_free(&g_tex.filenameup);
 	ft_free(&g_tex.filesprite);
+	ft_fee_map();
 	exit(EXIT_FAILURE);
 }
 
@@ -224,6 +227,7 @@ int		put_check_help3(int i, int b)
 	if (g_p.ln[i] == 'F' && g_p.ln[i + 1] == ' ')
 	{
 		line = ft_split(g_p.ln, ' ');
+		printf("%p : %s : %p : %s\n : %p\n", &line, "line", line[0], line[0], line[1]);
 		if (g_str[6] == '1')
 			ft_print_errors(21);
 		else
@@ -236,6 +240,7 @@ int		put_check_help3(int i, int b)
 	if (g_p.ln[i] == 'C' && g_p.ln[i + 1] == ' ')
 	{
 		line = ft_split(g_p.ln, ' ');
+		printf("%p : %s : %p : %s\n : %p\n", &line, "line", line[0], line[0], line[1]);
 		if (g_str[7] == '1')
 			ft_print_errors(22);
 		else

@@ -1,17 +1,17 @@
-R    1100 700
-SO    ./images/txt64-2.xpm
-NO    ./images/txt64-3.xpm
-WE    ./images/txt64-4.xpm
+R    12313222 213213
+SO    ./images/texture2.xpm
+NO    ./images/texture3.xpm
+WE    ./images/texture4.xpm
 C      135,206,235
-EA    ./images/txt64-1.xpm
-S     ./images/s.xpm
+EA    ./images/texture1.xpm
+S     ./images/sprite.xpm
 F     90,95,57
 
 111111111111111
 1110100000001111111
 111111111110000001
 1111111000101000001
-11     11120211N111
+11     11100011N111
 1011111001101010111
 111111110010111111
 101111111110111111
