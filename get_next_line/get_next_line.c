@@ -27,10 +27,7 @@ int     len_of_line(char **str)
     int		len;
     len = 0;
 	while (*(str+len))
-	{
-		printf("%s\n", *(str + len));
 		len++;
-	}
 	len = 0;
     while (*(str + len))
         len++;

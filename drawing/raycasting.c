@@ -12,21 +12,22 @@
 
 #include "../cub3d.h"
 
-void		raycasthorzhelp(double nexthorztouchx, double nexthorztouchy)
+void		raycasthorzhelp(double next_hz_x, double next_hz_y)
 {
-	while (nexthorztouchx >= 0 && nexthorztouchx <= g_p.len * TILE_SIZE && nexthorztouchy>= 0 && nexthorztouchy <= g_p.inc * TILE_SIZE)
+	while (next_hz_x >= 0 && next_hz_x <= g_dt.img_w && next_hz_y >= 0
+		&& next_hz_y <= g_dt.img_h)
 	{
-		if (haswallat(nexthorztouchx, nexthorztouchy - (g_ray.israyfacingup ? 1 : 0)))
+		if (haswallat(next_hz_x, next_hz_y - (g_r.israyfacingup ? 1 : 0)))
 		{
-			g_ray.foundhorzwallhit = true;
-			g_ray.horzwalhitx = nexthorztouchx;
-			g_ray.horzwalhity = nexthorztouchy;
+			g_r.fnd_hz_hit = true;
+			g_r.hz_hit_x = next_hz_x;
+			g_r.hz_hit_y = next_hz_y;
 			break ;
 		}
 		else
 		{
-			nexthorztouchx += g_ray.xstep;
-			nexthorztouchy += g_ray.ystep;
+			next_hz_x += g_r.xstep;
+			next_hz_y += g_r.ystep;
 		}
 	}
 	return ;
@@ -34,48 +35,49 @@ void		raycasthorzhelp(double nexthorztouchx, double nexthorztouchy)
 
 void		raycasthorz(void)
 {
-	double		nexthorztouchx;
-	double		nexthorztouchy;
+	double		next_hz_x;
+	double		next_hz_y;
 
-	g_ray.foundhorzwallhit = false;
-	g_ray.horzwalhitx = 0;
-	g_ray.horzwalhity = 0;
+	g_r.fnd_hz_hit = false;
+	g_r.hz_hit_x = 0;
+	g_r.hz_hit_y = 0;
 	////////////////////////////////////////////
-	//// HORIZONTAL g_ray-GRID INTERSECTION CODE //
+	//// HORIZONTAL g_r-GRID INTERSECTION CODE //
 	//////////////////////////////////////////// 
 	/*find the y-coordinate of the closest horizontal map intersenction*/
-	g_ray.yintercept = floor(g_player.yplayer / TILE_SIZE) * TILE_SIZE;
-	g_ray.yintercept += g_ray.israyfacingdown ? TILE_SIZE : 0;
+	g_r.yintercept = floor(g_pl.y_p / TL_SZ) * TL_SZ;
+	g_r.yintercept += g_r.israyfacingdown ? TL_SZ : 0;
 	/*find the x-coordinate of the closest horizontal map intersenction*/
-	g_ray.xintercept = g_player.xplayer + ((g_ray.yintercept - g_player.yplayer) / tan(g_ray.angle));
+	g_r.xintercept = g_pl.x_p + ((g_r.yintercept - g_pl.y_p) / tan(g_r.angle));
 	/*Calculate the increment xstep and ystep*/
-	g_ray.ystep = TILE_SIZE;
-	g_ray.ystep *= g_ray.israyfacingup ? -1 : 1;
-	g_ray.xstep = TILE_SIZE / tan(g_ray.angle);
-	g_ray.xstep *= (g_ray.israyfacingleft && g_ray.xstep > 0) ? -1 : 1;
-	g_ray.xstep *= (g_ray.israyfacingright && g_ray.xstep < 0) ? -1 : 1;
-	nexthorztouchx = g_ray.xintercept;
-	nexthorztouchy = g_ray.yintercept;
+	g_r.ystep = TL_SZ;
+	g_r.ystep *= g_r.israyfacingup ? -1 : 1;
+	g_r.xstep = TL_SZ / tan(g_r.angle);
+	g_r.xstep *= (g_r.israyfacingleft && g_r.xstep > 0) ? -1 : 1;
+	g_r.xstep *= (g_r.israyfacingright && g_r.xstep < 0) ? -1 : 1;
+	next_hz_x = g_r.xintercept;
+	next_hz_y = g_r.yintercept;
 	/*increment xstep and ystep untill we find a wall*/
-	raycasthorzhelp(nexthorztouchx, nexthorztouchy);
+	raycasthorzhelp(next_hz_x, next_hz_y);
 	return ;
 }
 
-void		raycastverthelp(double nextverttouchx, double nextverttouchy)
+void		raycastverthelp(double next_vert_x, double next_vert_y)
 {
-	while (nextverttouchx >= 0 && nextverttouchx <= g_p.len * TILE_SIZE && nextverttouchy >= 0 && nextverttouchy <= g_p.inc * TILE_SIZE)
+	while (next_vert_x >= 0 && next_vert_x <= g_dt.img_w && next_vert_y >= 0
+		&& next_vert_y <= g_dt.img_h)
 	{
-		if (haswallat(nextverttouchx - (g_ray.israyfacingleft ? 1 : 0), nextverttouchy))
+		if (haswallat(next_vert_x - (g_r.israyfacingleft ? 1 : 0), next_vert_y))
 		{
-			g_ray.foundvertwallhit = true;
-			g_ray.vertwalhitx = nextverttouchx;
-			g_ray.vertwalhity = nextverttouchy;
+			g_r.fnd_vrt_hit = true;
+			g_r.vr_hi_x = next_vert_x;
+			g_r.vrt_hit_y = next_vert_y;
 			break ;
 		}
 		else
 		{
-			nextverttouchx += g_ray.xstep;
-			nextverttouchy += g_ray.ystep;
+			next_vert_x += g_r.xstep;
+			next_vert_y += g_r.ystep;
 		}
 	}
 
@@ -84,65 +86,65 @@ void		raycastverthelp(double nextverttouchx, double nextverttouchy)
 
 void		raycastvert()
 {
-	double		nextverttouchx;
-	double		nextverttouchy;
+	double		next_vert_x;
+	double		next_vert_y;
 
 	////////////////////////////////////////////
-	//// VERTICAL g_ray-GRID INTERSECTION CODE //
+	//// VERTICAL g_r-GRID INTERSECTION CODE //
 	////////////////////////////////////////////
-	g_ray.vertwalhitx = 0;
-	g_ray.vertwalhity = 0;
-	g_ray.foundvertwallhit = false;
+	g_r.vr_hi_x = 0;
+	g_r.vrt_hit_y = 0;
+	g_r.fnd_vrt_hit = false;
 	/*find the x-coordinate of the closest vartical map intersenction*/
-	g_ray.xintercept = floor(g_player.xplayer / TILE_SIZE) * TILE_SIZE;
-	g_ray.xintercept += g_ray.israyfacingright ? TILE_SIZE : 0;
+	g_r.xintercept = floor(g_pl.x_p / TL_SZ) * TL_SZ;
+	g_r.xintercept += g_r.israyfacingright ? TL_SZ : 0;
 	/*find the y-coordinate of the closest vertical map intersenction*/
-	g_ray.yintercept = g_player.yplayer + ((g_ray.xintercept - g_player.xplayer) * tan(g_ray.angle));
+	g_r.yintercept = g_pl.y_p + ((g_r.xintercept - g_pl.x_p) * tan(g_r.angle));
 	/*Calculate the increment xstep and ystep*/
-	g_ray.xstep = TILE_SIZE;
-	g_ray.xstep *= g_ray.israyfacingleft ? -1 : 1;
-	g_ray.ystep = TILE_SIZE * tan(g_ray.angle);
-	g_ray.ystep *= (g_ray.israyfacingup && g_ray.ystep > 0) ? -1 : 1;
-	g_ray.ystep *= (g_ray.israyfacingdown && g_ray.ystep < 0) ? -1 : 1;
-	nextverttouchx = g_ray.xintercept;
-	nextverttouchy = g_ray.yintercept;
+	g_r.xstep = TL_SZ;
+	g_r.xstep *= g_r.israyfacingleft ? -1 : 1;
+	g_r.ystep = TL_SZ * tan(g_r.angle);
+	g_r.ystep *= (g_r.israyfacingup && g_r.ystep > 0) ? -1 : 1;
+	g_r.ystep *= (g_r.israyfacingdown && g_r.ystep < 0) ? -1 : 1;
+	next_vert_x = g_r.xintercept;
+	next_vert_y = g_r.yintercept;
 	/*increment xstep and ystep untill we find a wall*/
-	raycastverthelp(nextverttouchx, nextverttouchy);
+	raycastverthelp(next_vert_x, next_vert_y);
 	return ;
 }
 
-void		castallg_rays()
+void		castallg_rs()
 {
 	int		i;
 
-	/*start first g_ray subtracting half of the fov*/
-	g_ray.angle = g_data.rotationangle - (g_data.fov_angle / 2);
+	/*start first g_r subtracting half of the fov*/
+	g_r.angle = g_dt.ro_angle - (g_dt.fov_angle / 2);
 	i = -1;
-	while (++i < g_ray.num_rays)
+	while (++i < g_r.num_rays)
 	{
-		//printf("I: %d\n", i);
-		g_ray.angle = normalizeangle(g_ray.angle);
-		g_ray.israyfacingdown = g_ray.angle > 0 && g_ray.angle < M_PI;
-		g_ray.israyfacingup = !g_ray.israyfacingdown;
-		g_ray.israyfacingright = g_ray.angle < 0.5 * M_PI || g_ray.angle > 1.5 * M_PI;
-		g_ray.israyfacingleft = !g_ray.israyfacingright;
-		g_ray1[i].rayfup = g_ray.israyfacingup;
-		g_ray1[i].rayfright = g_ray.israyfacingright;
+		g_r.angle = normalizeangle(g_r.angle);
+		g_r.israyfacingdown = g_r.angle > 0 && g_r.angle < M_PI;
+		g_r.israyfacingup = !g_r.israyfacingdown;
+		g_r.israyfacingright = g_r.angle < 0.5 * M_PI || g_r.angle > 1.5 * M_PI;
+		g_r.israyfacingleft = !g_r.israyfacingright;
+		g_r1[i].rayfup = g_r.israyfacingup;
+		g_r1[i].rayfright = g_r.israyfacingright;
 		raycasthorz();
 		raycastvert();
-		g_ray.horzhitdistance = (g_ray.foundhorzwallhit) ? distancebetweenpoints(g_player.xplayer, g_player.yplayer, g_ray.horzwalhitx, g_ray.horzwalhity) : INT_MAX;
-        g_ray.verthitdistance = (g_ray.foundvertwallhit) ? distancebetweenpoints(g_player.xplayer, g_player.yplayer, g_ray.vertwalhitx, g_ray.vertwalhity) : INT_MAX;
+		g_r.hz_hit_dis = (g_r.fnd_hz_hit) ?
+		dis_bet_points(g_pl.x_p, g_pl.y_p, g_r.hz_hit_x, g_r.hz_hit_y) : INT_MAX;
+        g_r.vrt_hit_dis = (g_r.fnd_vrt_hit) ?
+		dis_bet_points(g_pl.x_p, g_pl.y_p, g_r.vr_hi_x, g_r.vrt_hit_y) : INT_MAX;
 		/*only store the smallest of the distances*/
-		g_ray1[i].walhitx = (g_ray.horzhitdistance < g_ray.verthitdistance) ? g_ray.horzwalhitx : g_ray.vertwalhitx;
-		g_ray1[i].walhity = (g_ray.horzhitdistance < g_ray.verthitdistance) ? g_ray.horzwalhity : g_ray.vertwalhity;
-		g_ray1[i].distancestab = (g_ray.horzhitdistance < g_ray.verthitdistance) ? g_ray.horzhitdistance : g_ray.verthitdistance;
-		// g_ray.distancestab[i] = g_ray.distance;
-		g_ray1[i].fndvertwtx = (g_ray.horzhitdistance < g_ray.verthitdistance) ? 0 : 1;
-
-		//rayspush(data, g_ray.walhitx * MINIMAP_SCALE_FACTOR, g_ray.walhity *
-			//	MINIMAP_SCALE_FACTOR);
-		g_ray1[i].angletab = g_ray.angle;
-		g_ray.angle += g_data.fov_angle / g_ray.num_rays;
+		g_r1[i].w_hitx = (g_r.hz_hit_dis < g_r.vrt_hit_dis) ?
+		g_r.hz_hit_x : g_r.vr_hi_x;
+		g_r1[i].w_hity = (g_r.hz_hit_dis < g_r.vrt_hit_dis) ?
+		g_r.hz_hit_y : g_r.vrt_hit_y;
+		g_r1[i].dis_t = (g_r.hz_hit_dis < g_r.vrt_hit_dis) ?
+		g_r.hz_hit_dis : g_r.vrt_hit_dis;
+		g_r1[i].fndvertwtx = (g_r.hz_hit_dis < g_r.vrt_hit_dis) ? 0 : 1;
+		g_r1[i].anglet = g_r.angle;
+		g_r.angle += g_dt.fov_angle / g_r.num_rays;
 	}
 	return ;
 }

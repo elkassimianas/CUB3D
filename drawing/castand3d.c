@@ -6,7 +6,7 @@
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 13:25:39 by ael-kass          #+#    #+#             */
-/*   Updated: 2021/02/01 11:48:34 by ael-kass         ###   ########.fr       */
+/*   Updated: 2021/02/07 16:30:11 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void		rayspush(double x2, double y2)
 	double		yinc;
 	int			steps;
 
-	x1 = g_player.xplayer * MINIMAP_SCALE_FACTOR;
-	y1 = g_player.yplayer * MINIMAP_SCALE_FACTOR;
+	x1 = g_pl.x_p * MINIMAP_SCALE_FACTOR;
+	y1 = g_pl.y_p * MINIMAP_SCALE_FACTOR;
 	g_tilecolor = 0xFF4500;
 	steps = abs((int)x2 - (int)x1) > abs((int)y2 - (int)y1) ? abs((int)x2 -
 			(int)x1) : abs((int)y2 - (int)y1);
@@ -38,20 +38,20 @@ void		rayspush(double x2, double y2)
 	x2 = -1;
 	while (++x2 <= steps)
 	{
-		if (y1 >= 0 && x1 >= 0 && x1 < g_ray.win_w && y1 < g_ray.win_h)
-			g_data.addr[(int)y1 * g_ray.win_w + (int)x1] = g_tilecolor;
+		if (y1 >= 0 && x1 >= 0 && x1 < g_dt.win_w && y1 < g_dt.win_h)
+			g_dt.addr[(int)y1 * g_dt.win_w + (int)x1] = g_tilecolor;
 		x1 = x1 + xinc;
 		y1 = y1 + yinc;
 	}
 	return ;
 }
 
-double		distancebetweenpoints(double x1, double y1, double x2, double y2)
+double		dis_bet_points(double x1, double y1, double x2, double y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-void			drawing_walls3d(double x, double y, double tile_z1)
+void		drawing_walls3d(double x, double y, double tile_z1)
 {
 	double		x1;
 	double		y1;
@@ -63,8 +63,8 @@ void			drawing_walls3d(double x, double y, double tile_z1)
 	{
 		while (x < x1)
 		{
-			if (y >= 0 && x >= 0 && x < g_ray.win_w && y < g_ray.win_h)
-				g_data.addr[((int)y * g_ray.win_w) + (int)x] = g_tilecolor;
+			if (y >= 0 && x >= 0 && x < g_dt.win_w && y < g_dt.win_h)
+				g_dt.addr[((int)y * g_dt.win_w) + (int)x] = g_tilecolor;
 			x++;
 		}
 		x -= WALL_STRIP_WIDTH;
@@ -73,86 +73,88 @@ void			drawing_walls3d(double x, double y, double tile_z1)
 	return ;
 }
 
-void		render3dprojectedwalls()
+void		ft_floor_ceilling(int i)
 {
-	int			i;
-	int			y;
-	int			a;
-	int			distancefromtop;
-	unsigned int long	color;
-	/*loop every g_ray in the arg_ray of g_rays*/
-	i = -1;
-	while (++i < g_ray.num_rays)
-	{
-		//cowalldistance = g_ray1[i].distancestab;
-		/*"cos(angle - g_data.rotationangle)" get the perpendicular distance to the wall to fix Fishbowl distortion*/
-		g_render3d.cowalldistance = g_ray1[i].distancestab * cos(g_ray1[i].angletab - g_data.rotationangle);
-		/*calculate the distance to the projection plane*/
-		g_render3d.distanceprojectionplane = (g_ray.win_w / 2) / tan(g_data.fov_angle / 2);
-		/*projected wall height*/
-		if (g_render3d.cowalldistance == 0)
-			g_render3d.cowalldistance = 0.2;
-		g_render3d.wallstripheight = (TILE_SIZE / g_render3d.cowalldistance) * g_render3d.distanceprojectionplane;
-		g_render3d.walltoppixel = (g_ray.win_h / 2) - (g_render3d.wallstripheight / 2);
-		g_render3d.walltoppixel = g_render3d.walltoppixel < 0 ? 0 : g_render3d.walltoppixel;
-		g_render3d.wa_btm_pxl = (g_ray.win_h / 2) + (g_render3d.wallstripheight / 2);
-		g_render3d.wa_btm_pxl = g_render3d.walltoppixel + g_render3d.wallstripheight; 
-		g_render3d.wa_btm_pxl = g_render3d.wa_btm_pxl > g_ray.win_h ? g_ray.win_h : g_render3d.wa_btm_pxl;
+		unsigned int	color;
+		int				y;
 		
-		// set the color of the ceiling
+		/*set the color of the ceiling*/
 		y = 0;
-		while (y < g_render3d.walltoppixel)
+		while (y < g_rd.wall_top)
 		{
 			color = create_trgb(g_tex.rc, g_tex.gc, g_tex.bc);
-			g_data.addr[(y * g_ray.win_w) + i] = color;
+			g_dt.addr[(y * g_dt.win_w) + i] = color;
 			y++;
 		}
-		//drawing_walls3d(data, i, g_render3d.walltoppixel, g_render3d.wallstripheight);
-
-		// calculate textureOffsetX
-		if (g_ray1[i].fndvertwtx)
+		/*set the color of the floor*/
+		y = g_rd.wa_bmt;
+		while (y < g_dt.win_h)
 		{
-			// perform offset for the verticel hit
-			g_tex.offsetx = (int)g_ray1[i].walhity % TILE_SIZE;
-		}
-		else{
-			// perform offset for the horizontal hit
-			g_tex.offsetx = (int)g_ray1[i].walhitx % TILE_SIZE;
-		}
-
-		if (g_ray1[i].rayfup && !g_ray1[i].fndvertwtx)
-			a = 0;
-		else if (!g_ray1[i].fndvertwtx && !g_ray1[i].rayfup)
-			a = 1;
-		else if (!g_ray1[i].rayfright && g_ray1[i].fndvertwtx)
-			a = 2;
-		else if (g_ray1[i].rayfright && g_ray1[i].fndvertwtx)
-			a = 3;
-		// render the wall from walltoppixel to wallbottompixel
-		y = g_render3d.walltoppixel;
-		while (y < g_render3d.wa_btm_pxl)
-		{
-			// calculate textureOffsetY
-			distancefromtop = y + (g_render3d.wallstripheight / 2) - (g_ray.win_h / 2);
-			g_tex.offsety = distancefromtop * ((double)TILE_SIZE / g_render3d.wallstripheight);
-			g_tex.offsety = g_tex.offsety >= TILE_SIZE ? TILE_SIZE - 1 : g_tex.offsety;
-			// set the color of wall based on the color from the texture
-			color = g_tex.addr[a][(TILE_SIZE * g_tex.offsety) + g_tex.offsetx];
-			g_data.addr[(y * g_ray.win_w) + i] = color;
+			color = create_trgb(g_tex.rf, g_tex.gf, g_tex.bf);
+			g_dt.addr[(y * g_dt.win_w) + i] = color;
 			y++;
 		}
-		// set the color of the floor
-		y = g_render3d.wa_btm_pxl;
-	//	if (i >= 0 && y >= 0 && i < g_ray.win_w && y < g_ray.win_h)
-	//	{
-			while (y < g_ray.win_h)
-			{
-				//printf("%d\n", y);
-				color = create_trgb(g_tex.rf, g_tex.gf, g_tex.bf);
-				g_data.addr[(y * g_ray.win_w) + i] = color;
-				y++;
-			}
-		//}
+}
+
+int			ft_math_utils(int i, int a)
+{
+	/*"cos(angle - g_dt.ro_angle)" get the perpendicular distance to the wall to fix Fishbowl distortion*/
+	g_rd.cowal_dis = g_r1[i].dis_t * cos(g_r1[i].anglet - g_dt.ro_angle);
+	/*calculate the distance to the projection plane*/
+	g_rd.dis_proj_plan = (g_dt.win_w / 2) / tan(g_dt.fov_angle / 2);
+	/*projected wall height*/
+	if (g_rd.cowal_dis == 0)
+		g_rd.cowal_dis = 0.2;
+	g_rd.w_strip_h = (TL_SZ / g_rd.cowal_dis) * g_rd.dis_proj_plan;
+	g_rd.wall_top = (g_dt.win_h / 2) - (g_rd.w_strip_h / 2);
+	g_rd.wall_top = g_rd.wall_top < 0 ? 0 : g_rd.wall_top;
+	g_rd.wa_bmt = (g_dt.win_h / 2) + (g_rd.w_strip_h / 2);
+	g_rd.wa_bmt = g_rd.wall_top + g_rd.w_strip_h; 
+	g_rd.wa_bmt = g_rd.wa_bmt > g_dt.win_h ? g_dt.win_h : g_rd.wa_bmt;
+	/* calculate textureOffsetX*/
+	if (g_r1[i].fndvertwtx)
+		/*perform offset for the verticel hit*/
+		g_tex.offsetx = (int)g_r1[i].w_hity % TL_SZ;
+	else
+		/*perform offset for the horizontal hit*/
+		g_tex.offsetx = (int)g_r1[i].w_hitx % TL_SZ;
+	if (g_r1[i].rayfup && !g_r1[i].fndvertwtx)
+		a = 0;
+	if (!g_r1[i].fndvertwtx && !g_r1[i].rayfup)
+		a = 1;
+	if (!g_r1[i].rayfright && g_r1[i].fndvertwtx)
+		a = 2;
+	if (g_r1[i].rayfright && g_r1[i].fndvertwtx)
+		a = 3;
+	return (a);
+}
+
+void		render3dprojectedwalls()
+{
+	int					i;
+	int					y;
+	int					a;
+	int					distancefromtop;
+	unsigned int long	color;
+	/*loop every g_r in the arg_r of g_rs*/
+	i = -1;
+	while (++i < g_r.num_rays)
+	{
+		a = ft_math_utils(i, a);
+		/*render the wall from walltoppixel to wallbottompixel*/
+		y = g_rd.wall_top;
+		while (y < g_rd.wa_bmt)
+		{
+			/*calculate textureOffsetY*/
+			distancefromtop = y + (g_rd.w_strip_h / 2) - (g_dt.win_h / 2);
+			g_tex.offsety = distancefromtop * ((double)TL_SZ / g_rd.w_strip_h);
+			g_tex.offsety = g_tex.offsety >= TL_SZ ? TL_SZ - 1 : g_tex.offsety;
+			/*set the color of wall based on the color from the texture*/
+			color = g_tex.addr[a][(TL_SZ * g_tex.offsety) + g_tex.offsetx];
+			g_dt.addr[(y * g_dt.win_w) + i] = color;
+			y++;
+		}
+		ft_floor_ceilling(i);
 	}
 	return ;
 }

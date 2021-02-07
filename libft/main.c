@@ -4,6 +4,6 @@
 
 int main()
 {
-	printf("len of line :%d\n", ft_atoi("7a77"));
+	//printf("len of line :%d\n", ft_atoi("7a77"));
 	return (0);
 }

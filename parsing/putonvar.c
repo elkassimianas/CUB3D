@@ -26,7 +26,6 @@ int		put_check(int i, int b)
 {
 	int		a;
 
-	printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 	if (g_p.ln[i] == 'R')
 	{
 		return (resolution(b));
@@ -49,32 +48,35 @@ int		put_check(int i, int b)
 		no_so_we_ea_s(1, 5);
 		return (b + 1);
 	}
-	printf("%p : %s\n", g_p.ln, g_p.ln);
 	return (0);
 }
 
 void	ft_print_errors1(char *str, int index)
 {
 	
-	ft_putstr("\x1B[31mError\n");
+	ft_putstr("Error\n");
 	if (index == 0)
-		str = ft_strjoin("\x1B[37m", str);
+	{
+		ft_putstr(str);
+		exit (EXIT_FAILURE);
+		return ;
+	}
 	if (index == 1)
-		str = ft_strjoin("\x1B[37mResolution: ", str);
+		str = ft_strjoin("Resolution: ", str);
 	if (index == 2)
-		str = ft_strjoin("\x1B[37musage: ", str);
+		str = ft_strjoin("usage: ", str);
 	if (index == 3)
-		str = ft_strjoin("\x1B[37mNorth texture: ", str);
+		str = ft_strjoin("North texture: ", str);
 	if (index == 4)
-		str = ft_strjoin("\x1B[37mSouth texture: ", str);
+		str = ft_strjoin("South texture: ", str);
 	if (index == 5)
-		str = ft_strjoin("\x1B[37mWest texture: ", str);
+		str = ft_strjoin("West texture: ", str);
 	if (index == 6)
-		str = ft_strjoin("\x1B[37mEast texture: ", str);
+		str = ft_strjoin("East texture: ", str);
 	if (index == 7)
-		str = ft_strjoin("\x1B[37mSprite texture: ", str);
+		str = ft_strjoin("Sprite texture: ", str);
 	if (index == 8)
-		str = ft_strjoin("\x1B[37mMap: ", str);
+		str = ft_strjoin("Map: ", str);
 	ft_putstr(str);
 	ft_free(&str);
 	ft_free(&g_str);
@@ -85,7 +87,6 @@ void	ft_print_errors1(char *str, int index)
 	ft_free(&g_tex.filenameright);
 	ft_free(&g_tex.filenameup);
 	ft_free(&g_tex.filesprite);
-	ft_fee_map();
 	exit(EXIT_FAILURE);
 }
 
@@ -102,8 +103,7 @@ void	ft_print_errors(int index)
 	if (index == 4)
 		ft_print_errors1("The SO information is wrong\n", 4);
 	if (index == 5)
-		ft_print_errors1("./cub3D <file.cub> or ./cub3D <filen.cub> <--save>\n",
-				0);
+		ft_print_errors1("./cub3D<file.cub> or ./cub3D <file.cub><--save>\n",0);
 	if (index == 6)
 		ft_print_errors1("first argument should be file in format *.cub\n", 0);
 	if (index == 7)
@@ -227,7 +227,6 @@ int		put_check_help3(int i, int b)
 	if (g_p.ln[i] == 'F' && g_p.ln[i + 1] == ' ')
 	{
 		line = ft_split(g_p.ln, ' ');
-		printf("%p : %s : %p : %s\n : %p\n", &line, "line", line[0], line[0], line[1]);
 		if (g_str[6] == '1')
 			ft_print_errors(21);
 		else
@@ -240,7 +239,6 @@ int		put_check_help3(int i, int b)
 	if (g_p.ln[i] == 'C' && g_p.ln[i + 1] == ' ')
 	{
 		line = ft_split(g_p.ln, ' ');
-		printf("%p : %s : %p : %s\n : %p\n", &line, "line", line[0], line[0], line[1]);
 		if (g_str[7] == '1')
 			ft_print_errors(22);
 		else

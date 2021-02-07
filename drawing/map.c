@@ -12,36 +12,23 @@
 
 #include "../cub3d.h"
 
-
-// int	    mapc[11][15] = {{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-//                    	   {1,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
-//                    	   {1,0,0,1,0,1,0,0,0,1,0,0,1,0,1},
-//                    	   {1,1,1,1,1,0,0,0,0,0,1,0,1,0,1},
-//                    	   {1,0,0,0,0,0,0,0,0,0,1,0,1,0,1},
-//                    	   {1,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
-//                    	   {1,0,0,1,1,1,1,1,1,1,1,1,0,0,1},
-//             	   	   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//                    	   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//                    	   {1,0,0,0,0,0,0,1,0,0,0,0,0,0,1},
-//                    	   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
-
-void		drawing_cub_walls()
+void		drawing_cub_walls(double tilex, double tiley)
 {
 	int		x;
 	int		y;
 
-	x = (TILE_SIZE * MINIMAP_SCALE_FACTOR) + g_player.tilex;
-	y = (TILE_SIZE * MINIMAP_SCALE_FACTOR) + g_player.tiley;
-	while (g_player.tiley < y)
+	x = (TL_SZ * MINIMAP_SCALE_FACTOR) + tilex;
+	y = (TL_SZ * MINIMAP_SCALE_FACTOR) + tiley;
+	while (tiley < y)
 	{
-		while (g_player.tilex < x)
+		while (tilex < x)
 		{
-			if (g_player.tiley >= 0 && g_player.tilex >= 0 && g_player.tilex < g_ray.win_w && g_player.tiley < g_ray.win_h)
-				g_data.addr[(int)g_player.tiley * g_ray.win_w + (int)g_player.tilex] = g_tilecolor;
-			g_player.tilex += 0.1;
+			if (tiley >= 0 && tilex >= 0 && tilex < g_dt.win_w && tiley < g_dt.win_h)
+				g_dt.addr[(int)tiley * g_dt.win_w + (int)tilex] = g_tilecolor;
+			tilex += 0.1;
 		}
-		g_player.tilex -= (TILE_SIZE * MINIMAP_SCALE_FACTOR);
-		g_player.tiley += 0.1;
+		tilex -= (TL_SZ * MINIMAP_SCALE_FACTOR);
+		tiley += 0.1;
 	}
 }
 
@@ -49,32 +36,29 @@ void		map()
 {
 	int			i;
 	int			j;
+	double		tiley;
+	double		tilex;
 
-	g_player.tilex = 0;
-	g_player.tiley = 0;
+	tilex = 0;
+	tiley = 0;
 	i = -1;
 	while (++i < g_p.inc)
 	{
 		j = -1;
 		while (++j < (int)g_p.len)
 		{
-			g_player.tilex = j * TILE_SIZE * MINIMAP_SCALE_FACTOR;
-			g_player.tiley = i * TILE_SIZE * MINIMAP_SCALE_FACTOR;
-			if (g_data.map[i][j] == '1')
+			tilex = j * TL_SZ * MINIMAP_SCALE_FACTOR;
+			tiley = i * TL_SZ * MINIMAP_SCALE_FACTOR;
+			if (g_dt.map[i][j] == '1')
 			{
 				g_tilecolor = 0x5C413B;
-				drawing_cub_walls();
+				drawing_cub_walls(tilex, tiley);
 			}
-			else if (g_data.map[i][j] == '2')
+			else if (g_dt.map[i][j] == '2')
 			{
 				g_tilecolor = 0x33FF74;
-				drawing_cub_walls();
+				drawing_cub_walls(tilex, tiley);
 			}
-			// else if (g_data.map[i][j] != 1 && g_data.map[i][j] != 2)
-			// {
-			// 	g_tilecolor = 0;
-			// 	drawing_cub_walls();
-			// }
 		}
 	}
 }

@@ -16,20 +16,18 @@ int	update()
 {
 	int		i = 0;
 	
-	mlx_hook(g_data.win, 2, 0, keypressed, (void*)0);
-	mlx_hook(g_data.win, 3, 1, keyrelease, (void *)0);
-	mlx_hook(g_data.win, 17, 0L, quit_win, (void*)0);
+	mlx_hook(g_dt.win, 2, 0, keypressed, (void*)0);
+	mlx_hook(g_dt.win, 3, 1, keyrelease, (void *)0);
+	mlx_hook(g_dt.win, 17, 0L, quit_win, (void*)0);
 	draw_new_map();
-	castallg_rays();
-//	buffertexture();
+	castallg_rs();
 	render3dprojectedwalls();
 	map();
 	i = -1;
-	while (++i < g_ray.num_rays)
-		rayspush(g_ray1[i].walhitx * MINIMAP_SCALE_FACTOR, g_ray1[i].walhity * 
+	while (++i < g_r.num_rays)
+		rayspush(g_r1[i].w_hitx * MINIMAP_SCALE_FACTOR, g_r1[i].w_hity * 
 			MINIMAP_SCALE_FACTOR);
-	mlx_put_image_to_window(g_data.mlx, g_data.win, g_data.img, 0, 0);
-	//exit (1);
+	mlx_put_image_to_window(g_dt.mlx, g_dt.win, g_dt.img, 0, 0);
 	return (0);
 }
 
@@ -50,7 +48,6 @@ void	ft_readfile(int argc, char *av[])
 	 	ft_print_errors(6);
 	if (!(g_str = (char *)malloc(9 * sizeof(char))))
     	exit(EXIT_FAILURE);
-  	printf("%p : %s\n", g_str, g_str);
 	i = -1;
  	while (++i < 8)
     	g_str[i] = '0';
@@ -58,7 +55,6 @@ void	ft_readfile(int argc, char *av[])
 	if (g_p.fd != -1)
 	{
 		a = get_next_line(g_p.fd, &g_p.ln);
-		printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 		if (a == 0 && g_p.ln[0] == '\0')
 			ft_print_errors(24);
 		while (g_p.ln[0] == '\0')
@@ -67,7 +63,6 @@ void	ft_readfile(int argc, char *av[])
 				ft_print_errors(24);
 			ft_free(&g_p.ln);
 			a = get_next_line(g_p.fd, &g_p.ln);
-			printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 		}
 		i = 0;
 		while (g_p.ln[i] == ' ')
@@ -78,14 +73,12 @@ void	ft_readfile(int argc, char *av[])
 			i = 0;
 			ft_free(&g_p.ln);
 			a = get_next_line(g_p.fd, &g_p.ln);
-			printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 			while (g_p.ln[i] == ' ')
             	i++;
 			while (g_p.ln[0] == '\0' && a != 0)
 			{
 				ft_free(&g_p.ln);
 				a = get_next_line(g_p.fd, &g_p.ln);
-				printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 			}
 			if ((g_p.ln[i] == '1' || g_p.ln[i] == ' ') && b >= 8)
 				break ;
@@ -98,7 +91,6 @@ void	ft_readfile(int argc, char *av[])
 				ft_print_errors(2);
 		}
 		ft_free(&g_str);
-		printf("%p %p : %s\n", &g_p.ln, g_p.ln, g_p.ln);
 		if (b >= 8 && a == 0)
 		{
 			if ((g_p.ln[i] == '1' || g_p.ln[i] == ' ') && b >= 8)
@@ -113,26 +105,24 @@ void	ft_readfile(int argc, char *av[])
 
 int	main(int argc, char * argv[])
 {	
-	g_data.mlx = mlx_init();
-
+	g_dt.mlx = mlx_init();
 	ft_readfile(argc, argv);
-//	exit(EXIT_SUCCESS);
-
 	buffertexture();
-	g_ray.num_rays = g_ray.win_w / WALL_STRIP_WIDTH;
-	g_data.turndirection = 0;
-	g_data.walkdirection = 0;
-	g_data.walkdirection_side = 0;
-	g_data.movespeed = 8;
-	g_data.rotationspeed = 4 * (M_PI / 180);
-	g_data.fov_angle = 60 * (M_PI / 180);
-	g_data.mlx = mlx_init();
-	g_data.win = mlx_new_window(g_data.mlx, g_ray.win_w, g_ray.win_h, "cub3D");
-	g_data.img = mlx_new_image(g_data.mlx, g_ray.win_w, g_ray.win_h);
-	g_data.addr = (int *)mlx_get_data_addr(g_data.img, &g_data.bits_per_pixel,
-			&g_data.line_length, &g_data.endian);
+	g_dt.img_w = TL_SZ * g_p.len;
+	g_dt.img_h = TL_SZ * g_p.inc;
+	g_r.num_rays = g_dt.win_w / WALL_STRIP_WIDTH;
+	g_dt.turndirection = 0;
+	g_dt.walkdirection = 0;
+	g_dt.walkdirection_side = 0;
+	g_dt.movespeed = 8;
+	g_dt.rotationspeed = 4 * (M_PI / 180);
+	g_dt.fov_angle = 60 * (M_PI / 180);
+	g_dt.win = mlx_new_window(g_dt.mlx, g_dt.win_w, g_dt.win_h, "cub3D");
+	g_dt.img = mlx_new_image(g_dt.mlx, g_dt.win_w, g_dt.win_h);
+	g_dt.addr = (int *)mlx_get_data_addr(g_dt.img, &g_dt.bits_per_pixel,
+			&g_dt.line_length, &g_dt.endian);
 	map();
-	mlx_put_image_to_window(g_data.mlx, g_data.win, g_data.img, 0, 0);
-	mlx_loop_hook(g_data.mlx, update, (void*) 0);
-	mlx_loop(g_data.mlx);
+	mlx_put_image_to_window(g_dt.mlx, g_dt.win, g_dt.img, 0, 0);
+	mlx_loop_hook(g_dt.mlx, update, (void*) 0);
+	mlx_loop(g_dt.mlx);
 }

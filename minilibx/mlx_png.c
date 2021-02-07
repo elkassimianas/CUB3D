@@ -158,7 +158,7 @@ int	mipng_fill_img(mlx_img_list_t *img, unsigned char *buf, png_info_t *pi)
 }
 
 
-int	mipng_data(mlx_img_list_t *img, unsigned char *dat, png_info_t *pi)
+int	mipng_dt(mlx_img_list_t *img, unsigned char *dat, png_info_t *pi)
 {
   unsigned int	len;
   int		b_pos;
@@ -375,7 +375,7 @@ mlx_img_list_t	*mlx_int_parse_png(mlx_ptr_t *xvar, unsigned char *fptr, int size
       warnx("mlx PNG error : Can't create mlx image");
       return ((mlx_img_list_t *)0);
     }
-  if ((err = mipng_data(img, dat, &pi)))
+  if ((err = mipng_dt(img, dat, &pi)))
     {
       mlx_destroy_image(xvar, img);
       warnx("mlx PNG error : %s", mipng_err[err]);

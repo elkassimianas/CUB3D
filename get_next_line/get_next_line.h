@@ -22,7 +22,7 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 
-# define BUFFER_SIZE 1
+# define BUFFER_SIZE 10
 
 int		get_next_line(int fd, char **line);
 int		ft_free(char **s);
