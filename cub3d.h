@@ -149,6 +149,13 @@ typedef	struct	s_parsing
 	size_t		len;
 	int			inc;
 }				t_parsing;
+typedef struct      s_sprite
+{
+    int     x;
+    int     y;
+    double  dis;
+    double  ang;
+}                   t_sprite;
 
 t_ray			g_r;
 t_ray1			g_r1[WIN_WMAX / WALL_STRIP_WIDTH];
@@ -157,6 +164,7 @@ t_render3d		g_rd;
 t_texture		g_tex;
 t_parsing		g_p;
 t_data			g_dt;
+t_sprite		g_sprite;
 
 int				keypressed(int keycode);
 int				keyrelease(int keycode);
@@ -209,5 +217,6 @@ int				quit_win();
 int				create_trgb(int r, int g, int b);
 int				ft_math_utils(int i, int a);
 void			ft_floor_ceilling(int i);
+void			ft_initial_sprite(void);
 
 #endif
