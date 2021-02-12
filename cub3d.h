@@ -39,7 +39,7 @@
 
 unsigned long int	g_tilecolor;
 char				*g_str;
-void				*dataimg[4];
+void				*dataimg[5];
 
 typedef	struct	s_player
 {
@@ -132,7 +132,7 @@ typedef struct	s_texture
 	int			rc;
 	int			gc;
 	int			bc;
-	int			*addr[4];
+	int			*addr[5];
 	int			offsetx;
 	int			offsety;
 	int			bits_per_pixeltx;
@@ -148,6 +148,7 @@ typedef	struct	s_parsing
 	char		*str;
 	size_t		len;
 	int			inc;
+	int			count_spri;
 }				t_parsing;
 typedef struct      s_sprite
 {
@@ -164,7 +165,7 @@ t_render3d		g_rd;
 t_texture		g_tex;
 t_parsing		g_p;
 t_data			g_dt;
-t_sprite		g_sprite;
+t_sprite		*g_sprite;
 
 int				keypressed(int keycode);
 int				keyrelease(int keycode);
@@ -217,6 +218,11 @@ int				quit_win();
 int				create_trgb(int r, int g, int b);
 int				ft_math_utils(int i, int a);
 void			ft_floor_ceilling(int i);
-void			ft_initial_sprite(void);
+int				ft_initial_sprite(void);
+void			ft_get_data_sprite(void);
+void			ft_sort_dis_sprite(void);
+void			ft_render_sprite(int x, double distance, double stripe_h, int bottom);
+void			ft_draw_sprite(void);
+
 
 #endif

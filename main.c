@@ -21,8 +21,10 @@ int	update()
 	mlx_hook(g_dt.win, 17, 0L, quit_win, (void*)0);
 	draw_new_map();
 	castallg_rs();
+	//ft_draw_sprite();
 	render3dprojectedwalls();
 	map();
+	ft_draw_sprite();
 	i = -1;
 	while (++i < g_r.num_rays)
 		rayspush(g_r1[i].w_hitx * MINIMAP_SCALE_FACTOR, g_r1[i].w_hity * 
@@ -107,6 +109,7 @@ int	main(int argc, char * argv[])
 {	
 	g_dt.mlx = mlx_init();
 	ft_readfile(argc, argv);
+	ft_initial_sprite();
 	buffertexture();
 	g_dt.img_w = TL_SZ * g_p.len;
 	g_dt.img_h = TL_SZ * g_p.inc;
@@ -121,8 +124,8 @@ int	main(int argc, char * argv[])
 	g_dt.img = mlx_new_image(g_dt.mlx, g_dt.win_w, g_dt.win_h);
 	g_dt.addr = (int *)mlx_get_data_addr(g_dt.img, &g_dt.bits_per_pixel,
 			&g_dt.line_length, &g_dt.endian);
-	map();
-	mlx_put_image_to_window(g_dt.mlx, g_dt.win, g_dt.img, 0, 0);
+	//map();
+	//mlx_put_image_to_window(g_dt.mlx, g_dt.win, g_dt.img, 0, 0);
 	mlx_loop_hook(g_dt.mlx, update, (void*) 0);
 	mlx_loop(g_dt.mlx);
 }

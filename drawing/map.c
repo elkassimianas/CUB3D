@@ -34,27 +34,27 @@ void		drawing_cub_walls(double tilex, double tiley)
 
 void		map()
 {
-	int			i;
-	int			j;
+	int			y;
+	int			x;
 	double		tiley;
 	double		tilex;
 
 	tilex = 0;
 	tiley = 0;
-	i = -1;
-	while (++i < g_p.inc)
+	y = -1;
+	while (++y < g_p.inc)
 	{
-		j = -1;
-		while (++j < (int)g_p.len)
+		x = -1;
+		while (++x < (int)g_p.len)
 		{
-			tilex = j * TL_SZ * MINIMAP_SCALE_FACTOR;
-			tiley = i * TL_SZ * MINIMAP_SCALE_FACTOR;
-			if (g_dt.map[i][j] == '1')
+			tilex = x * TL_SZ * MINIMAP_SCALE_FACTOR;
+			tiley = y * TL_SZ * MINIMAP_SCALE_FACTOR;
+			if (g_dt.map[y][x] == '1')
 			{
 				g_tilecolor = 0x5C413B;
 				drawing_cub_walls(tilex, tiley);
 			}
-			else if (g_dt.map[i][j] == '2')
+			else if (g_dt.map[y][x] == '2')
 			{
 				g_tilecolor = 0x33FF74;
 				drawing_cub_walls(tilex, tiley);

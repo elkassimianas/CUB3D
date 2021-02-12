@@ -15,10 +15,22 @@
 double		normalizeangle(double angle)
 {
 	angle = (angle - (int)(angle / (2 * M_PI)) * (2 * M_PI));
+	//angle = remainder(angle , (2 * M_PI));
 	if (angle < 0)
-		angle += (2 * M_PI);
+		angle = (2 * M_PI) + angle;
 	return (angle);
 }
+
+// float	normalize_angle(float agnle)
+// {
+// 	agnle = remainder(agnle, (2 * M_PI));
+// 	if (agnle < 0)
+// 		agnle = (2 * M_PI) + agnle;
+// 	return (agnle);
+// }
+
+
+
 
 void		rayspush(double x2, double y2)
 {

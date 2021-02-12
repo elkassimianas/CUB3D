@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = -Wall -Wextra -Werror  -l mlx -framework OpenGL -framework AppKit ./minilibx/libmlx.a -fsanitize=address -g
+CC = -Wall -Wextra -Werror  -l mlx -framework OpenGL -framework AppKit ./minilibx/libmlx.a -g
 
 NAME = cub3D
 LIB = ./libft/libft.a
@@ -20,6 +20,7 @@ SRC = drawing/map.c\
 		drawing/update_for_new_drawing.c\
 		drawing/raycasting.c\
 		drawing/texture.c\
+		drawing/ft_sprite.c\
 		get_next_line/get_next_line.c\
 		parsing/putonvar.c\
 		parsing/stock_utils.c\

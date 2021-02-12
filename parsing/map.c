@@ -16,6 +16,7 @@ void	check_map(void)
 {
 	int			check_p;
 	g_p.len = 0;
+	g_p.count_spri = 0;
 	g_p.len = ft_strlen(g_p.ln);
 
 	g_p.str = ft_strjoin(g_p.ln, "c");
@@ -100,10 +101,8 @@ int		ft_read_map(void)
 	while (a != 0)
 	{
 		a = get_next_line(g_p.fd, &g_p.ln);
-		if (a == 0 && g_p.ln[0] != '0')
+		if (a == 0)
 			check_first_end_line();
-		else if (a == 0)
-			ft_print_errors(25);
 		free1 = g_p.str;
 		g_p.str = ft_strjoin(free1, g_p.ln);
 		ft_free(&free1);

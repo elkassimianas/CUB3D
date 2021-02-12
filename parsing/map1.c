@@ -19,9 +19,13 @@ int		check_map1(int check)
 	i = 0;
 	while (g_p.ln[i] != '\0')
 	{
-		if (g_p.ln[i] == ' ' || g_p.ln[i] == '1' || g_p.ln[i] == '0' ||
-				g_p.ln[i] == '2')
+		if (g_p.ln[i] == ' ' || g_p.ln[i] == '1' || g_p.ln[i] == '0')
 			i++;
+		else if (g_p.ln[i] == '2')
+		{
+			i++;
+			g_p.count_spri += 1;
+		}
 		else if (g_p.ln[i] == 'N' || g_p.ln[i] == 'S')
 		{
 			check == 0 ? check = 1 : ft_print_errors(26);
