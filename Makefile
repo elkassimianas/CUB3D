@@ -10,13 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = -Wall -Wextra -Werror -I /usr/X11/include -L /usr/X11/lib -l mlx -framework OpenGL -framework AppKit -g
+CC = -Wall -Wextra -Werror  -l mlx -framework OpenGL -framework AppKit ./minilibx/libmlx.a -fsanitize=address -g
 
 NAME = cub3D
 LIB = ./libft/libft.a
 
-SRC = drawing/map.c\
-		drawing/castand3d.c\
+SRC = drawing/castand3d.c\
 		drawing/update_for_new_drawing.c\
 		drawing/raycasting.c\
 		drawing/texture.c\
@@ -26,7 +25,8 @@ SRC = drawing/map.c\
 		parsing/putonvar.c\
 		parsing/stock_utils.c\
 		parsing/map.c\
-		parsing//map1.c\
+		parsing/map1.c\
+		parsing/parsing_help.c\
 		main.c
 
 

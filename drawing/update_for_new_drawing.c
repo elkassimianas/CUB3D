@@ -27,10 +27,7 @@ int		keypressed(int keycode)
 	if (keycode == A)
 		g_dt.walkdirection_side = 1;
 	if (keycode == ESC)
-	{
-		//free 
 		exit (EXIT_SUCCESS);
-	}
 	return (0);
 }
 
@@ -49,7 +46,6 @@ int		quit_win()
 {
 	int		len;
 
-	//free
 	len = len_of_line(g_dt.map);
 	ft_free1(g_dt.map, len);
 	mlx_destroy_window(g_dt.mlx, g_dt.win);
