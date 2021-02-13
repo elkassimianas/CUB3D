@@ -14,7 +14,7 @@
 
 int	update()
 {
-	int		i = 0;
+	//int		i = 0;
 	
 	mlx_hook(g_dt.win, 2, 0, keypressed, (void*)0);
 	mlx_hook(g_dt.win, 3, 1, keyrelease, (void *)0);
@@ -23,12 +23,12 @@ int	update()
 	castallg_rs();
 	//ft_draw_sprite();
 	render3dprojectedwalls();
-	map();
+	//map();
 	ft_draw_sprite();
-	i = -1;
-	while (++i < g_r.num_rays)
-		rayspush(g_r1[i].w_hitx * MINIMAP_SCALE_FACTOR, g_r1[i].w_hity * 
-			MINIMAP_SCALE_FACTOR);
+	// i = -1;
+	// while (++i < g_r.num_rays)
+	// 	rayspush(g_r1[i].w_hitx * MINIMAP_SCALE_FACTOR, g_r1[i].w_hity * 
+	// 		MINIMAP_SCALE_FACTOR);
 	mlx_put_image_to_window(g_dt.mlx, g_dt.win, g_dt.img, 0, 0);
 	return (0);
 }
@@ -41,8 +41,8 @@ void	ft_readfile(int argc, char *av[])
 
 	a = 1;
 	b = 0;
-	 argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
-	 if (argc == 3 && strncmp(av[2], "--save", 7))
+	argc > 3 || argc == 1 ? ft_print_errors(5) : argc;
+	if (argc == 3 && strncmp(av[2], "--save", 7))
 		ft_print_errors(5);
 	if (ft_strrchr(av[1], '.') && !ft_strncmp(ft_strrchr(av[1], '.'), ".cub", 5))
 		g_p.fd = open(av[1], O_RDONLY);
@@ -117,13 +117,23 @@ int	main(int argc, char * argv[])
 	g_dt.turndirection = 0;
 	g_dt.walkdirection = 0;
 	g_dt.walkdirection_side = 0;
-	g_dt.movespeed = 8;
+	g_dt.movespeed = 5;
 	g_dt.rotationspeed = 4 * (M_PI / 180);
 	g_dt.fov_angle = 60 * (M_PI / 180);
-	g_dt.win = mlx_new_window(g_dt.mlx, g_dt.win_w, g_dt.win_h, "cub3D");
+	if (argc == 2)
+		g_dt.win = mlx_new_window(g_dt.mlx, g_dt.win_w, g_dt.win_h, "cub3D");
 	g_dt.img = mlx_new_image(g_dt.mlx, g_dt.win_w, g_dt.win_h);
 	g_dt.addr = (int *)mlx_get_data_addr(g_dt.img, &g_dt.bits_per_pixel,
 			&g_dt.line_length, &g_dt.endian);
+	if (argc == 3)
+	{
+		draw_new_map();
+		castallg_rs();
+		render3dprojectedwalls();
+		ft_draw_sprite();
+		create_file_bmp(0);
+		exit (EXIT_SUCCESS);
+	}
 	//map();
 	//mlx_put_image_to_window(g_dt.mlx, g_dt.win, g_dt.img, 0, 0);
 	mlx_loop_hook(g_dt.mlx, update, (void*) 0);

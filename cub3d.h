@@ -158,6 +158,19 @@ typedef struct      s_sprite
     double  ang;
 }                   t_sprite;
 
+typedef struct s_bmp
+{
+	int				bpp;
+	int				fd;
+	unsigned int	image_size;
+	int				dh_size;
+	int				pd_off_bits;
+	unsigned int	filesize;
+	int				bi_planes;
+	unsigned int	pos;
+	char			header[54];
+}				t_bmp;
+
 t_ray			g_r;
 t_ray1			g_r1[WIN_WMAX / WALL_STRIP_WIDTH];
 t_player		g_pl;
@@ -223,6 +236,7 @@ void			ft_get_data_sprite(void);
 void			ft_sort_dis_sprite(void);
 void			ft_render_sprite(int x, double distance, double stripe_h, int bottom);
 void			ft_draw_sprite(void);
-
+void			bmp_initialize_header(t_bmp *bmp);
+void			create_file_bmp(int i);
 
 #endif
