@@ -107,8 +107,8 @@ void		no_so_we_ea_s(int dx1, int dx2)
 	line = ft_split(g_p.ln, ' ');
 	if (dx1 == 1)
 	{
-		if (!mlx_xpm_file_to_image(g_dt.mlx, line[1], &g_tex.width,
-					&g_tex.height) || nu_information(line) != 2)
+		if (!mlx_xpm_file_to_image(g_dt.mlx, line[1], &g_tex.w,
+					&g_tex.h) || nu_information(line) != 2)
 		{
 			dx2 == 1 ? ft_print_errors(3) : dx2;
 			dx2 == 2 ? ft_print_errors(4) : dx2;

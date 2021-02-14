@@ -100,7 +100,7 @@ int		ft_read_map(void)
 	a = 1;
 	while (a != 0)
 	{
-		a = get_next_line(g_p.fd, &g_p.ln);
+		if ((a = get_next_line(g_p.fd, &g_p.ln) == -1)
 		if (a == 0)
 			check_first_end_line();
 		free1 = g_p.str;

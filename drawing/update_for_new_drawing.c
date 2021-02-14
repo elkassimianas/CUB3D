@@ -27,7 +27,7 @@ int		keypressed(int keycode)
 	if (keycode == A)
 		g_dt.walkdirection_side = 1;
 	if (keycode == ESC)
-		exit (EXIT_SUCCESS);
+		exit(EXIT_SUCCESS);
 	return (0);
 }
 
@@ -42,21 +42,21 @@ int		keyrelease(int keycode)
 	return (0);
 }
 
-int		quit_win()
+int		quit_win(void)
 {
-	int		len;
+	int	len;
 
 	len = len_of_line(g_dt.map);
 	ft_free1(g_dt.map, len);
 	mlx_destroy_window(g_dt.mlx, g_dt.win);
-	exit (1);
+	exit(1);
 	return (0);
 }
 
 int		haswallat(double x, double y)
 {
-	int		mapindex_x;
-	int		mapindex_y;
+	int	mapindex_x;
+	int	mapindex_y;
 
 	if (x < 0 || x >= g_dt.img_w || y < 0 || y >= g_dt.img_h)
 		return (1);
@@ -67,12 +67,14 @@ int		haswallat(double x, double y)
 	return (0);
 }
 
-void		draw_new_map()
+void	draw_new_map(void)
 {
-	float		movestep;
-	float		newplayerx = 0;
-	float		newplayery = 0;
+	float	movestep;
+	float	newplayerx;
+	float	newplayery;
 
+	newplayerx = 0;
+	newplayery = 0;
 	g_dt.ro_angle += g_dt.turndirection * g_dt.rotationspeed;
 	if (g_dt.walkdirection != 0)
 	{

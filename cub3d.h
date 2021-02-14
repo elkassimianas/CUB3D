@@ -87,7 +87,7 @@ typedef	struct		s_ray
 	bool			fnd_vrt_hit;
 	bool			washitvert;
 	double			hzhitdis;
-	double			vrhitdis;
+	double			vrhitd;
 }					t_ray;
 
 typedef struct		s_ray1
@@ -117,8 +117,8 @@ typedef struct		s_texture
 	char			*filenameright;
 	char			*filenameleft;
 	char			*filesprite;
-	int				width;
-	int				height;
+	int				w;
+	int				h;
 	int				rf;
 	int				gf;
 	int				bf;

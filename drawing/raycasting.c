@@ -113,15 +113,14 @@ void		castallg_rs(int i)
 		raycasthorz();
 		raycastvert();
 		g_r.hzhitdis = (g_r.fnd_hz_hit) ?
-		disbet_p(g_pl.x_p, g_pl.y_p, g_r.hzhitx, g_r.hzhity) : INT_MAX;
-        g_r.vrhitdis = (g_r.fnd_vrt_hit) ?
-		disbet_p(g_pl.x_p, g_pl.y_p, g_r.vr_hi_x, g_r.vrhity) : INT_MAX;
-		g_r1[i].w_hitx = (g_r.hzhitdis < g_r.vrhitdis) ? g_r.hzhitx : g_r.vr_hi_x;
-		g_r1[i].w_hity = (g_r.hzhitdis < g_r.vrhitdis) ? g_r.hzhity : g_r.vrhity;
-		g_r1[i].dis_t = (g_r.hzhitdis < g_r.vrhitdis) ? g_r.hzhitdis : g_r.vrhitdis;
-		g_r1[i].fndvertwtx = (g_r.hzhitdis < g_r.vrhitdis) ? 0 : 1;
+			disbet_p(g_pl.x_p, g_pl.y_p, g_r.hzhitx, g_r.hzhity) : INT_MAX;
+		g_r.vrhitd = (g_r.fnd_vrt_hit) ?
+			disbet_p(g_pl.x_p, g_pl.y_p, g_r.vr_hi_x, g_r.vrhity) : INT_MAX;
+		g_r1[i].w_hitx = (g_r.hzhitdis < g_r.vrhitd) ? g_r.hzhitx : g_r.vr_hi_x;
+		g_r1[i].w_hity = (g_r.hzhitdis < g_r.vrhitd) ? g_r.hzhity : g_r.vrhity;
+		g_r1[i].dis_t = (g_r.hzhitdis < g_r.vrhitd) ? g_r.hzhitdis : g_r.vrhitd;
+		g_r1[i].fndvertwtx = (g_r.hzhitdis < g_r.vrhitd) ? 0 : 1;
 		g_r1[i].anglet = g_r.angle;
 		g_r.angle += g_dt.fov_angle / g_r.num_rays;
 	}
 }
-

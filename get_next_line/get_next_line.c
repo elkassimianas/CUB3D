@@ -34,21 +34,6 @@ int     len_of_line(char **str)
     return (len);
 }
 
-// void   ft_free1(char **str, int len)
-// {
-//     if (str)
-//     {
-//         while (len >= 0)
-//         {
-//             free(str[len]);
-//             str[len] = NULL;
-//             len--;
-//         }
-//         free(str);
-//         str = NULL;
-//     }
-// }
-
 void		ft_free1(char **dst, int j)
 {
 	while (j > 0)
