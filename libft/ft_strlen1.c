@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strlen1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 15:44:00 by ael-kass          #+#    #+#             */
-/*   Updated: 2021/02/14 09:23:30 by ael-kass         ###   ########.fr       */
+/*   Created: 2021/02/16 09:05:52 by ael-kass          #+#    #+#             */
+/*   Updated: 2021/02/16 09:06:18 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <string.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "../libft/libft.h"
+int		ft_strlen1(const char *str)
+{
+	unsigned int i;
 
-# define BUFFER_SIZE 10
-
-int		get_next_line(int fd, char **line);
-int		ft_free(char **s);
-int		len_of_line(char **str);
-void	ft_free1(char **dst, int j);
-
-#endif
+	i = 0;
+	while (str[i] != '\0')
+    {
+		if(!ft_isdigit(str[i]))
+        	return (-1);
+        i++;
+    }
+    return (i);
+}

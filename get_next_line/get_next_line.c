@@ -6,13 +6,13 @@
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 15:41:32 by ael-kass          #+#    #+#             */
-/*   Updated: 2019/11/21 05:12:06 by ael-kass         ###   ########.fr       */
+/*   Updated: 2021/02/14 09:23:08 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		 ft_free(char **s)
+int			ft_free(char **s)
 {
 	if (*s)
 	{
@@ -22,30 +22,7 @@ int		 ft_free(char **s)
 	return (-1);
 }
 
-int     len_of_line(char **str)
-{
-    int		len;
-    len = 0;
-	while (*(str+len))
-		len++;
-	len = 0;
-    while (*(str + len))
-        len++;
-    return (len);
-}
-
-void		ft_free1(char **dst, int j)
-{
-	while (j > 0)
-	{
-		j--;
-		free((void *)dst[j]);
-	}
-	free(dst);
-	dst = NULL;
-}
-
-int		ft_helpline(int i, char ***save, char **buffer)
+int			ft_helpline(int i, char ***save, char **buffer)
 {
 	if (i < 0)
 	{
@@ -56,7 +33,7 @@ int		ft_helpline(int i, char ***save, char **buffer)
 	return (1);
 }
 
-int		ft_affect(int fd, char **save, char **buffer)
+int			ft_affect(int fd, char **save, char **buffer)
 {
 	char	*tmp2;
 	int		ret2;
@@ -83,7 +60,7 @@ int		ft_affect(int fd, char **save, char **buffer)
 	return (len);
 }
 
-int		ft_linen(char **save, char ***line, int len)
+int			ft_linen(char **save, char ***line, int len)
 {
 	char	*tmp;
 
@@ -103,7 +80,7 @@ int		ft_linen(char **save, char ***line, int len)
 	return (0);
 }
 
-int		get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	static char		*save;
 	char			*buffer;

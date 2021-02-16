@@ -44,16 +44,12 @@ int		keyrelease(int keycode)
 
 int		quit_win(void)
 {
-	int	len;
-
-	len = len_of_line(g_dt.map);
-	ft_free1(g_dt.map, len);
 	mlx_destroy_window(g_dt.mlx, g_dt.win);
 	exit(1);
 	return (0);
 }
 
-int		haswallat(double x, double y)
+int		haswallat_hassprite(double x, double y)
 {
 	int	mapindex_x;
 	int	mapindex_y;
@@ -62,7 +58,8 @@ int		haswallat(double x, double y)
 		return (1);
 	mapindex_x = floor(x / TL_SZ);
 	mapindex_y = floor(y / TL_SZ);
-	if (g_dt.map[mapindex_y][mapindex_x] == '1')
+	if (g_dt.map[mapindex_y][mapindex_x] == '1' ||
+	g_dt.map[mapindex_y][mapindex_x] == '2')
 		return (1);
 	return (0);
 }
@@ -88,7 +85,7 @@ void	draw_new_map(void)
 		newplayerx = g_pl.x_p + cos(g_dt.ro_angle - M_PI_2) * movestep;
 		newplayery = g_pl.y_p + sin(g_dt.ro_angle - M_PI_2) * movestep;
 	}
-	if (!haswallat(newplayerx, newplayery))
+	if (!haswallat_hassprite(newplayerx, newplayery))
 	{
 		g_pl.x_p = newplayerx;
 		g_pl.y_p = newplayery;

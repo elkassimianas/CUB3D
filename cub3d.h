@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # include <math.h>
-# include "./minilibx/mlx.h"
 # include <stdlib.h>
+# include "mlx.h"
 # include <stdio.h>
 # include <stdbool.h>
 # include <limits.h>
@@ -112,10 +112,10 @@ typedef struct		s_render3d
 
 typedef struct		s_texture
 {
-	char			*filenameup;
-	char			*filenamedown;
-	char			*filenameright;
-	char			*filenameleft;
+	char			*fileup;
+	char			*filedown;
+	char			*fileright;
+	char			*fileleft;
 	char			*filesprite;
 	int				w;
 	int				h;
@@ -208,8 +208,8 @@ void				check_map(void);
 void				ft_allocate(int	x, int y);
 void				check_first_end_line(void);
 void				ft_putmap(int x, int y);
-int					check_map1(int check);
-int					ft_read_map(void);
+int					check_map1(int check, int i);
+int					ft_read_map(int check);
 void				ft_valid_map(int x, int y);
 void				ft_check_spaces(int i, int j, int x, int y);
 int					put_check_help1(int i, int b);
@@ -229,9 +229,13 @@ void				ft_draw_sprite(void);
 void				bmp_initialize_header(t_bmp *bmp);
 void				create_file_bmp(int i);
 void				my_mlx_pixels_put(int x, int y, int	color_spr);
-int					ft_check_elements1(int	a, int	b);
+void				ft_check_elements1(int	a, int	b);
 int					ft_increment_line(int a);
 void				ft_check_elements(void);
 void				ft_readfile(int argc, char *av[]);
+int					put_check_ceilling(int i, int b);
+void				ft_floor_help(char	**f_free);
+void				ft_ceilling_help(char **f_free);
+int					haswallat_hassprite(double x, double y);
 
 #endif

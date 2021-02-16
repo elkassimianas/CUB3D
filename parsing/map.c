@@ -6,23 +6,23 @@
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 08:11:41 by ael-kass          #+#    #+#             */
-/*   Updated: 2021/01/24 12:43:09 by ael-kass         ###   ########.fr       */
+/*   Updated: 2021/02/14 09:56:18 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	check_map(void)
+void		check_map(void)
 {
-	int			check_p;
+	int		check_p;
+
 	g_p.len = 0;
 	g_p.count_spri = 0;
 	g_p.len = ft_strlen(g_p.ln);
-
 	g_p.str = ft_strjoin(g_p.ln, "c");
 	check_first_end_line();
 	ft_free(&g_p.ln);
-	check_p = ft_read_map();
+	check_p = ft_read_map(0);
 	if (check_p == 0)
 		ft_print_errors(27);
 	ft_allocate(g_p.len, g_p.inc);
@@ -31,7 +31,7 @@ void	check_map(void)
 	change_spaces();
 }
 
-void	ft_allocate(int x, int y)
+void		ft_allocate(int x, int y)
 {
 	int		i;
 
@@ -47,7 +47,7 @@ void	ft_allocate(int x, int y)
 	}
 }
 
-void	check_first_end_line(void)
+void		check_first_end_line(void)
 {
 	int		i;
 
@@ -61,7 +61,7 @@ void	check_first_end_line(void)
 	}
 }
 
-void	ft_putmap(int x, int y)
+void		ft_putmap(int x, int y)
 {
 	int		i;
 	int		j;
@@ -89,18 +89,16 @@ void	ft_putmap(int x, int y)
 	ft_valid_map(x, y);
 }
 
-int		ft_read_map(void)
+int			ft_read_map(int check)
 {
 	int		a;
-	int		check;
 	char	*free1;
 
 	g_p.inc = 1;
-	check = 0;
 	a = 1;
 	while (a != 0)
 	{
-		if ((a = get_next_line(g_p.fd, &g_p.ln) == -1)
+		a = get_next_line(g_p.fd, &g_p.ln);
 		if (a == 0)
 			check_first_end_line();
 		free1 = g_p.str;
@@ -110,7 +108,7 @@ int		ft_read_map(void)
 		g_p.str = ft_strjoin(free1, "c");
 		ft_free(&free1);
 		g_p.inc++;
-		check = check_map1(check);
+		check = check_map1(check, 0);
 		g_p.len = g_p.len > ft_strlen(g_p.ln) ? g_p.len : ft_strlen(g_p.ln);
 		ft_free(&g_p.ln);
 	}

@@ -6,17 +6,14 @@
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 12:35:28 by ael-kass          #+#    #+#             */
-/*   Updated: 2021/01/24 16:16:21 by ael-kass         ###   ########.fr       */
+/*   Updated: 2021/02/14 10:49:57 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int		check_map1(int check)
+int		check_map1(int check, int i)
 {
-	int		i;
-
-	i = 0;
 	while (g_p.ln[i] != '\0')
 	{
 		if (g_p.ln[i] == ' ' || g_p.ln[i] == '1' || g_p.ln[i] == '0')
@@ -84,12 +81,12 @@ void	ft_check_spaces(int i, int j, int x, int y)
 
 int		find_player(int j, int i)
 {
-	if (g_dt.map[i][j] == 'N')
+	if (g_dt.map[i][j] == 'S')
 	{
 		g_dt.ro_angle = M_PI_2;
 		return (1);
 	}
-	if (g_dt.map[i][j] == 'S')
+	if (g_dt.map[i][j] == 'N')
 	{
 		g_dt.ro_angle = (3 * M_PI) / 2;
 		return (1);
@@ -120,8 +117,7 @@ void	change_spaces(void)
 		{
 			if (g_dt.map[i][j] == ' ')
 				g_dt.map[i][j] = '1';
-			
-			if (find_player(j,i))
+			if (find_player(j, i))
 			{
 				g_pl.x_p = j * TL_SZ + TL_SZ / 2;
 				g_pl.y_p = i * TL_SZ + TL_SZ / 2;

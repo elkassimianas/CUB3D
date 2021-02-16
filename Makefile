@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = -Wall -Wextra -Werror -I /usr/X11/include -L /usr/X11/lib -l mlx -framework OpenGL -framework AppKit -fsanitize=address -g
+CC = -Wall -Wextra -Werror -I /usr/share/man/man3 -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -g
 
 NAME = cub3D
 LIB = ./libft/libft.a
@@ -27,6 +27,8 @@ SRC = drawing/castand3d.c\
 		parsing/map.c\
 		parsing/map1.c\
 		parsing/parsing_help.c\
+		parsing/print_errors.c\
+		parsing/stock_utils_help.c\
 		main.c
 
 

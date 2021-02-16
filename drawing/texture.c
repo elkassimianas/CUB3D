@@ -6,7 +6,7 @@
 /*   By: ael-kass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 09:44:39 by ael-kass          #+#    #+#             */
-/*   Updated: 2020/12/15 09:44:54 by ael-kass         ###   ########.fr       */
+/*   Updated: 2021/02/14 10:51:19 by ael-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void		buffertexture(void)
 {
-	int	i;
+	int		i;
 
 	g_dataimg[0] =
-	mlx_xpm_file_to_image(g_dt.mlx, g_tex.filenameup, &g_tex.w, &g_tex.h);
-	ft_free(&g_tex.filenameup);
+	mlx_xpm_file_to_image(g_dt.mlx, g_tex.fileup, &g_tex.w, &g_tex.h);
+	ft_free(&g_tex.fileup);
 	g_dataimg[1] =
-	mlx_xpm_file_to_image(g_dt.mlx, g_tex.filenamedown, &g_tex.w, &g_tex.h);
-	ft_free(&g_tex.filenamedown);
+	mlx_xpm_file_to_image(g_dt.mlx, g_tex.filedown, &g_tex.w, &g_tex.h);
+	ft_free(&g_tex.filedown);
 	g_dataimg[2] =
-	mlx_xpm_file_to_image(g_dt.mlx, g_tex.filenameleft, &g_tex.w, &g_tex.h);
-	ft_free(&g_tex.filenameleft);
+	mlx_xpm_file_to_image(g_dt.mlx, g_tex.fileleft, &g_tex.w, &g_tex.h);
+	ft_free(&g_tex.fileleft);
 	g_dataimg[3] =
-	mlx_xpm_file_to_image(g_dt.mlx, g_tex.filenameright, &g_tex.w, &g_tex.h);
-	ft_free(&g_tex.filenameright);
+	mlx_xpm_file_to_image(g_dt.mlx, g_tex.fileright, &g_tex.w, &g_tex.h);
+	ft_free(&g_tex.fileright);
 	g_dataimg[4] =
 	mlx_xpm_file_to_image(g_dt.mlx, g_tex.filesprite, &g_tex.w, &g_tex.h);
 	ft_free(&g_tex.filesprite);
@@ -56,4 +56,24 @@ double		normalizeangle(double angle)
 int			create_trgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
+}
+
+int			put_check_ceilling(int i, int b)
+{
+	char	**line;
+	int		f_len;
+
+	if (g_p.ln[i] == 'C' && g_p.ln[i + 1] == ' ')
+	{
+		line = ft_split(g_p.ln, ' ');
+		if (g_str[7] == '1')
+			ft_print_errors(22);
+		else
+			g_str[7] = '1';
+		ft_ceilling(line);
+		f_len = len_of_line(line);
+		ft_free1(line, f_len);
+		return (b + 1);
+	}
+	return (0);
 }
