@@ -41,8 +41,8 @@ $(LIB):
 	@make -C ./libft
 
 clean :
-	@rm -rf $(NAME)
 	@make -C ./libft fclean
+	@rm -rf cub3d.bmp
 
 fclean : clean
 	@rm -rf $(NAME)

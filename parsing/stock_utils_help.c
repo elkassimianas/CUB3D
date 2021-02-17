@@ -14,20 +14,26 @@
 
 void		ft_floor_help(char **f_free)
 {
+	ft_strlen1(f_free[0]) > 3 ? ft_print_errors(12) : 3;
 	g_tex.rf = ft_atoi(f_free[0]);
 	g_tex.rf == -1 || g_tex.rf > 255 ? ft_print_errors(12) : g_tex.rf;
+	ft_strlen1(f_free[1]) > 3 ? ft_print_errors(12) : 3;
 	g_tex.gf = ft_atoi(f_free[1]);
 	g_tex.gf == -1 || g_tex.gf > 255 ? ft_print_errors(12) : g_tex.gf;
+	ft_strlen1(f_free[2]) > 3 ? ft_print_errors(12) : 3;
 	g_tex.bf = ft_atoi(f_free[2]);
 	g_tex.bf == -1 || g_tex.bf > 255 ? ft_print_errors(12) : g_tex.bf;
 }
 
 void		ft_ceilling_help(char **f_free)
 {
+	ft_strlen1(f_free[0]) > 3 ? ft_print_errors(14) : 3;
 	g_tex.rc = ft_atoi(f_free[0]);
 	g_tex.rc == -1 || g_tex.rc > 255 ? ft_print_errors(14) : g_tex.rc;
+	ft_strlen1(f_free[1]) > 3 ? ft_print_errors(14) : 3;
 	g_tex.gc = ft_atoi(f_free[1]);
 	g_tex.gc == -1 || g_tex.gc > 255 ? ft_print_errors(14) : g_tex.gc;
+	ft_strlen1(f_free[2]) > 3 ? ft_print_errors(14) : 3;
 	g_tex.bc = ft_atoi(f_free[2]);
 	g_tex.bc == -1 || g_tex.bc > 255 ? ft_print_errors(14) : g_tex.bc;
 }

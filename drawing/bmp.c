@@ -22,6 +22,7 @@ void		bmp_initialize_header(t_bmp *bmp)
 	bmp->dh_size = 40;
 	bmp->pd_off_bits = 54;
 	bmp->filesize = 54 + bmp->image_size;
+	bmp->bi_planes = 1;
 	while (i < 54)
 		bmp->header[i++] = 0;
 	ft_memcpy(bmp->header, "BM", 2);
