@@ -51,9 +51,11 @@ void			ft_get_data_sprite(void)
 				g_pl.y_p - g_sprite[index].y);
 		g_sprite[index].ang = atan2((g_sprite[index].y - g_pl.y_p),
 				(g_sprite[index].x - g_pl.x_p));
-		while ((g_dt.ro_angle - g_dt.fov_angle / 2) - g_sprite[index].ang > M_PI)
+		while ((g_dt.ro_angle - g_dt.fov_angle / 2) -
+		g_sprite[index].ang > M_PI)
 			g_sprite[index].ang += 2 * M_PI;
-		while (g_sprite[index].ang - (g_dt.ro_angle - g_dt.fov_angle / 2) > M_PI)
+		while (g_sprite[index].ang - (g_dt.ro_angle - g_dt.fov_angle / 2)
+		> M_PI)
 			g_sprite[index].ang -= 2 * M_PI;
 		index++;
 	}

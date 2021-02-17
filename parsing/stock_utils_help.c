@@ -38,7 +38,7 @@ void		ft_ceilling_help(char **f_free)
 	g_tex.bc == -1 || g_tex.bc > 255 ? ft_print_errors(14) : g_tex.bc;
 }
 
-int		haswallat(double x, double y)
+int			haswallat(double x, double y)
 {
 	int	mapindex_x;
 	int	mapindex_y;

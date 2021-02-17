@@ -67,7 +67,7 @@ void		ft_check_elements(void)
 		a = ft_increment_line(a);
 		i = 0;
 		while (g_p.ln[i] == ' ')
-			i++;
+			g_p.ln[i + 1] == '\0' ? ft_print_errors(2) : i++;
 		b = put_check(i, b);
 		ft_check_elements1(a, b);
 	}

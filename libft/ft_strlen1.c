@@ -22,11 +22,11 @@ int		ft_strlen1(const char *str)
 	while (str[j] == '0')
 		j++;
 	while (str[i] != '\0')
-    {
-		if(!ft_isdigit(str[i]))
-        	return (-1);
-        i++;
-    }
+	{
+		if (!ft_isdigit(str[i]))
+			return (-1);
+		i++;
+	}
 	i -= j;
-    return (i);
+	return (i);
 }

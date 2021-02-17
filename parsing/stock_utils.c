@@ -109,10 +109,10 @@ void		no_so_we_ea_s(int dx1, int dx2)
 		}
 		else
 		{
-			g_tex.fileup = dx2 == 1 ? ft_strdup(line[1]) : g_tex.fileup;
-			g_tex.filedown = dx2 == 2 ? ft_strdup(line[1]) : g_tex.filedown;
-			g_tex.fileleft = dx2 == 3 ? ft_strdup(line[1]) : g_tex.fileleft;
-			g_tex.fileright = dx2 == 4 ? ft_strdup(line[1]) : g_tex.fileright;
+			g_tex.filedown = dx2 == 1 ? ft_strdup(line[1]) : g_tex.filedown;
+			g_tex.fileup = dx2 == 2 ? ft_strdup(line[1]) : g_tex.fileup;
+			g_tex.fileright = dx2 == 3 ? ft_strdup(line[1]) : g_tex.fileright;
+			g_tex.fileleft = dx2 == 4 ? ft_strdup(line[1]) : g_tex.fileleft;
 			g_tex.filesprite = dx2 == 5 ? ft_strdup(line[1]) : g_tex.filesprite;
 		}
 	}
