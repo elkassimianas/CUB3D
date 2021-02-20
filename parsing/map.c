@@ -22,7 +22,7 @@ void		check_map(void)
 	g_p.str = ft_strjoin(g_p.ln, "c");
 	check_first_end_line();
 	ft_free(&g_p.ln);
-	check_p = ft_read_map(0);
+	check_p = ft_read_map(0, 1);
 	if (check_p == 0)
 		ft_print_errors(27);
 	ft_allocate(g_p.len, g_p.inc);
@@ -89,16 +89,16 @@ void		ft_putmap(int x, int y)
 	ft_valid_map(x, y);
 }
 
-int			ft_read_map(int check)
+int			ft_read_map(int check, int a)
 {
-	int		a;
 	char	*free1;
 
 	g_p.inc = 1;
-	a = 1;
 	while (a != 0)
 	{
 		a = get_next_line(g_p.fd, &g_p.ln);
+		if (g_p.ln[0] != ' ' && g_p.ln[0] != '1')
+			ft_print_errors(25);
 		if (a == 0)
 			check_first_end_line();
 		free1 = g_p.str;

@@ -52,9 +52,11 @@ void	ft_valid_map(int x, int y)
 		{
 			if (j == 0)
 			{
-				while (g_dt.map[i][j++] == ' ' && j != x - 1)
-					if (j != x - 1)
-						ft_check_spaces(i, j, x, y);
+				while (g_dt.map[i][j] == ' ' && j != x - 1)
+				{
+					ft_check_spaces(i, j, x, y);
+					j++;
+				}
 				g_dt.map[i][j] != '1' && g_dt.map[i][j] != ' ' ?
 				ft_print_errors(25) : 1;
 			}
@@ -70,7 +72,8 @@ void	ft_check_spaces(int i, int j, int x, int y)
 {
 	if (g_dt.map[i][j] == ' ')
 	{
-		g_dt.map[i][j - 1] == '1' || g_dt.map[i][j - 1] == ' ' ? 1 :
+		if (j != 0)
+			g_dt.map[i][j - 1] == '1' || g_dt.map[i][j - 1] == ' ' ? 1 :
 			ft_print_errors(25);
 		if (j != x - 1)
 			g_dt.map[i][j + 1] == '1' || g_dt.map[i][j + 1] == ' ' ?

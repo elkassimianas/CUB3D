@@ -33,8 +33,8 @@ void		ft_initial_var(void)
 	g_dt.turndirection = 0;
 	g_dt.walkdirection = 0;
 	g_dt.walkdirection_side = 0;
-	g_dt.movespeed = 10;
-	g_dt.rotationspeed = 4 * (M_PI / 180);
+	g_dt.movespeed = 7;
+	g_dt.rotationspeed = 3 * (M_PI / 180);
 	g_dt.fov_angle = 60 * (M_PI / 180);
 }
 

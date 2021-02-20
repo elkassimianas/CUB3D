@@ -209,7 +209,7 @@ void				ft_allocate(int	x, int y);
 void				check_first_end_line(void);
 void				ft_putmap(int x, int y);
 int					check_map1(int check, int i);
-int					ft_read_map(int check);
+int					ft_read_map(int check, int a);
 void				ft_valid_map(int x, int y);
 void				ft_check_spaces(int i, int j, int x, int y);
 int					put_check_help1(int i, int b);
